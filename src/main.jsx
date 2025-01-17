@@ -6,11 +6,15 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import formOptions from './reducers/formOptionsReducer.js'
 import formSelected from './reducers/formSelectedOptionsReducer.js'
+import listingsPage from './reducers/listingPageReducer.js'
+import user from './reducers/userReducer.js'
 
 const store = configureStore({
   reducer: {
     formOptions,
-    formSelected
+    formSelected,
+    listingsPage,
+    user
   }, 
 })
 

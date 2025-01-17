@@ -1,6 +1,9 @@
 import { Routes, Route } from 'react-router-dom' 
 import Home from './components/Home/Home';
 import Header from './components/Header/Header'
+import Search from './components/Search/Search'
+import Login from './components/Login/Login';
+import ListingsPage from './components/ListingsPage/ListingsPage'
 import { createGlobalStyle } from 'styled-components'
 import TopBackground from './components/TopBackground';
 
@@ -31,9 +34,10 @@ function App() {
       <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/detailedSearch' element/>
+          <Route path='/search' element={<Search/>}/>
+          <Route path='/listings' element={<ListingsPage/>}/>
           <Route path='/about' element/>
-          <Route path='/login' element/>
+          <Route path='/login' element={<Login/>}/>
           <Route path='/register' element/>
           <Route path='/profile' element/>
         </Routes>

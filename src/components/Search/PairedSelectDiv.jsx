@@ -15,10 +15,10 @@ const Select = styled.select`
 const Option = styled.option`
 `
 // could use child parent props
-const SelectDiv = ({ label, optionProp, child, parent, options, optionText }) => {
+const PairedSelectDiv = ({ label, optionProp, child, parent, options, optionText }) => {
 const dispatch = useDispatch()
 const selectedOptions = useSelector(c => c.formSelected)
-console.log(options)
+
     return (
         <Div>
             <Label>{label}</Label>
@@ -32,17 +32,11 @@ console.log(options)
                 <Option value={"null"}>All</Option>
                 {
                     options.map(m => {
-                        console.log(m)
                         if (parent && m[parent].id === selectedOptions[parent]){
                             return (
                                 <Option key={m.id} value={m.id}>{m[optionText]}</Option>
                             )
                         }else if(child){
-                            return (
-                                <Option key={m.id} value={m.id}>{m[optionText]}</Option>
-                            )
-                        }
-                        else{
                             return (
                                 <Option key={m.id} value={m.id}>{m[optionText]}</Option>
                             )
@@ -58,4 +52,4 @@ console.log(options)
     )
 }
 
-export default SelectDiv
+export default PairedSelectDiv

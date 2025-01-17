@@ -106,7 +106,7 @@ const Navigation = () => {
             
             <Div>
                 <Link to={'/'}>Home</Link>
-                <Link to={'/detailedSearch'}>Search</Link>
+                <Link to={'/search'}>Search</Link>
                 <Link to={'/about'}>About</Link>
             </Div>
             <UserNav className='usernav'/>
