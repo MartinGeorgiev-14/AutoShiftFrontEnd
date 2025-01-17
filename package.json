@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
     "components": "^0.1.0",
+    "dotenv": "^16.4.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
     "react-router": "^6.28.0",
     "react-router-dom": "^6.28.0",
+    "redux": "^5.0.1",
     "styled": "^1.0.0",
     "styled-components": "^6.1.13"
   },

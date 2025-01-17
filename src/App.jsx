@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom' 
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import Header from './components/Header/Header'
 import { createGlobalStyle } from 'styled-components'
+import TopBackground from './components/TopBackground';
 
 const DefaultStyle = createGlobalStyle`
   * {
@@ -26,6 +27,7 @@ function App() {
     <>
       <DefaultStyle/>
 
+      <TopBackground/>
       <Header/>
         <Routes>
           <Route path='/' element={<Home/>}/>
