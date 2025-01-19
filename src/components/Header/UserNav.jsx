@@ -1,6 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { useSelector} from "react-redux"
+import { useDispatch } from "react-redux"
+import { setUser, clearUser } from "../../reducers/userReducer"
+import { useEffect } from "react"
+import authService from "../../services/authenticationsService"
 
 const Div = styled.div`
     display: flex;
@@ -23,14 +28,26 @@ const Button = styled.button`
 `
 
 const UserNav = () => {
-    const [user, setUser] = useState("")
+    const dispatch = useDispatch()
+    const user = useSelector(o => o.user)
 
+    useEffect(() => {
+        authService.getUserInfo().then(result => {
+            dispatch(setUser(result))
+        })
+    }, [])
+
+    const handleLogout = (event) => {
+        event.preventDefault()
+        dispatch(clearUser())
+    }
+  
     return(
         <>
-            {user ? 
+            {user.accessToken ? 
                 <Div>
-                    <Link to={'/profile'}>Profile</Link>
-                    <Button>Log out</Button>
+                    <Link to={'/profile'}>{user.username}</Link>
+                    <Button onClick={handleLogout}>Log out</Button>
                 </Div>:
                 <Div>
                     <Link to={'/login'}>Login</Link>

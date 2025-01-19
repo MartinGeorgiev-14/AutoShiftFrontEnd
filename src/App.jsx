@@ -3,6 +3,7 @@ import Home from './components/Home/Home';
 import Header from './components/Header/Header'
 import Search from './components/Search/Search'
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 import ListingsPage from './components/ListingsPage/ListingsPage'
 import { createGlobalStyle } from 'styled-components'
 import TopBackground from './components/TopBackground';
@@ -29,16 +30,16 @@ function App() {
   return (
     <>
       <DefaultStyle/>
-
       <TopBackground/>
       <Header/>
+
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/listings' element={<ListingsPage/>}/>
           <Route path='/about' element/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element/>
+          <Route path='/register' element={<Register/>}/>
           <Route path='/profile' element/>
         </Routes>
     </>

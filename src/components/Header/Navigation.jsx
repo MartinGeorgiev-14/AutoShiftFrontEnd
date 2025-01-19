@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import UserNav from './UserNav'
 import Logo from './Logo'
+import { useSelector } from 'react-redux'
 
 
 const Nav = styled.nav`
@@ -82,7 +83,6 @@ const Div = styled.div`
 `
 
 const Navigation = () => {
-    const [user, setUser] = useState(null)
 
     const handleDropdown = (event) => {
         event.preventDefault()

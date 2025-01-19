@@ -17,7 +17,6 @@ const Div = styled.div`
 const Button = styled.button`
 `
 
-
 const SearchForm = () => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
