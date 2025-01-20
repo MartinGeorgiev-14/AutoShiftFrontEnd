@@ -5,6 +5,7 @@ import Search from './components/Search/Search'
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ListingsPage from './components/ListingsPage/ListingsPage'
+import Listing from './components/Listing/Listing'
 import { createGlobalStyle } from 'styled-components'
 import TopBackground from './components/TopBackground';
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/listings' element={<ListingsPage/>}/>
+          <Route path="/listing/:id" element={<Listing/>}/>
           <Route path='/about' element/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>

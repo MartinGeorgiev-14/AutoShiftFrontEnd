@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setFormOptions } from "../../reducers/formOptionsReducer"
-import { setListingsPage } from "../../reducers/listingPageReducer"
+import { setSearchResult } from "../../reducers/searchResultReducer" 
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import searchFormService from '../../services/searchFormService'
@@ -38,7 +38,7 @@ const search = async (event) => {
     event.preventDefault()
 
     const result = await searchFormService.searchCarByCriteria(selectedOptions)
-    dispatch(setListingsPage(result))
+    dispatch(setSearchResult(result))
 
     navigate(`/listings`)
 }
