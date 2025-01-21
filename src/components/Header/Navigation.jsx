@@ -10,13 +10,12 @@ const Nav = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden;
     width: 90%;
     background-color: #f8f9fa;
     padding: 1rem 3rem;
     margin: 0 auto;
     margin-top: 3rem;
-
+    z-index: 1;
 
     a{
         text-decoration: none;
@@ -84,24 +83,10 @@ const Div = styled.div`
 
 const Navigation = () => {
 
-    const handleDropdown = (event) => {
-        event.preventDefault()
-
-        const x = event.target
-
-        console.log(x.classList)
-
-        if (x.classList.contains('topnav')) {
-          x.classList.remove('topnav')
-          x.classList.add('responsive');
-        } else {
-          x.classList.add('topnav');
-          x.classList.remove('responsive');
-        }
-    }
+ 
 
     return (
-        <Nav onClick={handleDropdown} className='topnav'>
+        <Nav className='topnav'>
             <Logo className='active'/>
             
             <Div>

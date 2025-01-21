@@ -26,16 +26,20 @@ const Button = styled.button`
         background-color: #de525b;
     }
 `
+const DropdownDiv = styled.div`
+    position: relative;
+    display: 'inline-block';
+`
+const HoveredDiv = styled.div`
+    position: absolute;
+    top: 1rem;
+    z-index: 2;
+`
 
 const UserNav = () => {
     const dispatch = useDispatch()
     const user = useSelector(o => o.user)
-
-    useEffect(() => {
-        authService.getUserInfo().then(result => {
-            dispatch(setUser(result))
-        })
-    }, [])
+    const [isHovered, setIsHovered] = useState(false) 
 
     const handleLogout = (event) => {
         event.preventDefault()
@@ -46,7 +50,15 @@ const UserNav = () => {
         <>
             {user.accessToken ? 
                 <Div>
-                    <Link to={'/profile'}>{user.username}</Link>
+                    <DropdownDiv onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+                        <Link to={'/profile'}>{user.username}</Link>
+                        {
+                            isHovered && <HoveredDiv>
+                                <Link to={'/myListings'}>My Listings</Link>
+                                <Link to={'/createListing'}>Create Listing</Link>
+                            </HoveredDiv>
+                        }
+                    </DropdownDiv>
                     <Button onClick={handleLogout}>Log out</Button>
                 </Div>:
                 <Div>

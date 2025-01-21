@@ -6,8 +6,14 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ListingsPage from './components/ListingsPage/ListingsPage'
 import Listing from './components/Listing/Listing'
+import CreateListing from './components/ListingsPage/ListingsCRUD/CreateListing/CreateListing';
+import UserListings from './components/ListingsPage/ListingsCRUD/UserListings';
 import { createGlobalStyle } from 'styled-components'
 import TopBackground from './components/TopBackground';
+import { useEffect } from 'react';
+import authService from './services/authenticationsService';
+import { useDispatch } from 'react-redux';
+import { setUser } from './reducers/userReducer';
 
 const DefaultStyle = createGlobalStyle`
   * {
@@ -23,16 +29,21 @@ body{
   margin: 0 auto;
 }
 `
-
-
 function App() {
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    authService.getUserInfo().then(result => {
+        dispatch(setUser(result))
+    })
+}, [])
 
   return (
     <>
       <DefaultStyle/>
-      <TopBackground/>
       <Header/>
+      <TopBackground/>
+    
 
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -43,6 +54,8 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/profile' element/>
+          <Route path='/mylistings' element={<UserListings/>}/>
+          <Route path='/createListing' element={<CreateListing/>}/>
         </Routes>
     </>
   )
