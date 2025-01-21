@@ -50,10 +50,8 @@ const CreateListing = () => {
         images.forEach((image, index) => {
             formData.append(`uploadImages`, image);
         })
-        
-        console.log(formData, "formdata")
 
-        const data = await listingCrudService.createListing(selectedOptions, formData)
+        const data = await listingCrudService.createListing(formData)
 
     }
 
@@ -77,10 +75,14 @@ const CreateListing = () => {
             </Div>
             <Div>
                 <InputDiv label={"Engine Displacement"} optionProp={"engineDisplacement"}/>
+                <InputDiv label={"Horsepower"} optionProp={"horsepower"}/>
             </Div>
             <Div>
                 <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.regionOptions} optionText={"region"} />
                 <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
+            </Div>
+            <Div>
+                <textarea placeholder="Description" onChange={(event) => dispatch(selectOption({prop: "description", value: event.target.value}))}></textarea>
             </Div>
             <Div>
                 <ImageInput images={images} setImages={setImages}/>

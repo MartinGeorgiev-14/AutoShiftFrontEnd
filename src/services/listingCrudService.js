@@ -3,17 +3,8 @@ import axios from "axios"
 
 const url = "http://localhost:8080/api/app"
 
-const createListing = async (data, images) => {
+const createListing = async (data) => {
     const token = JSON.parse(localStorage.getItem('token'))
-
-    console.log(token, data, images)
-   
-    const formattedData = {
-        ...data,
-        uploadImages: images    
-    }
-
-    console.log(formattedData)
 
     const response = await axios.post(`${url}/create`, data, {
         headers: {
@@ -23,6 +14,7 @@ const createListing = async (data, images) => {
     })
 
     console.log(response.data)
+    return response.data
 }
 
 export default { createListing }
