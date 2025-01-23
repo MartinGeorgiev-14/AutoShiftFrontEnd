@@ -6,9 +6,15 @@ const searchResultReducer = createSlice({
     reducers: {
         setSearchResult(state, action) {
             return action.payload
+        },
+        removeListing(state, action) {
+            
+            const newContent = state.content.filter(l => l.id !== action.payload)  
+
+            return {...state, content: newContent}
         }
     }
 })
 
-export const { setSearchResult } = searchResultReducer.actions
+export const { setSearchResult, removeListing } = searchResultReducer.actions
 export default searchResultReducer.reducer

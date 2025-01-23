@@ -8,12 +8,15 @@ import ListingsPage from './components/ListingsPage/ListingsPage'
 import Listing from './components/Listing/Listing'
 import CreateListing from './components/ListingsPage/ListingsCRUD/CreateListing/CreateListing';
 import UserListings from './components/ListingsPage/ListingsCRUD/UserListings';
+import EditListing from './components/ListingsPage/ListingsCRUD/UpdateListing/EditListing';
 import { createGlobalStyle } from 'styled-components'
 import TopBackground from './components/TopBackground';
 import { useEffect } from 'react';
 import authService from './services/authenticationsService';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './reducers/userReducer';
+import { setFormOptions } from './reducers/formOptionsReducer';
+import searchFormService from './services/searchFormService';
 
 const DefaultStyle = createGlobalStyle`
   * {
@@ -31,12 +34,23 @@ body{
 `
 function App() {
   const dispatch = useDispatch()
+  const user = useSelector(o => o.user)
+  const formOptions = useSelector(o => o.formOptions)
 
   useEffect(() => {
     authService.getUserInfo().then(result => {
         dispatch(setUser(result))
     })
+
+    searchFormService.getFormOptions().then(result => {
+      dispatch(setFormOptions(result))
+    })
+
 }, [])
+
+if(Object.keys(formOptions).length === 0){
+  return null;
+}
 
   return (
     <>
@@ -50,6 +64,7 @@ function App() {
           <Route path='/search' element={<Search/>}/>
           <Route path='/listings' element={<ListingsPage/>}/>
           <Route path="/listing/:id" element={<Listing/>}/>
+          <Route path='/editListing/:id' element={<EditListing/>}/>
           <Route path='/about' element/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>

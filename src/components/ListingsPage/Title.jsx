@@ -17,19 +17,19 @@ const Div = styled.div`
     }
 `
 
-const Title = styled.h2`
+const T = styled.h2`
 `
 
-const TitleDiv = ({id, make, model, price }) => {
+const Title = ({id, make, model, price }) => {
 
     return(
         <Div>
             <Link to={`/listing/${id}`}>
-                <Title>{make} {model}</Title>
+                <T>{make} {model}</T>
             </Link>
-            <Title>{price} BGN</Title>
+            <T>{price} BGN</T>
         </Div>
     )
 }
 
-export default TitleDiv;
+export default Title;

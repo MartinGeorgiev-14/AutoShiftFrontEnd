@@ -15,16 +15,19 @@ const initialState = {
 
 const formSelectedOptionsReducer = createSlice({
     name: "formSelectedOptions",
-    initialState: initialState,
+    initialState: {},
     reducers: {
         selectOption: (state, action) => {
             return {...state, [action.payload.prop] : action.payload.value}
         },
         clearOptions: (state, action) => {
             return initialState
+        },
+        setOptions: (state, action) => {
+            return action.payload
         }
     }
 })
 
-export const { selectOption, clearOptions } = formSelectedOptionsReducer.actions;
+export const { selectOption, clearOptions, setOptions } = formSelectedOptionsReducer.actions;
 export default formSelectedOptionsReducer.reducer

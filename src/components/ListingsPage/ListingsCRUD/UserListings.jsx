@@ -19,10 +19,8 @@ const UserListings = () => {
     const user = useSelector(state => state.user) 
 
     useEffect(() => {
-
         if(user.userId){
             searchFormSevice.searchCarByCriteria({userId: user.userId}).then(result => {
-                console.log(result)
                 dispatch(setSearchResult(result))
             })
         }

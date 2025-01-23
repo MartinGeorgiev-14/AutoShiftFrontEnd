@@ -7,7 +7,7 @@ const Div = styled.div`
 const Stat = styled.p`
 `
 
-const LocationDiv = ({ region, location }) => {
+const Location = ({ region, location }) => {
 
     return(
         <Div>
@@ -16,4 +16,4 @@ const LocationDiv = ({ region, location }) => {
     )
 } 
 
-export default LocationDiv;
+export default Location;

@@ -6,14 +6,13 @@ const Div = styled.div`
 const Stat = styled.p`
 `
 
-const StatsDiv = ({ stats }) => {
-    console.log(stats)
+const Stats = ({ stats }) => {
 
     return(
         <Div>
             {
                 stats.map(s => 
-                    <Stat><IoMdCheckmarkCircleOutline/>{s}</Stat>
+                    <Stat key={s}><IoMdCheckmarkCircleOutline/>{s}</Stat>
                 )
             }
         </Div>
@@ -21,4 +20,4 @@ const StatsDiv = ({ stats }) => {
 
 }
 
-export default StatsDiv;
+export default Stats;

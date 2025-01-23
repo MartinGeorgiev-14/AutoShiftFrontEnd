@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import TitleDiv from "./TitleDiv";
-import StatsDiv from "./StatsDiv";
-import LocationDiv from "./LocationDiv";    
+import Title from "./Title";
+import Stats from "./Stats";
+import LocationDiv from "./Location";    
 
 const Container = styled.div`
     background-color: red;
@@ -28,9 +28,9 @@ const ListingContainer = ({ listing }) => {
         <Container>
             <Img src={`data:${mainImg[0].type};base64,${mainImg[0].imageData}`}></Img>
             <InfoDiv>
-                <TitleDiv id={listing.id} make={listing.make} model={listing.model} price={listing.price}/>
+                <Title id={listing.id} make={listing.make} model={listing.model} price={listing.price}/>
 
-                <StatsDiv stats={[listing.mileage + ' km', listing.engine,
+                <Stats stats={[listing.mileage + ' km', listing.engine,
                     listing.horsepower + " hp", listing.gearbox, listing.body]}/>
 
                 <LocationDiv region={listing.region} location={listing.location}/>

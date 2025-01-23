@@ -26,6 +26,7 @@ const CreateListing = () => {
     const selectedOptions = useSelector(o => o.formSelected)
     const [images, setImages] = useState([])
 
+
     useState(() => {
         searchFormService.getFormOptions().then(result => {
             dispatch(setFormOptions(result))
