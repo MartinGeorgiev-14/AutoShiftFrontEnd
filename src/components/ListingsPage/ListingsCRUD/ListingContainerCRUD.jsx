@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Title from "../Title";
-import Stats from "../Stats";
-import LocationDiv from "../Location";    
+import Title from "../SearchResultPage/Title";
+import Stats from "../SearchResultPage/Stats";
+import LocationDiv from "../SearchResultPage/Location";    
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";

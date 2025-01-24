@@ -4,7 +4,7 @@ import Header from './components/Header/Header'
 import Search from './components/Search/Search'
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
-import ListingsPage from './components/ListingsPage/ListingsPage'
+import ListingsPage from './components/ListingsPage/SearchResultPage/ListingsPage'
 import Listing from './components/Listing/Listing'
 import CreateListing from './components/ListingsPage/ListingsCRUD/CreateListing/CreateListing';
 import UserListings from './components/ListingsPage/ListingsCRUD/UserListings';

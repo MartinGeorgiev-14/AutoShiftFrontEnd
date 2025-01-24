@@ -26,6 +26,7 @@ const selectedOptions = useSelector(o => o.formSelected)
 useEffect(() => {
     searchFormService.getFormOptions().then(result => {
         dispatch(setFormOptions(result))
+        
     })
 }, [])
     
@@ -39,7 +40,8 @@ const search = async (event) => {
 
     const result = await searchFormService.searchCarByCriteria(selectedOptions)
     dispatch(setSearchResult(result))
-
+    console.log(result)
+    
     navigate(`/listings`)
 }
 

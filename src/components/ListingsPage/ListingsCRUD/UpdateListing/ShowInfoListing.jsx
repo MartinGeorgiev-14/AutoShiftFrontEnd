@@ -27,6 +27,7 @@ const ShowInfoListing = ({ listing }) => {
             <ShowInfoRow label={"Horsepower"} data={listing.horsepower}/>
             <ShowInfoRow label={"Region"} data={listing.region}/>
             <ShowInfoRow label={"Location"} data={listing.location}/>
+            <ShowInfoRow label={"Description"} data={listing.description}/>
             <ShowInfoImg label={"Main image"} data={listing.images}/>
         </Container>
     )

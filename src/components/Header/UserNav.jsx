@@ -4,8 +4,8 @@ import styled from "styled-components"
 import { useSelector} from "react-redux"
 import { useDispatch } from "react-redux"
 import { setUser, clearUser } from "../../reducers/userReducer"
-import { useEffect } from "react"
-import authService from "../../services/authenticationsService"
+import { persistor } from "../../configure/configureStore"
+
 
 const Div = styled.div`
     display: flex;
@@ -44,6 +44,7 @@ const UserNav = () => {
     const handleLogout = (event) => {
         event.preventDefault()
         dispatch(clearUser())
+        persistor.purge()
     }
   
     return(

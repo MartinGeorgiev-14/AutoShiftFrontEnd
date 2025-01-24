@@ -22,7 +22,6 @@ const InfoDiv = styled.div`
 const ListingContainer = ({ listing }) => {
 
     const mainImg = listing.images.filter(i => i.main)
-    console.log(listing)
 
     return(
         <Container>

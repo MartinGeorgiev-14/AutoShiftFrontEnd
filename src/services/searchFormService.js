@@ -8,7 +8,7 @@ const getFormOptions = async () => {
 }
 
 const searchCarByCriteria = async (data, pageNo = 0) => {
-    const response = await axios.post(`${url}/search?pageNo=${pageNo}&pageSize=10`, data)
+    const response = await axios.post(`${url}/search?page=${pageNo}&page=10`, data)
     return response.data;
 }
 
