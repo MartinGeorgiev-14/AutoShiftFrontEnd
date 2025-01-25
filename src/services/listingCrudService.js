@@ -4,7 +4,7 @@ import { store } from "../configure/configureStore"
 import axios from "axios"
 
 const token = JSON.parse(localStorage.getItem('persist:user'))
-const url = "http://localhost:8080/api/app"
+const url = "/api/app"
 
 const getToken = () => {
     const state = store.getState()
@@ -52,5 +52,7 @@ const patchListing = async (id, data) => {
     
     return response.status
 }
+
+
 
 export default { createListing, deleteListing, getListingById, patchListing }

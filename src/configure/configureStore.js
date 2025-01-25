@@ -9,7 +9,6 @@ import notification from '../reducers/notificationReducer.js'
 import user from '../reducers/userReducer.js'
 
 const persistConfig = {
-    key: 'search',
     storage
 }
   

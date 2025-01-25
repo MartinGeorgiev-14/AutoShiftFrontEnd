@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const Div = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: #f1f1f1;  
     text-decoration: none;  
 
     a{

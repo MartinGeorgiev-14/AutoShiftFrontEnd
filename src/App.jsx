@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom' 
 import Home from './components/Home/Home';
 import Header from './components/Header/Header'
-import Search from './components/Search/Search'
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ListingsPage from './components/ListingsPage/SearchResultPage/ListingsPage'
@@ -9,14 +8,12 @@ import Listing from './components/Listing/Listing'
 import CreateListing from './components/ListingsPage/ListingsCRUD/CreateListing/CreateListing';
 import UserListings from './components/ListingsPage/ListingsCRUD/UserListings';
 import EditListing from './components/ListingsPage/ListingsCRUD/UpdateListing/EditListing';
+import SearchForm from './components/Search/SearchForm';
 import { createGlobalStyle } from 'styled-components'
-import TopBackground from './components/TopBackground';
 import { useEffect } from 'react';
 import authService from './services/authenticationsService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './reducers/userReducer';
-import { setFormOptions } from './reducers/formOptionsReducer';
-import searchFormService from './services/searchFormService';
 import Notification from './components/Notification';
 
 const DefaultStyle = createGlobalStyle`
@@ -31,6 +28,7 @@ body{
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  background-color: #E2323D;
 }
 `
 function App() {
@@ -39,31 +37,25 @@ function App() {
   const formOptions = useSelector(o => o.formOptions)
 
   useEffect(() => {
-    authService.getUserInfo().then(result => {
-        dispatch(setUser(result))
+    authService.getUserInfo().then(result => {  
+      dispatch(setUser(result))
+    }).catch(error => {
+      // dispatch(clearUser())
     })
-
-    searchFormService.getFormOptions().then(result => {
-      dispatch(setFormOptions(result))
-    })
-
 }, [])
 
-if(Object.keys(formOptions).length === 0){
-  return null;
-}
 
   return (
     <>
       <DefaultStyle/>
       <Header/>
       <Notification/>
-      <TopBackground/>
+  
      
 
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/search' element={<Search/>}/>
+          <Route path='/search' element={<SearchForm/>}/>
           <Route path='/listings' element={<ListingsPage/>}/>
           <Route path="/listing/:id" element={<Listing/>}/>
           <Route path='/editListing/:id' element={<EditListing/>}/>

@@ -10,24 +10,67 @@ import { MdNavigateBefore } from "react-icons/md";
 
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 `
 
 const Button = styled.button`
+    display: flex;
+    align-items: center;
+    color: #E2323D;
+    background-color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0 4px 4px 0;
+
+    &:hover{
+        cursor: pointer;
+    }
+
 `
 
 const Div = styled.div`
+    display: flex;
+
+    &.nav{
+        align-items: center;
+
+        button:nth-of-type(odd){
+            border-radius: 4px 0px 0px 4px;
+        }
+
+         button:nth-of-type(even){
+            border-radius: 0px 4px 4px 0px;
+        }
+    }
+
+    &.jump{
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        text-align: center;
+    }
+
+    
+
 `
 
 const Indicator = styled.p`
+    padding: 0 1rem;
 `
 
 const Label = styled.label`
+    
 `
 
 const InputPage = styled.input`
+    border-style: none;
+    border-right: 1px solid black;
 `
 
-const ButtonSelector = () => {
+const ButtonSelector = ({ service }) => {
     const dispatch = useDispatch()
     const listings = useSelector(o => o.searchResult)
     const formOptions = useSelector(f => f.formSelected)
@@ -40,23 +83,25 @@ const ButtonSelector = () => {
             return
         }
 
-        const response = await searchFormService.searchCarByCriteria(formOptions, pageNo)
+        const response = await service(formOptions, pageNo)
         dispatch(setSearchResult(response))
     }
 
     return(
         <Container>
-            <Div>
+            <Div className="nav">
                 <Button onClick={(e) => handleButton(e, 0)}><MdFirstPage/></Button>
                 <Button onClick={(e) => handleButton(e, listings.pageNo - 1)}><MdNavigateBefore/></Button>
-                <Indicator>{listings.pageNo}</Indicator>
+                <Indicator>{listings.pageNo + 1}</Indicator>
                 <Button onClick={(e) => handleButton(e, listings.pageNo + 1)}><MdNavigateNext/></Button>
                 <Button onClick={(e) => handleButton(e, listings.totalPages - 1)}><MdLastPage/></Button>
             </Div>
-            <Div>
+            <Div className="jump">
                 <Label>Jump to</Label>
-                <InputPage type="number" onChange={(e) => setGoToPage(e.target.value)}/>
-                <Button onClick={(e) => handleButton(e, goToPage)}></Button>
+                <Div>
+                    <InputPage type="number" onChange={(e) => setGoToPage(e.target.value - 1)}/>
+                    <Button onClick={(e) => handleButton(e, goToPage)}>Jump</Button>
+                </Div>
             </Div>
             
         </Container>

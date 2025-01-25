@@ -7,6 +7,7 @@ import { setSearchResult } from "../../../reducers/searchResultReducer"
 import { selectOption } from "../../../reducers/formSelectedOptionsReducer";
 import ListingContainerCRUD from "./ListingContainerCRUD"
 import ButtonSelector from "../SearchResultPage/ButtonSelector";
+import searchFormService from "../../../services/searchFormService";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -23,7 +24,8 @@ const UserListings = () => {
 
     useEffect(() => {
         if(user.userId){
-            searchFormSevice.searchCarByCriteria({userId: user.userId}).then(result => {
+            searchFormSevice.searchCarByUser().then(result => {
+                console.log(result)
                 dispatch(setSearchResult(result))
                 dispatch(selectOption({prop: 'userId', value: user.userId})) 
             })
@@ -45,7 +47,7 @@ const UserListings = () => {
                 ) 
                 }) : <p>You don't have any listings</p>
             }
-            <ButtonSelector />
+            <ButtonSelector service={searchFormService.searchCarByUser}/>
         </Container>
     )
 }

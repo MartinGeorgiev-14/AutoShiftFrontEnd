@@ -4,12 +4,20 @@ import { selectOption } from "../../reducers/formSelectedOptionsReducer"
 
 
 const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
 `
 
 const Label = styled.label`
 
 `
 const Input = styled.input`
+    width: 10rem;
+    padding: 0.2rem;
+    border-radius: 2px;
+    border: 1px solid gray;
 `
 
 const InputDiv = ({ label, optionProp, value }) => {

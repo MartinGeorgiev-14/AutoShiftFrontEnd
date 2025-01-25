@@ -9,7 +9,7 @@ const Img = styled.img`
 const Div = styled.div`
     width: 100%;
     height: 40vh;
-    background-color: gray;
+    background-color: #E2323D;
     position: absolute;
     top: 0;
     left: 0;

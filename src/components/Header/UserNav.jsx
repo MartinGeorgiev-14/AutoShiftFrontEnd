@@ -34,6 +34,18 @@ const HoveredDiv = styled.div`
     position: absolute;
     top: 1rem;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    gap: 0.2rem;
+
+    a{
+        background: white;
+        padding: 0.4rem;
+        border-radius: 3px;
+        border: 1px black solid;
+    }
+    
 `
 
 const UserNav = () => {

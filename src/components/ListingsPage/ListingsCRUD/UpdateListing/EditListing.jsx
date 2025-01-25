@@ -59,9 +59,7 @@ const EditListing = () => {
    if(!info){
     return null
    }
-
-    console.log(selected)
-
+   
     return(
         <Container>
             <ShowEditedListing listing={info}/>

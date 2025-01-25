@@ -11,14 +11,17 @@ import { removeListing } from "../../../reducers/searchResultReducer";
 import { displayNotification } from "../../../reducers/notificationReducer";
 
 const Container = styled.div`
-    background-color: red;
+    background-color: #f8f9fa;
     display: flex;
+    gap: 1rem;
     width: 70%;
     margin: 1rem auto;
     padding: 1rem;
+    border-radius: 3px;
 `
 const Img = styled.img`
-    width: 100px;   
+    width: 10rem;
+    object-fit: contain;  
 `
 
 const InfoDiv = styled.div`
@@ -26,20 +29,25 @@ const InfoDiv = styled.div`
 `
 
 const StatsDiv = styled.div`
-    display: flex;
-    
+    width: 100%;
 `
 
 const Div = styled.div`
+    height: 85%;
     display: flex;
+    flex-direction: column
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    gap: 1rem;
 
-    flex-direction: column;
-
-    a {
-    text-decoration: none;
-    color: black;
+    &.icons{
+        font-size: 1.5rem;
+        text-decoration: none;
     }
+    
 ` 
+
 
 const ListingContainerCRUD = ({ listing }) => {
     const mainImg = listing.images.filter(i => i.main)
@@ -73,8 +81,12 @@ const ListingContainerCRUD = ({ listing }) => {
                         <LocationDiv region={listing.region} location={listing.location}/>
                     </Div>
                     <Div>
-                        <Link to={`/editListing/${listing.id}`}><CiEdit/></Link>
-                        <Link onClick={(event) => handleDelete(event, listing.id)}><MdDeleteForever/></Link>
+                         <p>ID: {listing.user.id}</p>
+                         <p>Owner: {listing.user.firstName} {listing.user.lastName}</p>   
+                    </Div>
+                    <Div className="icons">
+                        <Link to={`/editListing/${listing.id}`}><CiEdit style={{color: "green"}}/></Link>
+                        <Link onClick={(event) => handleDelete(event, listing.id)}><MdDeleteForever style={{color: "red"}}/></Link>
                     </Div>
                 </StatsDiv>
             </InfoDiv>

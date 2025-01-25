@@ -10,11 +10,11 @@ const iconColor = {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1rem;
     padding: 0.5rem 1rem 1rem 1rem;
     border: 1px solid gray;
     border-radius: 3px;
+    height: 100%;
 `
 const Div = styled.div`
     display: flex;

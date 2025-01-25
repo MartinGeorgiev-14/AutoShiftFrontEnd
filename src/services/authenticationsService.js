@@ -1,6 +1,7 @@
 import axios from "axios"
 
-const url = "http://localhost:8080/api/auth"
+const token = JSON.parse(localStorage.getItem('persist:user'))
+const url = "/api/auth"
 
 const login = async (data) => {
     const response = await axios.post(`${url}/login`, data)
@@ -14,10 +15,11 @@ const register = async (data) => {
 }
 
 const getUserInfo = async () => {
-    const token = JSON.parse(localStorage.getItem('token'))
+    const updated = token.accessToken.slice(1, token.accessToken.length - 1)
+
     const response = await axios.post(`${url}/getUserInfo`, null, {
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${updated}`,
             'Content-Type': 'application/json',
         }
     })

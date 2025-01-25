@@ -2,12 +2,19 @@ import styled from "styled-components"
 import { useSelector } from "react-redux"
 import ListingContainer from "./ListingContainer"
 import ButtonSelector from "./ButtonSelector"
+import searchFormService from "../../../services/searchFormService"
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 `
 
-const Div = styled.div`
+const Title = styled.h1`
+    text-align: center;
 `
+
+
 
 
 const ListingPage = () => {
@@ -16,10 +23,8 @@ const listings = useSelector(o => o.searchResult)
     
     return (
         <Container>
-            <Div>
-                <h1>Listings</h1>
-            </Div>
             
+            <Title>Listings</Title>
             {listings.content.length === 0 ? <p>No listings found</p> :
                 listings.content.map(l => {
                     return (
@@ -28,7 +33,7 @@ const listings = useSelector(o => o.searchResult)
                 })
             }
 
-            <ButtonSelector/>
+            <ButtonSelector service={searchFormService.searchCarByCriteria}/>
         </Container>
     )
 }
