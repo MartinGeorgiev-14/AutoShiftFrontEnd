@@ -43,8 +43,6 @@ const ButtonSelector = () => {
         const response = await searchFormService.searchCarByCriteria(formOptions, pageNo)
         dispatch(setSearchResult(response))
     }
-    
-    console.log(listings)
 
     return(
         <Container>

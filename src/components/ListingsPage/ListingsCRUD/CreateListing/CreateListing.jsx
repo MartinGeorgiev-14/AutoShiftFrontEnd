@@ -10,6 +10,7 @@ import SingleSelectDiv from "../../../Search/SingleSelectDiv";
 import InputDiv from "../../../Search/InputDiv";
 import ImageInput from "./ImageInput";
 import listingCrudService from "../../../../services/listingCrudService";
+import { displayNotification } from "../../../../reducers/notificationReducer";
 
 const Form = styled.form`
 `
@@ -53,6 +54,10 @@ const CreateListing = () => {
         })
 
         const data = await listingCrudService.createListing(formData)
+
+        if(data === 200){
+            dispatch(displayNotification({type: 'success', message: 'Listing successfuly created'}))
+        }
 
     }
 

@@ -11,6 +11,7 @@ import SingleSelectDiv from "../../../Search/SingleSelectDiv";
 import InputDiv from "../../../Search/InputDiv";
 import ShowEditedListing from "./ShowInfoListing";
 import SelectMainImg from "./SelectMainImg"
+import { displayNotification } from "../../../../reducers/notificationReducer";
 
 const Container = styled.div`
 `
@@ -49,6 +50,7 @@ const EditListing = () => {
         
             setInfo(updatedListing)
             dispatch(clearOptions())
+            dispatch(displayNotification({type: "success", message: "Successfully updated listing"}))
         }
 
     

@@ -9,7 +9,7 @@ const Div = styled.div`
 ` 
 
 const ShowInfoListing = ({ listing }) => {
-    console.log(listing)
+
     if(!listing){
         return null
     }

@@ -1,28 +1,34 @@
 import { asyncThunkCreator } from "@reduxjs/toolkit"
+import { useSelector } from "react-redux"
+import { store } from "../configure/configureStore"
 import axios from "axios"
 
-const token = JSON.parse(localStorage.getItem('token'))
+const token = JSON.parse(localStorage.getItem('persist:user'))
 const url = "http://localhost:8080/api/app"
+
+const getToken = () => {
+    const state = store.getState()
+    return state.user.accessToken
+}
 
 const createListing = async (data) => {
     
 
     const response = await axios.post(`${url}/create`, data, {
         headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${getToken()}`,
             "Content-Type": "multipart/form-data"
         }
     })
-
-    console.log(response.data)
-    return response.data
+    
+    return response.status
 }
 
 const deleteListing = async (listingId) => {
 
     const response = await axios.delete(`${url}/delete/${listingId}`, {
         headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${getToken()}`
         }
     })
 
@@ -36,9 +42,10 @@ const getListingById = async (id) => {
 }
 
 const patchListing = async (id, data) => {
+
     const response = await axios.patch(`${url}/update/${id}`, data, {
         headers:{
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${getToken()}`
         }
     })
 

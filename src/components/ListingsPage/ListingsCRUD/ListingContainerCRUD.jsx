@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import listingCrudService from "../../../services/listingCrudService";
 import { useDispatch } from "react-redux";
 import { removeListing } from "../../../reducers/searchResultReducer";
+import { displayNotification } from "../../../reducers/notificationReducer";
 
 const Container = styled.div`
     background-color: red;
@@ -52,7 +53,8 @@ const ListingContainerCRUD = ({ listing }) => {
 
             if(response === 200) {
                 dispatch(removeListing(listingId))
-                alert("Listing has been deleted successfully")
+                dispatch(displayNotification({type: "success", message: "Listing deleted successfully"}))
+                
             }
         }
 

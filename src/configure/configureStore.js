@@ -5,6 +5,7 @@ import formOptions from '../reducers/formOptionsReducer.js'
 import formSelected from '../reducers/formSelectedOptionsReducer.js'
 import listingsPage from '../reducers/listingPageReducer.js'
 import searchResult from '../reducers/searchResultReducer.js'	
+import notification from '../reducers/notificationReducer.js'
 import user from '../reducers/userReducer.js'
 
 const persistConfig = {
@@ -20,6 +21,7 @@ const store = configureStore({
     formOptions,
     formSelected,
     listingsPage,
+    notification,
     searchResult: persistedSearchResultReducer,
     user: persistedUserReducer,
   }, 

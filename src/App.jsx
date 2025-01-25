@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './reducers/userReducer';
 import { setFormOptions } from './reducers/formOptionsReducer';
 import searchFormService from './services/searchFormService';
+import Notification from './components/Notification';
 
 const DefaultStyle = createGlobalStyle`
   * {
@@ -56,8 +57,9 @@ if(Object.keys(formOptions).length === 0){
     <>
       <DefaultStyle/>
       <Header/>
+      <Notification/>
       <TopBackground/>
-    
+     
 
         <Routes>
           <Route path='/' element={<Home/>}/>
