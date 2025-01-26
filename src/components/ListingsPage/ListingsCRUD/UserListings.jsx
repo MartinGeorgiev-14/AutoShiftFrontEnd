@@ -14,6 +14,10 @@ const Container = styled.div`
 
 `
 
+const H1 = styled.h1`
+    text-align: center;
+`
+
 const UserListings = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -39,7 +43,7 @@ const UserListings = () => {
 
     return(
         <Container>
-            <h1>My Listings</h1>
+            <H1>My Listings</H1>
             {
                searchResult.content ? searchResult.content.map(l => {
                  return (

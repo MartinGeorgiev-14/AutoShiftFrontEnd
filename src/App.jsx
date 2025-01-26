@@ -17,9 +17,12 @@ import { setUser } from './reducers/userReducer';
 import Notification from './components/Notification';
 import { setFormOptions } from './reducers/formOptionsReducer';
 import searchFormService from './services/searchFormService';
+import { clearUser } from './reducers/userReducer';
+import Footer from './components/Footer/Footer';
+import styled from 'styled-components';
 
-const DefaultStyle = createGlobalStyle`
-  * {
+const Default = createGlobalStyle`
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -33,6 +36,17 @@ body{
   background-color: #E2323D;
 }
 `
+
+const DefaultStyle = styled.div`
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+
+const ContentWrap = styled.div`
+  flex: 1;
+  `
 function App() {
   const dispatch = useDispatch()
   const user = useSelector(o => o.user)
@@ -40,8 +54,10 @@ function App() {
 
   useEffect(() => {
     authService.getUserInfo().then(result => {  
+      console.log(result)
       dispatch(setUser(result))
     }).catch(error => {
+      console.log(error)
       dispatch(clearUser())
     })
 
@@ -54,25 +70,27 @@ function App() {
 
   return (
     <>
-      <DefaultStyle/>
+    <Default /> 
+      <DefaultStyle>
+        <ContentWrap>
       <Header/>
       <Notification/>
-  
-     
-
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/search' element={<SearchForm/>}/>
-          <Route path='/listings' element={<ListingsPage/>}/>
-          <Route path="/listing/:id" element={<Listing/>}/>
-          <Route path='/editListing/:id' element={<EditListing/>}/>
-          <Route path='/about' element/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/profile' element/>
-          <Route path='/mylistings' element={<UserListings/>}/>
-          <Route path='/createListing' element={<CreateListing/>}/>
-        </Routes>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/search' element={<SearchForm/>}/>
+            <Route path='/listings' element={<ListingsPage/>}/>
+            <Route path="/listing/:id" element={<Listing/>}/>
+            <Route path='/editListing/:id' element={<EditListing/>}/>
+            <Route path='/about' element/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
+            <Route path='/profile' element/>
+            <Route path='/mylistings' element={<UserListings/>}/>
+            <Route path='/createListing' element={<CreateListing/>}/>
+          </Routes>
+        </ContentWrap>
+        <Footer/>
+        </DefaultStyle>
     </>
   )
 }

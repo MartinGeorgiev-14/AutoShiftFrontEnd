@@ -68,8 +68,6 @@ const ListingContainerCRUD = ({ listing }) => {
 
     } 
 
-    console.log(listing, 'listing page')
-
     return(
         <Container>
             <Img src={`data:${mainImg[0].type};base64,${mainImg[0].imageData}`}></Img>
