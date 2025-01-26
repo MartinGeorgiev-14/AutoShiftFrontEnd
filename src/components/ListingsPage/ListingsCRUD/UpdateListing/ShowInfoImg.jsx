@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: span 3;
 `
 
 const Label = styled.div`
 `
 
 const Img = styled.img`
-    width: 100px;
+    width: 15rem;
 `
 
 const ShowInfoImg = ({ label, data }) => {

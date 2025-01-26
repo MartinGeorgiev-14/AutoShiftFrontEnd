@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 const Div = styled.div`
+    display: flex;
+    gap: 0.3rem;
+
+      &.description{
+        grid-column: span 3;
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 const Label = styled.div`
@@ -9,11 +17,11 @@ const Label = styled.div`
 const P = styled.p`
 `
 
-const ShowInfoRow = ({ label, data }) => {
+const ShowInfoRow = ({ label, data, className }) => {
 
     return (
-        <Div>
-            <Label>{label}</Label>
+        <Div className={className}>
+            <Label>{label}:</Label>
             <P>{data}</P>
         </Div>
     )

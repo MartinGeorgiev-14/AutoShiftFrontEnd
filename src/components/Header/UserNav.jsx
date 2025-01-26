@@ -32,7 +32,7 @@ const DropdownDiv = styled.div`
 `
 const HoveredDiv = styled.div`
     position: absolute;
-    top: 1rem;
+    top: 1.2rem;
     z-index: 2;
     display: flex;
     flex-direction: column;

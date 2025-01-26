@@ -15,6 +15,8 @@ import authService from './services/authenticationsService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './reducers/userReducer';
 import Notification from './components/Notification';
+import { setFormOptions } from './reducers/formOptionsReducer';
+import searchFormService from './services/searchFormService';
 
 const DefaultStyle = createGlobalStyle`
   * {
@@ -40,8 +42,13 @@ function App() {
     authService.getUserInfo().then(result => {  
       dispatch(setUser(result))
     }).catch(error => {
-      // dispatch(clearUser())
+      dispatch(clearUser())
     })
+
+    searchFormService.getFormOptions().then(result => {
+        dispatch(setFormOptions(result))
+    })
+
 }, [])
 
 

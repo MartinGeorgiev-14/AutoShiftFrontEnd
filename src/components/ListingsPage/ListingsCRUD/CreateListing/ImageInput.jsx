@@ -4,8 +4,17 @@ import { selectOption } from "../../../../reducers/formSelectedOptionsReducer";
 import { useState } from "react";
 import { RxValue } from "react-icons/rx";
 
-const Div = styled.div`
+const Component = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+`
 
+const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 const Label = styled.div`
 `
@@ -14,7 +23,7 @@ const Input = styled.input`
 `   
 
 const Img = styled.img`
-    width: 100px;
+    width: 15rem;
 
     &.selected{
         outline: 2px solid red;
@@ -48,7 +57,7 @@ const ImageInput = ({images, setImages}) => {
     }
 
     return(
-        <>
+        <Component>
             <Label>Images</Label>
             <Input type="file" name="image" accept="image/*" multiple onChange={handleFileChange}/>
 
@@ -63,7 +72,7 @@ const ImageInput = ({images, setImages}) => {
                     })
                 }
             </Div>        
-        </>
+        </Component>
     )
 }
 

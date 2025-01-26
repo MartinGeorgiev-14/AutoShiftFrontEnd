@@ -11,18 +11,51 @@ import SingleSelectDiv from "../../../Search/SingleSelectDiv";
 import InputDiv from "../../../Search/InputDiv";
 import ShowEditedListing from "./ShowInfoListing";
 import SelectMainImg from "./SelectMainImg"
+import DescriptionTextarea from "./DescriptionTextarea";
 import { displayNotification } from "../../../../reducers/notificationReducer";
 
 const Container = styled.div`
+    background-color: #f9f9f9;
+    width: 40%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    padding: 2rem;
 `
 
 const Form = styled.form`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 `
 
 const Div = styled.div`
+    width: fit-content;
 `
 
 const Button = styled.button`
+ background-color: #E2323D;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: white;
+
+    &:hover{
+        background-color:rgb(220, 87, 96);
+    }
+`
+
+const Textarea = styled.textarea`
 `
 
 const EditListing = () => {
@@ -30,8 +63,9 @@ const EditListing = () => {
     const dispatch = useDispatch()
     const formOptions = useSelector(o => o.formOptions)
     const selected = useSelector(o => o.formSelected)
-    const user = useSelector(o => o.user)
     const [info, setInfo] = useState()
+
+    console.log(selected, 'selected')
 
     useEffect(() => {
         listingCrudService.getListingById(id).then(result => {
@@ -56,15 +90,17 @@ const EditListing = () => {
     
     }
 
+
    if(!info){
     return null
    }
    
     return(
         <Container>
+            <h1>Editing listing</h1>
             <ShowEditedListing listing={info}/>
-            <Form onSubmit={handlePatch}>
-                <h1>Editing listing</h1>
+            <Form >
+                
                 <Div>
                     <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.makeOptions} optionText={"name"} />
                     <PairedSelectDiv label={"Model"} optionProp={"model"} child={null} parent={"make"} options={formOptions.modelOptions} optionText={"name"} />
@@ -89,11 +125,11 @@ const EditListing = () => {
                     <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
                 </Div>
                 <Div>
-                    <textarea placeholder="Description" onChange={(event) => dispatch(selectOption({prop: "description", value: event.target.value}))}></textarea>
+                    <DescriptionTextarea></DescriptionTextarea>
                 </Div>
-                <SelectMainImg images={info.images}/>
-                <Button type="submit">Edit</Button>
+      
             </Form>
+            <Button type="submit" onClick={handlePatch}>Edit</Button>
         </Container>
     )
 }
