@@ -14,7 +14,9 @@ const Title = styled.h1`
     text-align: center;
 `
 
-
+const P = styled.p`
+    text-align: center;
+`
 
 
 const ListingPage = () => {
@@ -25,7 +27,7 @@ const listings = useSelector(o => o.searchResult)
         <Container>
             
             <Title>Listings</Title>
-            {listings.content.length === 0 ? <p>No listings found</p> :
+            {listings.content.length === 0 ? <P>No listings found</P> :
                 listings.content.map(l => {
                     return (
                         <ListingContainer key={l.id} listing={l} />

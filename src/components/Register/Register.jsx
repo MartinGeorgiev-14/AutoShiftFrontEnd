@@ -3,6 +3,7 @@ import SingleInput from "./SingleInput"
 import authService from "../../services/authenticationsService"
 import { useDispatch } from "react-redux"
 import { displayNotification } from "../../reducers/notificationReducer"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 const Form = styled.form`
     width: 100%;
@@ -42,7 +43,7 @@ const Div = styled.div`
 
 const Register = () => {
 const dispatch = useDispatch()
-
+useDocumentTitle("Register")
     const handleRegister = async (event) => {
         event.preventDefault()
 

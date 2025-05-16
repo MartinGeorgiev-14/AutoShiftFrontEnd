@@ -36,6 +36,13 @@ const Form = styled.form`
 
 const Div = styled.div`
     width: fit-content;
+    &.descimg{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
 `
 
 const Button = styled.button`
@@ -122,11 +129,13 @@ const CreateListing = () => {
                     <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.regionOptions} optionText={"region"} />
                     <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
                 </Div>
-                <Div>
-                    <DescriptionTextarea></DescriptionTextarea>
-                </Div>
-                <Div>
-                    <ImageInput images={images} setImages={setImages}/>
+                <Div className="descimg">
+                    <Div>
+                        <DescriptionTextarea></DescriptionTextarea>
+                    </Div>
+                    <Div className="imgs">
+                        <ImageInput images={images} setImages={setImages}/>
+                    </Div>
                 </Div>
                 
             </Form>

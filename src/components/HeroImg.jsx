@@ -16,7 +16,6 @@ const HeroImg = () => {
     return (
         <div>
             <Img src="" alt="Hero Image" />
-            <h1>asd</h1>
         </div>
         
     )

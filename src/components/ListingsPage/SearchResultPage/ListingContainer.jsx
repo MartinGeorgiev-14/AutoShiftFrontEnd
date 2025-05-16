@@ -45,8 +45,6 @@ const ListingContainer = ({ listing }) => {
                 <Div>
                     <Stats stats={[listing.mileage + ' km', listing.engine,
                         listing.horsepower + " hp", listing.gearbox, listing.body]}/>
-
-                    <InitialDesription description={listing.description}/>
                 
                     <LocationDiv region={listing.region} location={listing.location}/>
                 </Div>
