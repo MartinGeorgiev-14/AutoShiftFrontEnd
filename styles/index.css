@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+
+@layer base {
+  h1{
+    @apply lg:text-3xl;
+  }
+  button{
+    @apply lg:text-[1.3rem];
+  }
+}
+
+@layer component {
+  .main-container{
+    @apply lg:flex lg:gap-10 lg:w-7/8 lg:h-[75vh] lg:mx-auto;
+  }
+
+  .inner-chat-container{
+    @apply lg:flex lg:h-[100%];
+  }
+
+  .chat-container{
+    @apply lg:w-[25rem] lg:h-[28rem] lg:flex lg:flex-col lg:gap-4 lg:py-4
+    lg:bg-inner-container lg:rounded-2xl lg:shadow-lg;
+  }
+
+  /*.chat-selector{*/
+  /*  @apply bg-green-400 lg:w-[25rem] lg:h-[100%] lg:flex lg:flex-col lg:gap-4 lg:py-4;*/
+  /*}*/
+
+  .type-chat-selector{
+    @apply lg:flex justify-center lg:gap-4 ;
+  }
+
+  .type-chat-selector-button{
+    @apply lg:bg-custom-gray lg:px-6 lg:py-0.5 lg:text-center
+    lg:hover:bg-custom-hover-gray lg:cursor-pointer rounded-sm;
+  }
+
+  .selected-button{
+    @apply lg:bg-custom-blue lg:text-custom-white lg:hover:bg-custom-hover-blue lg:hover:cursor-pointer;
+  }
+
+  .chat-list-holder{
+    @apply lg:overflow-y-scroll;
+  }
+
+  .chat-list-item{
+    @apply lg:flex lg:justify-between lg:gap-4 lg:p-4 lg:hover:bg-inner-hover-container lg:hover:cursor-pointer;
+  }
+
+  .chat-list-item-right{
+    @apply lg:flex lg:flex-col lg:text-right lg:justify-between lg:text-inner-text;
+  }
+}
+
+@theme {
+  --color-custom-gray: #f0f4f8;
+  --color-custom-hover-gray: #bfbfbf;
+  --color-custom-blue: #247bff;
+  --color-custom-hover-blue: #4b8dfa;
+  --color-custom-white: #d6e5ff;
+  --color-main-container: #f7f9fa;
+  --color-inner-container: #f6f6f6;
+  --color-inner-hover-container: #e3e3e3;
+  --color-inner-selected-container: #4b8dfa;
+  --color-inner-text: #9098a6;
+}
+
+@utility flex-start {
+  @apply flex gap-1.5 ml-10 mt-2 mb-2;
+}

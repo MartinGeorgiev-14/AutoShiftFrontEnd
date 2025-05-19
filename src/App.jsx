@@ -8,6 +8,7 @@ import Listing from './components/Listing/Listing'
 import CreateListing from './components/ListingsPage/ListingsCRUD/CreateListing/CreateListing';
 import UserListings from './components/ListingsPage/ListingsCRUD/UserListings';
 import EditListing from './components/ListingsPage/ListingsCRUD/UpdateListing/EditListing';
+import Chat from './components/Chat/Chat';
 import SearchForm from './components/Search/SearchForm';
 import { createGlobalStyle } from 'styled-components'
 import { useEffect } from 'react';
@@ -21,21 +22,6 @@ import { clearUser } from './reducers/userReducer';
 import Footer from './components/Footer/Footer';
 import styled from 'styled-components';
 
-const Default = createGlobalStyle`
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  background-color: #E2323D;
-}
-`
 
 const DefaultStyle = styled.div`
 
@@ -54,10 +40,10 @@ function App() {
 
   useEffect(() => {
     authService.getUserInfo().then(result => {  
-      console.log(result)
+
       dispatch(setUser(result))
     }).catch(error => {
-      console.log(error)
+    
       dispatch(clearUser())
     })
 
@@ -70,7 +56,6 @@ function App() {
 
   return (
     <>
-    <Default /> 
       <DefaultStyle>
         <ContentWrap>
       <Header/>
@@ -87,6 +72,7 @@ function App() {
             <Route path='/profile' element/>
             <Route path='/mylistings' element={<UserListings/>}/>
             <Route path='/createListing' element={<CreateListing/>}/>
+            <Route path='/chatList' element={<Chat/>}/>
           </Routes>
         </ContentWrap>
         <Footer/>
