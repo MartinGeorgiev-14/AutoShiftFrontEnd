@@ -8,7 +8,7 @@ const getToken = () => {
     return state.user.accessToken
 }
 
-const getUserConversations = async (pageNo = 0, pageSize = 10, whatUser = true) => {
+const getUserConversations = async (pageNo = 0, pageSize = 5, whatUser = true) => {
     const token = getToken();
     const data = {
         whatUser
@@ -23,4 +23,28 @@ const getUserConversations = async (pageNo = 0, pageSize = 10, whatUser = true) 
     return repsonse.data
 }
 
-export default { getUserConversations } 
+const getUserChatMesages = async (pageNo = 0, pageSize = 5, conversationId) => {
+    const token = getToken()
+    console.log("pageNo", pageNo)
+    const response = await axios.get(`${url}/conversations/${conversationId}/messages?pageNo=${pageNo}&pageSize=${pageSize}`, {
+        headers: {
+            Authorization: `Bearer ${token}`    
+        }
+    })
+
+    return response.data
+}
+
+const getConversationById = async (conversationId) => {
+    const token = getToken()
+
+    const response = await axios.get(`${url}/conversations/get/${conversationId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+    return response.data
+}
+
+export default { getUserConversations, getUserChatMesages, getConversationById } 

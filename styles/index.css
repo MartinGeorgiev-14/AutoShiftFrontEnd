@@ -12,15 +12,15 @@
 
 @layer component {
   .main-container{
-    @apply lg:flex lg:gap-10 lg:w-7/8 lg:h-[75vh] lg:mx-auto;
+    @apply lg:flex  lg:w-7/8 lg:h-[75vh] lg:mx-auto;
   }
-
+  /* Start chat page styles */
   .inner-chat-container{
-    @apply lg:flex lg:h-[100%];
+    @apply lg:flex lg:h-[90%] lg:w-full lg:gap-5;
   }
 
   .chat-container{
-    @apply lg:w-[25rem] lg:h-[28rem] lg:flex lg:flex-col lg:gap-4 lg:py-4
+    @apply lg:w-[35%] lg:h-[100%] lg:flex lg:flex-col lg:gap-4 lg:py-4
     lg:bg-inner-container lg:rounded-2xl lg:shadow-lg;
   }
 
@@ -29,7 +29,7 @@
   /*}*/
 
   .type-chat-selector{
-    @apply lg:flex justify-center lg:gap-4 ;
+    @apply lg:flex justify-center lg:gap-4;
   }
 
   .type-chat-selector-button{
@@ -42,7 +42,11 @@
   }
 
   .chat-list-holder{
-    @apply lg:overflow-y-scroll;
+    @apply lg:overflow-y-scroll lg:h-[100%] ;
+  }
+
+  .selected-chat{
+    @apply lg:bg-inner-selected-chat;
   }
 
   .chat-list-item{
@@ -52,6 +56,12 @@
   .chat-list-item-right{
     @apply lg:flex lg:flex-col lg:text-right lg:justify-between lg:text-inner-text;
   }
+
+  .conversation-container{
+    @apply lg:flex lg:flex-col lg:justify-between lg:w-[65%] lg:h-[100%] lg:bg-inner-container lg:rounded-2xl lg:shadow-lg;
+  }
+
+  /* End chat page styles */
 }
 
 @theme {
@@ -64,7 +74,10 @@
   --color-inner-container: #f6f6f6;
   --color-inner-hover-container: #e3e3e3;
   --color-inner-selected-container: #4b8dfa;
+  --color-inner-selected-chat: #c2daff;
   --color-inner-text: #9098a6;
+  --color-divider-component: #8b8b8b;
+  --color-other-chatter-gray: #c2c5c8;
 }
 
 @utility flex-start {

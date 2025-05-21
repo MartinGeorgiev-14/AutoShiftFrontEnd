@@ -9,7 +9,6 @@ const chatListReducer = createSlice({
     },
     reducers: {
         addChatToBuyList: (state, action) => {
-        // console.log('State (plain):', JSON.parse(JSON.stringify(state)));
             if (Object.keys(state.buyList).length === 0) {
                 return {
                     ...state,

@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux"
 import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setChatSelector } from "../../reducers/chatListReducer"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import chatService from "../../services/chatService"
 import ChatsList from "./ChatsList"
+import Conversation from "./Conversation"
 
 const Chat = () => {
     const dispatch = useDispatch()
@@ -11,7 +12,8 @@ const Chat = () => {
     const buyChatList = useSelector(state => state.chatListReducer.buyList)
     const sellChatList = useSelector(state => state.chatListReducer.sellList)
     const chatSelector = useSelector(state => state.chatListReducer.chatSelector)
-    
+    const [conversation, setConversation] = useState(null)
+
     useEffect(() => {
         try {
             if (Object.keys(buyChatList).length === 0) {
@@ -65,8 +67,6 @@ const Chat = () => {
         return <div>Loading...</div>
     }
 
-
-
     return (
         <div className="main-container flex-col">
             <h1>Chat</h1>
@@ -78,12 +78,10 @@ const Chat = () => {
                     </div>
                         <ChatsList chats={chatSelector ? buyChatList : sellChatList}
                             setChats={chatSelector ? addChatToBuyList : addChatToSellList}
-                            chatSelector={chatSelector}/>
+                            chatSelector={chatSelector}
+                            setConversation={setConversation}/>
                 </div>
-                <div>
-                    {/* Conversation chat */}
-                    <p>chating</p>
-                </div>
+                <Conversation conversationId={conversation}/>
             </div>
         </div>
     )
