@@ -4,18 +4,30 @@ import { useEffect, useRef, useState } from "react";
 import chatService from "../../services/chatService";
 import { debounce } from "lodash";
 
-const ConversationMiddle = ({ messages, setMessages, conData }) => {
+const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, setNewMessageLoad }) => {
     const user = useSelector(state => state.user);
     const conRef = useRef(null);
     const [initialLoadDone, setInitialLoadDone] = useState(false);
-    console.log("messages", messages);
+   
+    // Initial set scroll position to bottom
     useEffect(() => {
         if (conRef.current && !initialLoadDone) {
             conRef.current.scrollTop = conRef.current.scrollHeight;
-            setInitialLoadDone(true);
+            setInitialLoadDone(true)
         }
-    }, [messages, initialLoadDone]);
+        
+    }, [messages, initialLoadDone])
 
+    // Scroll to bottom when new message is loaded
+    useEffect(() => {
+        if (conRef.current && newMessageLoad) {
+            conRef.current.scrollTop = conRef.current.scrollHeight;
+            setNewMessageLoad(false);
+            console.log("New message loaded");
+        }
+    },[messages, newMessageLoad])
+
+    // Load more messages when scrolled to top and scroll position stays the same
     useEffect(() => {
         const container = conRef.current;
         if (!container) return;
@@ -29,7 +41,7 @@ const ConversationMiddle = ({ messages, setMessages, conData }) => {
                         .then(result => {
                                 setMessages(prev => ({
                                     ...result.response,
-                                    messages: [...result.response.messages, ...prev.messages]
+                                    messages: [...result.response.messages, ...prev.messages].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
                                 }));
                                 setTimeout(() => {
                                     const newScrollHeight = container.scrollHeight;

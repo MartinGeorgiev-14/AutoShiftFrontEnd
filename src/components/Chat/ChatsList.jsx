@@ -73,7 +73,7 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation }) => {
                                         chat.newMessageCounterSeller > 0 ?
                                             <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterSeller}</p></div> : null :
                                         chat.newMessageCounterBuyer > 0 ?
-                                            <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterB}</p> </div> : null
+                                            <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterBuyer}</p> </div> : null
                                 }
                             </div>
                         </div>
