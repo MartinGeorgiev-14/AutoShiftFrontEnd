@@ -3,10 +3,15 @@ const ConversationBottom = ({ inputValue, setInputValue, handleSendMessage }) =>
 
     return (
         <div className="lg:h-[10%] flex w-full">
-            <textarea
+            <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleSendMessage()
+                    }
+                }}
                 placeholder="Type a message"
                 className="lg:w-[80%] lg:m-2 lg:resize-none px-2 lg:flex lg:justify-center lg:border lg:rounded-lg"
             />

@@ -4,11 +4,13 @@ import dateTimeFormat from "../../helpers/dateTimeFormater";
 import { useDispatch } from "react-redux";
 import chatService from "../../services/chatService"
 import { debounce } from "lodash"
-const ChatsList = ({ chatSelector, chats, setChats, setConversation }) => {
+const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversationUpdater }) => {
     const dispatch = useDispatch()
     const scrollRef = useRef(null)
     const user = useSelector(state => state.user)
     const conversations = chats.response.conversations
+
+    console.log("conversations", conversations)
 
     useEffect(() => {
         const handleScroll = (event) => {
@@ -45,7 +47,7 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation }) => {
         });
 
         target.classList.add("selected-chat")
-        setConversation(id)
+        setConversation(conversations.find(chat => chat.id === id))
 
     }
 
@@ -70,10 +72,10 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation }) => {
                                 <p>{dateTimeFormat.formatDateTime(chat.lastTimeChatted)}</p>
                                 {
                                     user.userId === chat.buyer.id ?
-                                        chat.newMessageCounterSeller > 0 ?
-                                            <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterSeller}</p></div> : null :
                                         chat.newMessageCounterBuyer > 0 ?
-                                            <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterBuyer}</p> </div> : null
+                                            <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterBuyer}</p></div> : null :
+                                        chat.newMessageCounterSeller > 0 ?
+                                            <div className="lg:w-[100%] lg:flex lg:justify-end"><p className="lg:bg-custom-blue lg:text-white lg:px-3 lg:py-1 lg:rounded-full">{chat.newMessageCounterSeller}</p> </div> : null
                                 }
                             </div>
                         </div>

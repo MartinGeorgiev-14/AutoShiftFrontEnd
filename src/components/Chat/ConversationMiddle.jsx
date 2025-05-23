@@ -1,14 +1,13 @@
 import { useSelector } from "react-redux";
-import { TiTick } from "react-icons/ti";
 import { useEffect, useRef, useState } from "react";
 import chatService from "../../services/chatService";
 import { debounce } from "lodash";
 
-const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, setNewMessageLoad }) => {
+const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, setNewMessageLoad, conversationGetter}) => {
     const user = useSelector(state => state.user);
     const conRef = useRef(null);
     const [initialLoadDone, setInitialLoadDone] = useState(false);
-   
+
     // Initial set scroll position to bottom
     useEffect(() => {
         if (conRef.current && !initialLoadDone) {
@@ -37,7 +36,7 @@ const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, se
                 if (!messages.last) {
                     const previousScrollHeight = container.scrollHeight;
                     chatService
-                        .getUserChatMesages(messages.pageNo + 1, 5, conData.response.id)
+                        .getUserChatMesages(messages.pageNo + 1, 5, conData.id)
                         .then(result => {
                                 setMessages(prev => ({
                                     ...result.response,
@@ -81,10 +80,6 @@ const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, se
                     )}
                 </div>
             ))}
-            <div className="w-full flex justify-end text-custom-blue">
-                {conData.response?.isReadByBuyer && <TiTick className="text-custom-blue" />}
-                {conData.response?.isReadBySeller && <TiTick className="text-custom-blue" />}
-            </div>
         </div>
     );
 };

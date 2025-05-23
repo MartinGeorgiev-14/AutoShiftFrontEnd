@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setChatSelector } from "../../reducers/chatListReducer"
+import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setChatSelector, setListingFirstBuyPosition, setListingFirstSellPosition , changeIsRead } from "../../reducers/chatListReducer"
 import { useEffect, useState, useRef } from "react"
 import chatService from "../../services/chatService"
 import ChatsList from "./ChatsList"
@@ -13,34 +13,27 @@ const Chat = () => {
     const sellChatList = useSelector(state => state.chatListReducer.sellList)
     const chatSelector = useSelector(state => state.chatListReducer.chatSelector)
     const [conversation, setConversation] = useState(null)
+    const chatList = useSelector(state => state.chatListReducer)
+
+    console.log("chatList", chatList)   
 
     useEffect(() => {
         try {
-            if (Object.keys(buyChatList).length === 0) {
                 chatService.getUserConversations(0, 5, true).then(result => {
                     dispatch(setInitialBuyChatList(result))
                 })
-            }
         } catch (error) {
             console.log(error)
         }
     }, [])
-
-    const handleScroll = (event) => {
-        event.preventDefault()
-
-        
-    }
 
     const handleSellChatList = async (event) => {
         try {
             event.preventDefault()
             const result = await chatService.getUserConversations(0, 10, false)
             dispatch(setChatSelector(false))
-
-            if (Object.keys(sellChatList).length === 0) {
-                dispatch(addChatToSellList(result))
-            }
+            dispatch(addChatToSellList(result))
+            
             // this else block should be moved to the ChatsList component to handle new conversations
             // else {
             //     const conversations = [...sellChatList.response.conversations, ...result.response.conversations]
@@ -81,7 +74,10 @@ const Chat = () => {
                             chatSelector={chatSelector}
                             setConversation={setConversation}/>
                 </div>
-                <Conversation conversationId={conversation}/>
+                <Conversation conversation={conversation}
+                conversationUpdater={chatSelector ? setListingFirstBuyPosition : setListingFirstSellPosition}
+                conversationGetter={chatSelector ? buyChatList : sellChatList}
+                changeIsRead={changeIsRead}/>
             </div>
         </div>
     )
