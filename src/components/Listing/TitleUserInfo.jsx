@@ -70,16 +70,16 @@ const TitleUserInfo = ({ listing }) => {
     return(
         <Container>
             <Div>
-                <ID>Listing: {listing.id}</ID>
-                <Title>{listing.make} {listing.model}</Title>
-                <Location><FaLocationDot style={iconColor}/>{listing.region} {listing.location}</Location>
-                <Price>{listing.price} BGN</Price>
-                <Phone><FaPhoneAlt/>{listing.user.phone}</Phone>
+                <ID>Listing: {listing.listing.id}</ID>
+                <Title>{listing.listing.make} {listing.listing.model}</Title>
+                <Location><FaLocationDot style={iconColor}/>{listing.listing.region} {listing.listing.location}</Location>
+                <Price>{listing.listing.price} BGN</Price>
+                <Phone><FaPhoneAlt/>{listing.listing.user.phone}</Phone>
             </Div>
             <hr></hr>
             <Div>
-                <Person>{listing.user.firstName} {listing.user.lastName}</Person>
-                <Email><MdEmail style={iconColor}/>{listing.user.email}</Email>
+                <Person>{listing.listing.user.firstName} {listing.listing.user.lastName}</Person>
+                <Email><MdEmail style={iconColor}/>{listing.listing.user.email}</Email>
             </Div>
 
         </Container>

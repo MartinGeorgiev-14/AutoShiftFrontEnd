@@ -13,13 +13,13 @@ const getFormOptions = async () => {
     return response.data;
 }
 
-const searchCarByCriteria = async (data, pageNo = 0) => {
-    const response = await axios.post(`${url}/search?page=${pageNo}&page=10`, data)
+const searchCarByCriteria = async (data, pageNo = 0, pageSize = 10) => {
+    const response = await axios.post(`${url}/search?pageNo=${pageNo}&pageSize=${pageSize}`, data)
     return response.data;
 }
 
-const searchCarByUser = async (data, pageNo = 0) => {
-    const response = await axios.get(`${url}/page?pageNo=${pageNo}&pageSize=10`, {
+const searchCarByUser = async (data, pageNo = 0, pageSize = 10, sortBy = "price", sortDirection = "ASC") => {
+    const response = await axios.get(`${url}/page?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&sortDirection=${sortDirection}`, {
         headers: {
             Authorization: `Bearer ${getToken()}`,
         }

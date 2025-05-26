@@ -22,7 +22,7 @@ const AdditionalInformation = ({ listing }) => {
     return (
         <Container>
             <Title>Additional Information</Title>
-            <Info>{listing.description}</Info>
+            <Info>{listing.listing.description}</Info>
         </Container>
     )
 }

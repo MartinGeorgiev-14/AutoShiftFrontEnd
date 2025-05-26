@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import chatService from "../../services/chatService"
 import ChatsList from "./ChatsList"
 import Conversation from "./Conversation"
+import { displayNotification } from "../../reducers/notificationReducer"
 
 const Chat = () => {
     const dispatch = useDispatch()
@@ -15,15 +16,13 @@ const Chat = () => {
     const [conversation, setConversation] = useState(null)
     const chatList = useSelector(state => state.chatListReducer)
 
-    console.log("chatList", chatList)   
-
     useEffect(() => {
         try {
                 chatService.getUserConversations(0, 5, true).then(result => {
                     dispatch(setInitialBuyChatList(result))
                 })
         } catch (error) {
-            console.log(error)
+            dispatch(displayNotification({type: "error", message: "Error fetching buy chat list"}))
         }
     }, [])
 
@@ -33,26 +32,9 @@ const Chat = () => {
             const result = await chatService.getUserConversations(0, 10, false)
             dispatch(setChatSelector(false))
             dispatch(addChatToSellList(result))
-            
-            // this else block should be moved to the ChatsList component to handle new conversations
-            // else {
-            //     const conversations = [...sellChatList.response.conversations, ...result.response.conversations]
-            //     .sort((a, b) => {
-            //         return new Date(b.lastTimeChatted) - new Date(a.lastTimeChatted)
-            //     })
-            //     setSellChatList({
-            //         ...sellChatList,
-            //         response: {
-            //             ...sellChatList.response,
-            //             conversations: [
-            //                 ...conversations
-            //             ]
-            //         }
-            //     })
-            // }
 
         } catch (error) {
-            console.log(error)
+            dispatch(displayNotification({type: "error", message: "Error fetching sell chat list"}))
         }
     }
 

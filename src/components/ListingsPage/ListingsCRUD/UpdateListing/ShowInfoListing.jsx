@@ -16,25 +16,27 @@ const Div = styled.div`
 
 const ShowInfoListing = ({ listing }) => {
 
+    const listingFormat = listing.listing
+
     if(!listing){
         return null
     }
 
     return(
         <Container>
-            <ShowInfoRow label={"Make"} data={listing.make}/>
-            <ShowInfoRow label={"Model"} data={listing.model}/>
-            <ShowInfoRow label={"Engine"} data={listing.engine}/>
-            <ShowInfoRow label={"Gearbox"} data={listing.gearbox}/>
-            <ShowInfoRow label={"Body Type"} data={listing.body}/>
-            <ShowInfoRow label={"Mileage"} data={listing.mileage}/>
-            <ShowInfoRow label={"Price BGN"} data={listing.price}/>
-            <ShowInfoRow label={"Engine Displacement"} data={listing.engineDisplacement}/>
-            <ShowInfoRow label={"Horsepower"} data={listing.horsepower}/>
-            <ShowInfoRow label={"Region"} data={listing.region}/>
-            <ShowInfoRow label={"Location"} data={listing.location}/>
-            <ShowInfoRow label={"Description"} data={listing.description} className={'description'}/>
-            <ShowInfoImg label={"Main image"} data={listing.images}/>
+            <ShowInfoRow label={"Make"} data={listingFormat.make}/>
+            <ShowInfoRow label={"Model"} data={listingFormat.model}/>
+            <ShowInfoRow label={"Engine"} data={listingFormat.engine}/>
+            <ShowInfoRow label={"Gearbox"} data={listingFormat.gearbox}/>
+            <ShowInfoRow label={"Body Type"} data={listingFormat.body}/>
+            <ShowInfoRow label={"Mileage"} data={listingFormat.mileage}/>
+            <ShowInfoRow label={"Price BGN"} data={listingFormat.price}/>
+            <ShowInfoRow label={"Engine Displacement"} data={listingFormat.engineDisplacement}/>
+            <ShowInfoRow label={"Horsepower"} data={listingFormat.horsepower}/>
+            <ShowInfoRow label={"Region"} data={listingFormat.region}/>
+            <ShowInfoRow label={"Location"} data={listingFormat.location}/>
+            <ShowInfoRow label={"Description"} data={listingFormat.description} className={'description'}/>
+            <ShowInfoImg label={"Main image"} data={listingFormat.images}/>
         </Container>
     )
 

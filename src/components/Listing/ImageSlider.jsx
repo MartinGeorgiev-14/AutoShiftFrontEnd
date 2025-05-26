@@ -26,7 +26,7 @@ const ImageSlider = ({ images }) => {
                 images.map((img, index) => {
                     return (
                     <SwiperSlide key={index}>
-                        <Img src={`data:${img.type};base64,${img.imageData}`}/>
+                        <Img src={img.url}/>
                     </SwiperSlide>
                     )
                 })

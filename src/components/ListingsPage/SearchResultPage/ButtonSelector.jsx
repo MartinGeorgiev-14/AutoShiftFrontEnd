@@ -72,7 +72,7 @@ const InputPage = styled.input`
 
 const ButtonSelector = ({ service }) => {
     const dispatch = useDispatch()
-    const listings = useSelector(o => o.searchResult)
+    const listings = useSelector(o => o.searchResult.listings)
     const formOptions = useSelector(f => f.formSelected)
     const [goToPage, setGoToPage] = useState(0)
 

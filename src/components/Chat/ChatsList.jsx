@@ -10,8 +10,6 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversatio
     const user = useSelector(state => state.user)
     const conversations = chats.response.conversations
 
-    console.log("conversations", conversations)
-
     useEffect(() => {
         const handleScroll = (event) => {
             if (scrollRef.current) {

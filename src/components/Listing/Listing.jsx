@@ -31,11 +31,11 @@ const Listing = () => {
     
     useEffect(() => {
         listingCrudService.getListingById(id).then(result => {
-            const sortImages = result.images.sort((a,b) => {
+            const sortImages = result.listing.images.sort((a,b) => {
                 if(a.main === b.main) return 0
                 return a.main ? -1 : 1
             })
-         
+            console.log("sortImages", sortImages)
             setListing({...result, images: sortImages})
         })
     },[])

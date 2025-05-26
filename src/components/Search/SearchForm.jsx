@@ -53,7 +53,7 @@ const Button = styled.button`
 const SearchForm = () => {
 const dispatch = useDispatch()
 const navigate = useNavigate()
-const formOptions = useSelector(o => o.formOptions)
+const formOptions = useSelector(o => o.formOptions.options)
 const selectedOptions = useSelector(o => o.formSelected)
 useDocumentTitle("Search")
 
@@ -64,24 +64,15 @@ useEffect(() => {
     })
 }, [])
     
-
-if(Object.values(formOptions).length <= 0){
+if(!formOptions){
     return null
 }
 
 const search = async (event) => {
-    event.preventDefault()
-    console.log('Search function called')
-    
-    console.log('Selected options:', selectedOptions)
-    const result = await searchFormService.searchCarByCriteria(selectedOptions)
-    console.log('Search result:', result)
-    
-    dispatch(setSearchResult(result))
-    console.log('Search result dispatched')
-    
+    event.preventDefault()   
+    const result = await searchFormService.searchCarByCriteria(selectedOptions) 
+    dispatch(setSearchResult(result))   
     navigate(`/listings`)
-    console.log('Navigated to /listings')
 }
 
 
@@ -105,8 +96,8 @@ const search = async (event) => {
                     <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.bodyOptions} optionText={"body"} />
                 </Div>
                 <Div>
-                   <InputDiv label={"Min price"} optionProp={"startPrice"}/>
-                   <InputDiv label={"Max price"} optionProp={"endPrice"}/>
+                   <InputDiv label={"Min price"} optionProp={"priceStart"}/>
+                   <InputDiv label={"Max price"} optionProp={"priceEnd"}/>
                 </Div>
             </Form>
             <Button type="submit" onClick={search}>Search</Button>

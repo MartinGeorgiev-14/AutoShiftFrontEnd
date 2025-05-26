@@ -61,6 +61,7 @@ const CreateListing = () => {
     const selectedOptions = useSelector(o => o.formSelected)
     const [images, setImages] = useState([])
 
+    console.log("formOptions", formOptions)
 
     useState(() => {
         searchFormService.getFormOptions().then(result => {
@@ -88,9 +89,11 @@ const CreateListing = () => {
         })
 
         const data = await listingCrudService.createListing(formData)
-        
+        console.log("data", data)
         if(data === 201){
             dispatch(displayNotification({type: 'success', message: 'Listing successfuly created'}))
+        }else{
+            dispatch(displayNotification({type: 'error', message: 'Failed to create listing'}))
         }
 
     }
@@ -100,15 +103,15 @@ const CreateListing = () => {
             <h1>Listing creation</h1>
             <Form onSubmit={handleFormSubmit}>
                 <Div>
-                    <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.makeOptions} optionText={"name"} />
-                    <PairedSelectDiv label={"Model"} optionProp={"model"} child={null} parent={"make"} options={formOptions.modelOptions} optionText={"name"} />
+                    <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.options.makeOptions} optionText={"name"} />
+                    <PairedSelectDiv label={"Model"} optionProp={"model"} child={null} parent={"make"} options={formOptions.options.modelOptions} optionText={"name"} />
                 </Div>
                 <Div>
-                    <SingleSelectDiv label={"Engine"} optionProp={"engine"} options={formOptions.engineOptions} optionText={"type"} />
-                    <SingleSelectDiv label={"Gearbox"} optionProp={"gearbox"} options={formOptions.gearboxOptions} optionText={"type"} />
+                    <SingleSelectDiv label={"Engine"} optionProp={"engine"} options={formOptions.options.engineOptions} optionText={"type"} />
+                    <SingleSelectDiv label={"Gearbox"} optionProp={"gearbox"} options={formOptions.options.gearboxOptions} optionText={"type"} />
                 </Div>
                 <Div>
-                    <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.bodyOptions} optionText={"body"} />
+                    <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.options.bodyOptions} optionText={"body"} />
                 </Div>
                 <Div>
                     <InputDiv label={"Mileage km"} optionProp={"mileage"}/>
@@ -119,8 +122,8 @@ const CreateListing = () => {
                     <InputDiv label={"Horsepower"} optionProp={"horsepower"}/>
                 </Div>
                 <Div>
-                    <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.regionOptions} optionText={"region"} />
-                    <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
+                    <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.options.regionOptions} optionText={"region"} />
+                    <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.options.locationOptions} optionText={"location"} />
                 </Div>
                 <Div>
                     <DescriptionTextarea></DescriptionTextarea>

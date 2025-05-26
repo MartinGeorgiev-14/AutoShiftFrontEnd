@@ -61,12 +61,12 @@ const Textarea = styled.textarea`
 const EditListing = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
-    const formOptions = useSelector(o => o.formOptions)
+    const formOptions = useSelector(o => o.formOptions.options)
     const selected = useSelector(o => o.formSelected)
     const [info, setInfo] = useState()
 
-    console.log(selected, 'selected')
-
+    console.log("id", id)
+    console.log("info", info)
     useEffect(() => {
         listingCrudService.getListingById(id).then(result => {
             setInfo(result)
@@ -74,24 +74,29 @@ const EditListing = () => {
 
     },[])
 
+    console.log("formOption", formOptions)
+
     const handlePatch = async (event) => {
         event.preventDefault()
 
-        const result = await listingCrudService.patchListing(id, selected)
+        try{
+            const result = await listingCrudService.patchListing(id, selected)
 
-        if(result === 200){
-            const updatedListing = await listingCrudService.getListingById(id)
-        
-            setInfo(updatedListing)
-            dispatch(clearOptions())
-            dispatch(displayNotification({type: "success", message: "Successfully updated listing"}))
+            if(result === 200){
+                const updatedListing = await listingCrudService.getListingById(id)
+            
+                setInfo(updatedListing)
+                dispatch(clearOptions())
+                dispatch(displayNotification({type: "success", message: "Successfully updated listing"}))
+            }
         }
-
-    
+        catch{
+            dispatch(displayNotification({type: "error", message: "Error updating listing"}))
+        }
     }
 
 
-   if(!info){
+   if(!info || Object.keys(formOptions).length === 0){
     return null
    }
    

@@ -2,8 +2,11 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import chatService from "../../services/chatService";
 import { debounce } from "lodash";
+import { useDispatch } from "react-redux";
+import { displayNotification } from "../../reducers/notificationReducer";
 
 const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, setNewMessageLoad, conversationGetter}) => {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const conRef = useRef(null);
     const [initialLoadDone, setInitialLoadDone] = useState(false);
@@ -22,7 +25,6 @@ const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, se
         if (conRef.current && newMessageLoad) {
             conRef.current.scrollTop = conRef.current.scrollHeight;
             setNewMessageLoad(false);
-            console.log("New message loaded");
         }
     },[messages, newMessageLoad])
 
@@ -46,6 +48,8 @@ const ConversationMiddle = ({ messages, setMessages, conData, newMessageLoad, se
                                     const newScrollHeight = container.scrollHeight;
                                     container.scrollTop = newScrollHeight - previousScrollHeight;
                                 }, 0);
+                        }).catch(err => {
+                            dispatch(displayNotification({type: "error", message: "Error loading messages"}));
                         });
                 }
             }

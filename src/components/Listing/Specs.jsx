@@ -49,27 +49,27 @@ const Specs = ({ listing }) => {
                 <TBody>
                     <TR>
                         <TH>Engine</TH>
-                        <TD>{listing.engine}</TD>
+                        <TD>{listing.listing.engine}</TD>
                     </TR>
                     <TR>
                         <TH>Horsepower</TH>
-                        <TD>{listing.horsepower}</TD>
+                        <TD>{listing.listing.horsepower}</TD>
                     </TR>
                     <TR>
                         <TH>Engine displacement</TH>
-                        <TD>{listing.engineDisplacement}</TD>
+                        <TD>{listing.listing.engineDisplacement}</TD>
                     </TR>
                     <TR>
                         <TH>Gearbox</TH>
-                        <TD>{listing.gearbox}</TD>
+                        <TD>{listing.listing.gearbox}</TD>
                     </TR>
                     <TR>
                         <TH>Body Type</TH>
-                        <TD>{listing.body}</TD>
+                        <TD>{listing.listing.body}</TD>
                     </TR>
                     <TR>
                         <TH>Mileage (km)</TH>
-                        <TD>{listing.mileage} km</TD>
+                        <TD>{listing.listing.mileage} km</TD>
                     </TR>
                 </TBody>
             </Table>

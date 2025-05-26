@@ -18,9 +18,8 @@ const Title = styled.h1`
 
 
 const ListingPage = () => {
-const listings = useSelector(o => o.searchResult)
+const listings = useSelector(o => o.searchResult.listings)
 
-    
     return (
         <Container>
             

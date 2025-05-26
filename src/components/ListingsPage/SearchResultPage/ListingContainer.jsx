@@ -34,11 +34,11 @@ const Div = styled.div`
 
 const ListingContainer = ({ listing }) => {
 
-    const mainImg = listing.images.filter(i => i.main)
+    const mainImg = listing.images.find(i => i.main === true)
 
     return(
         <Container>
-            <Img src={`data:${mainImg[0].type};base64,${mainImg[0].imageData}`}></Img>
+            <Img src={mainImg.url && mainImg.url}></Img>
             <InfoDiv>
                 <Title id={listing.id} make={listing.make} model={listing.model} price={listing.price}/>
 

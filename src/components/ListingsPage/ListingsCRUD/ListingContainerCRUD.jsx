@@ -9,6 +9,12 @@ import listingCrudService from "../../../services/listingCrudService";
 import { useDispatch } from "react-redux";
 import { removeListing } from "../../../reducers/searchResultReducer";
 import { displayNotification } from "../../../reducers/notificationReducer";
+import { useSelector } from "react-redux";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { changeActive } from "../../../reducers/searchResultReducer";
+
+
 
 const Container = styled.div`
     background-color: #f8f9fa;
@@ -50,9 +56,11 @@ const Div = styled.div`
 
 
 const ListingContainerCRUD = ({ listing }) => {
-    const mainImg = listing.images.filter(i => i.main)
+    const mainImg = listing.images.find(i => i.main === true)
+    const user = useSelector(state => state.user)
+
     const dispatch = useDispatch()
-  
+    
     const handleDelete = async (event, listingId) => {
         event.preventDefault()
 
@@ -65,12 +73,24 @@ const ListingContainerCRUD = ({ listing }) => {
                 
             }
         }
-
     } 
+
+    const handleToggleActive = async (event, listing) => {
+        event.preventDefault()
+
+        const response = await listingCrudService.toggleActive(listing)
+
+        if(response === 200) {
+            dispatch(displayNotification({type: "success", message: "Listing status updated successfully"}))
+            dispatch(changeActive(listing))
+        } else {
+            dispatch(displayNotification({type: "error", message: "Failed to update listing status"}))
+        }
+    }
 
     return(
         <Container>
-            <Img src={`data:${mainImg[0].type};base64,${mainImg[0].imageData}`}></Img>
+            <Img src={mainImg.url}/>
             <InfoDiv>
                     <Title id={listing.id} make={listing.make} model={listing.model} price={listing.price}/>
                 <StatsDiv>
@@ -82,11 +102,13 @@ const ListingContainerCRUD = ({ listing }) => {
                     </Div>
                     <Div>
                          <p>ID: {listing.user.id}</p>
-                         <p>Owner: {listing.user.firstName} {listing.user.lastName}</p>   
+                         <p>Owner: {listing.user.firstName} {listing.user.lastName}</p>
+                         <p>Active: {listing.isActive ? "Yes" : "No"}</p>
                     </Div>
                     <Div className="icons">
                         <Link to={`/editListing/${listing.id}`}><CiEdit style={{color: "green"}}/></Link>
-                        <Link onClick={(event) => handleDelete(event, listing.id)}><MdDeleteForever style={{color: "red"}}/></Link>
+                        {user.roles.some(r => r.name === "ROLE_ADMIN") ? <Link onClick={(event) => handleDelete(event, listing.id)}><MdDeleteForever style={{color: "red"}}/></Link> : null}
+                        <Link onClick={(event) => handleToggleActive(event, listing)}>{listing.isActive ? <FaRegEyeSlash style={{color: "orange"}}/> : <FaRegEye style={{color: "blue"}}/>}</Link>
                     </Div>
                 </StatsDiv>
             </InfoDiv>

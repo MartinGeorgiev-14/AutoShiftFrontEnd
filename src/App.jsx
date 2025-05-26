@@ -40,7 +40,6 @@ function App() {
 
   useEffect(() => {
     authService.getUserInfo().then(result => {  
-
       dispatch(setUser(result))
     }).catch(error => {
     

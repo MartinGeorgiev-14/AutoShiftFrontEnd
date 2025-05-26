@@ -13,7 +13,6 @@ const getToken = () => {
 
 const createListing = async (data) => {
     
-
     const response = await axios.post(`${url}/create`, data, {
         headers: {
             'Authorization': `Bearer ${getToken()}`,
@@ -45,14 +44,28 @@ const patchListing = async (id, data) => {
 
     const response = await axios.patch(`${url}/update/${id}`, data, {
         headers:{
-            Authorization: `Bearer ${getToken()}`
+            Authorization: `Bearer ${getToken()}`,
+            'Content-Type': 'multipart/form-data'
         }
     })
 
-    
+    return response.status
+}
+
+const toggleActive = async (listing) => {
+    const data = {
+        isActive: !listing.isActive
+    }
+  
+    const response = await axios.patch(`${url}/update/${listing.id}`, data, {
+        headers: {
+            Authorization: `Bearer ${getToken()}`,
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+
     return response.status
 }
 
 
-
-export default { createListing, deleteListing, getListingById, patchListing }
+export default { createListing, deleteListing, getListingById, patchListing, toggleActive }
