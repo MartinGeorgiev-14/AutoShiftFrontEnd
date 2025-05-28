@@ -38,7 +38,7 @@ const ListingContainer = ({ listing }) => {
 
     return(
         <Container>
-            <Img src={mainImg.url && mainImg.url}></Img>
+            {/* <Img src={mainImg.url && mainImg.url}></Img> */}
             <InfoDiv>
                 <Title id={listing.id} make={listing.make} model={listing.model} price={listing.price}/>
 

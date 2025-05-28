@@ -67,5 +67,11 @@ const toggleActive = async (listing) => {
     return response.status
 }
 
+const getListingsSortedByCreatedAt = async (pageNo = 0, pageSize = 6) => {
+    const response = await axios.get(`${url}/page/createdAt?pageNo=0&pageSize=6`)
 
-export default { createListing, deleteListing, getListingById, patchListing, toggleActive }
+    return response.data
+}
+
+
+export default { createListing, deleteListing, getListingById, patchListing, toggleActive, getListingsSortedByCreatedAt}

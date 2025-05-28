@@ -114,12 +114,21 @@ const CreateListing = () => {
                     <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.options.bodyOptions} optionText={"body"} />
                 </Div>
                 <Div>
+                    <SingleSelectDiv label={"Color"} optionProp={"color"} options={formOptions.options.colorOptions} optionText={"color"} />
+                </Div>
+                <Div>
+                    <SingleSelectDiv label={"euroStandard"} optionProp={"euroStandard"} options={formOptions.options.euroStandardOptions} optionText={"standard"} />
+                </Div>
+                <Div>
                     <InputDiv label={"Mileage km"} optionProp={"mileage"}/>
                     <InputDiv label={"Price BGN"} optionProp={"price"}/>
                 </Div>
                 <Div>
                     <InputDiv label={"Engine Displacement"} optionProp={"engineDisplacement"}/>
                     <InputDiv label={"Horsepower"} optionProp={"horsepower"}/>
+                </Div>
+                <Div>
+                    <input type="date" name="year" onChange={e => dispatch(selectOption({value: e.target.value, prop: 'manufactureDate'}))} />
                 </Div>
                 <Div>
                     <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.options.regionOptions} optionText={"region"} />

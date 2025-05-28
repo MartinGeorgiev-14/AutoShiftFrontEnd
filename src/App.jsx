@@ -21,6 +21,7 @@ import searchFormService from './services/searchFormService';
 import { clearUser } from './reducers/userReducer';
 import Footer from './components/Footer/Footer';
 import styled from 'styled-components';
+import FiltersPage from './components/Filters/FiltersPage';
 
 
 const DefaultStyle = styled.div`
@@ -61,7 +62,6 @@ function App() {
       <Notification/>
           <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/search' element={<SearchForm/>}/>
             <Route path='/listings' element={<ListingsPage/>}/>
             <Route path="/listing/:id" element={<Listing/>}/>
             <Route path='/editListing/:id' element={<EditListing/>}/>
@@ -72,6 +72,7 @@ function App() {
             <Route path='/mylistings' element={<UserListings/>}/>
             <Route path='/createListing' element={<CreateListing/>}/>
             <Route path='/chatList' element={<Chat/>}/>
+            <Route path='/filters' element={<FiltersPage/>}/>
           </Routes>
         </ContentWrap>
         <Footer/>

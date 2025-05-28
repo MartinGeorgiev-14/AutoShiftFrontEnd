@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setFormOptions } from "../../reducers/formOptionsReducer"
-import { setSearchResult } from "../../reducers/searchResultReducer" 
+import { setSearchResult } from "../../reducers/searchResultReducer"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import searchFormService from '../../services/searchFormService'
@@ -51,38 +51,38 @@ const Button = styled.button`
 `
 
 const SearchForm = () => {
-const dispatch = useDispatch()
-const navigate = useNavigate()
-const formOptions = useSelector(o => o.formOptions.options)
-const selectedOptions = useSelector(o => o.formSelected)
-useDocumentTitle("Search")
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const formOptions = useSelector(o => o.formOptions.options)
+    const selectedOptions = useSelector(o => o.formSelected)
+    useDocumentTitle("Search")
 
-useEffect(() => {
-    searchFormService.getFormOptions().then(result => {
-        dispatch(setFormOptions(result))
-        
-    })
-}, [])
-    
-if(!formOptions){
-    return null
-}
+    useEffect(() => {
+        searchFormService.getFormOptions().then(result => {
+            dispatch(setFormOptions(result))
 
-const search = async (event) => {
-    event.preventDefault()   
-    const result = await searchFormService.searchCarByCriteria(selectedOptions) 
-    dispatch(setSearchResult(result))   
-    navigate(`/listings`)
-}
+        })
+    }, [])
+
+    if (!formOptions) {
+        return null
+    }
+
+    const search = async (event) => {
+        event.preventDefault()
+        const result = await searchFormService.searchCarByCriteria(selectedOptions)
+        dispatch(setSearchResult(result))
+        navigate(`/listings`)
+    }
 
 
-    return(
+    return (
         <Container>
             <h2>Search car</h2>
             <Form onSubmit={search}>
                 <Div>
                     <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.makeOptions} optionText={"name"} />
-                    <PairedSelectDiv label={"Model"} optionProp={"model"} child={null} parent={"make"} options={formOptions.modelOptions} optionText={"name"}/>
+                    <PairedSelectDiv label={"Model"} optionProp={"model"} child={null} parent={"make"} options={formOptions.modelOptions} optionText={"name"} />
                 </Div>
                 <Div>
                     <SingleSelectDiv label={"Engine"} optionProp={"engine"} options={formOptions.engineOptions} optionText={"type"} />
@@ -92,12 +92,19 @@ const search = async (event) => {
                     <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.regionOptions} optionText={"region"} />
                     <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
                 </Div>
+
+                <Div>
+                    <SingleSelectDiv label={"Color"} optionProp={"color"} options={formOptions.colorOptions} optionText={"color"} />
+                </Div>
+                <Div>
+                    <SingleSelectDiv label={"euroStandard"} optionProp={"euroStandard"} options={formOptions.euroStandardOptions} optionText={"standard"} />
+                </Div>
                 <Div>
                     <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.bodyOptions} optionText={"body"} />
                 </Div>
                 <Div>
-                   <InputDiv label={"Min price"} optionProp={"priceStart"}/>
-                   <InputDiv label={"Max price"} optionProp={"priceEnd"}/>
+                    <InputDiv label={"Min price"} optionProp={"priceStart"} />
+                    <InputDiv label={"Max price"} optionProp={"priceEnd"} />
                 </Div>
             </Form>
             <Button type="submit" onClick={search}>Search</Button>
