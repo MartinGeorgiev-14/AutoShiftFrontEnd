@@ -14,7 +14,14 @@ const getFormOptions = async () => {
 }
 
 const searchCarByCriteria = async (data, pageNo = 0, pageSize = 10) => {
-    const response = await axios.post(`${url}/search?pageNo=${pageNo}&pageSize=${pageSize}`, data)
+    console.log("token", getToken())
+    const response = await axios.post(`${url}/search?pageNo=${pageNo}&pageSize=${pageSize}`, data, 
+        getToken() && {
+            headers:{
+                Authorization: `Bearer ${getToken()}`
+            }
+        }
+    )
     return response.data;
 }
 

@@ -73,5 +73,16 @@ const getListingsSortedByCreatedAt = async (pageNo = 0, pageSize = 6) => {
     return response.data
 }
 
+const getFavoriteFilters = async (pageNo = 0, pageSize = 10) => {
+    const response = await axios.get(`${url}/favorite/filters?pageNo=${pageNo}&pageSize=${pageSize}`,{
+        headers:{
+            Authorization: `Bearer ${getToken()}`
+        }
+    })
 
-export default { createListing, deleteListing, getListingById, patchListing, toggleActive, getListingsSortedByCreatedAt}
+    return response.data
+
+}
+
+
+export default { createListing, deleteListing, getListingById, patchListing, toggleActive, getListingsSortedByCreatedAt, getFavoriteFilters}

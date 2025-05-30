@@ -25,11 +25,28 @@ const searchResultReducer = createSlice({
             })
 
             return {...state, listings: {...state.listings, content: listings}}
+        },
+        addToFavorite(state, action){
+            const formatedContent = state.listings.content.map(c => {
+                if(c.id === action.payload){
+                    return{
+                        ...c,
+                        isFavorited: !c.isFavorited 
+                    }
+                }
+                else return c
+            })
+
+            return{
+                ...state,
+                listings:{
+                    ...state.listings,
+                    content: [...formatedContent]
+                }
+            }
         }
-        
-        
     }
 })
 
-export const { setSearchResult, removeListing, clearSearchResult, changeActive } = searchResultReducer.actions
+export const { setSearchResult, removeListing, clearSearchResult, changeActive, addToFavorite } = searchResultReducer.actions
 export default searchResultReducer.reducer

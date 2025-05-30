@@ -75,6 +75,7 @@ const SearchForm = () => {
         navigate(`/listings`)
     }
 
+    console.log("formOptions", formOptions)
 
     return (
         <Container>
@@ -103,8 +104,24 @@ const SearchForm = () => {
                     <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.bodyOptions} optionText={"body"} />
                 </Div>
                 <Div>
-                    <InputDiv label={"Min price"} optionProp={"priceStart"} />
-                    <InputDiv label={"Max price"} optionProp={"priceEnd"} />
+                    <InputDiv label={"Price Start"} optionProp={"priceStart"} type={"number"}/>
+                    <InputDiv label={"Price End"} optionProp={"priceEnd"} type={"number"}/>
+                </Div>
+                <Div>
+                    <InputDiv label={"Manufacture Date Start"} optionProp={"manufactureDateStart"} type={"date"}/>
+                    <InputDiv label={"Manufacture Date End"} optionProp={"manufactureDateEnd"} type={"date"}/>
+                </Div>
+                <Div>
+                    <InputDiv label={"Horsepower Start"} optionProp={"horsepowerStart"} type={"number"}/>
+                    <InputDiv label={"Horsepower End"} optionProp={"horsepowerEnd"} type={"number"}/>
+                </Div>
+                <Div>
+                    <InputDiv label={"Mileage Start"} optionProp={"mileageStart"} type={"number"}/>
+                    <InputDiv label={"Mileage End"} optionProp={"mileageEnd"} type={"number"}/>
+                </Div>
+                <Div>
+                    <InputDiv label={"Engine Displacement Start"} optionProp={"engineDisplacementStart"} type={"number"}/>
+                    <InputDiv label={"Engine Displacement End"} optionProp={"engineDisplacementEnd"} type={"number"}/>
                 </Div>
             </Form>
             <Button type="submit" onClick={search}>Search</Button>

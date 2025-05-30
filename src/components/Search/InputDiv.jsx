@@ -20,13 +20,13 @@ const Input = styled.input`
     border: 1px solid gray;
 `
 
-const InputDiv = ({ label, optionProp, value }) => {
+const InputDiv = ({ label, optionProp, value, type }) => {
     const dispatch = useDispatch()
 
     return(
         <Div>
             <Label>{ label }</Label>
-            <Input type="number" value={value} onChange={a => dispatch(selectOption({value: a.target.value, prop: optionProp}))}/>
+            <Input type={type} value={value} onChange={a => dispatch(selectOption({value: a.target.value, prop: optionProp}))}/>
         </Div>
     )
 }

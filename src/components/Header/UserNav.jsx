@@ -58,7 +58,7 @@ const UserNav = () => {
         dispatch(clearUser())
         persistor.purge()
     }
-  
+    
     return(
         <>
             {user.accessToken ? 
