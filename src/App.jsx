@@ -22,7 +22,7 @@ import { clearUser } from './reducers/userReducer';
 import Footer from './components/Footer/Footer';
 import styled from 'styled-components';
 import FiltersPage from './components/Filters/FiltersPage';
-
+import FavoriteListingsPage from './components/FavoriteListings/FavoriteListingsPage';
 
 const DefaultStyle = styled.div`
 
@@ -38,7 +38,7 @@ function App() {
   const dispatch = useDispatch()
   const user = useSelector(o => o.user)
   const formOptions = useSelector(o => o.formOptions)
-
+  
   useEffect(() => {
     authService.getUserInfo().then(result => {  
       dispatch(setUser(result))
@@ -72,7 +72,8 @@ function App() {
             <Route path='/mylistings' element={<UserListings/>}/>
             <Route path='/createListing' element={<CreateListing/>}/>
             <Route path='/chatList' element={<Chat/>}/>
-            <Route path='/filters' element={<FiltersPage/>}/>
+            <Route path='/favorite/filters' element={<FiltersPage/>}/>
+            <Route path='/favorite/listings' element={<FavoriteListingsPage/>}/>
           </Routes>
         </ContentWrap>
         <Footer/>

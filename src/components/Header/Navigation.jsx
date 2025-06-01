@@ -93,7 +93,8 @@ const Navigation = () => {
                 <Link to={'/'}>Home</Link>
                 <Link to={'/about'}>About</Link>
                 <Link to={'/chatList'}>Chat</Link>
-                <Link to={'/filters'}>Filters</Link>
+                <Link to={'/favorite/filters'}>Favorite Filters</Link>
+                <Link to={'/favorite/listings'}>Favorite Listings</Link>
             </Div>
             <UserNav className='usernav'/>
             {/* <a href="javascript:void(0);" className='icon' onClick={handleDropdown}>

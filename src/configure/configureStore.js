@@ -9,6 +9,7 @@ import notification from '../reducers/notificationReducer.js'
 import chatListReducer from '../reducers/chatListReducer.js'
 import user from '../reducers/userReducer.js'
 import filterReducer from '../reducers/filtersReducer.js'
+import favoriteListingsReducer from '../reducers/favoriteListingsReducer.js'
 
 const persistConfig = {
     storage
@@ -25,6 +26,7 @@ const store = configureStore({
     notification,
     chatListReducer,
     filterReducer,
+    favoriteListingsReducer,
     searchResult: persistedSearchResultReducer,
     user: persistedUserReducer,
   }, 
