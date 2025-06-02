@@ -3,8 +3,9 @@ import { useEffect } from "react"
 import { setSearchResult } from "../../reducers/filtersReducer"
 import { displayNotification } from "../../reducers/notificationReducer"
 import FilterContainer from "./FilterContainer"
-import FilterButtonSelector from "./FilterButtonSelector"
+import FavoriteButtonSelector from "./FavoriteButtonSelector"
 import favoritesService from "../../services/favoritesService"
+
 
 const FiltersPage = () => {
     const dispatch = useDispatch()
@@ -26,7 +27,7 @@ const FiltersPage = () => {
             <div>
                 {filters && filters.filters.content.map(f => <FilterContainer key={f.id} filter={f}/>)}
             </div>
-            {filters && <FilterButtonSelector service={favoritesService.getFavoriteFilters} reducer="filterReducer" entry="filters"/>}
+            {filters && <FavoriteButtonSelector service={favoritesService.getFavoriteFilters} reducer="filterReducer" entry="filters" setResult={setSearchResult}/>}
         </div>
     )
 }

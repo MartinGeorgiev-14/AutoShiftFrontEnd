@@ -1,15 +1,17 @@
 import { useSelector, useDispatch } from "react-redux"
-import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setChatSelector, setListingFirstBuyPosition, setListingFirstSellPosition , changeIsRead } from "../../reducers/chatListReducer"
+import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setChatSelector, setListingFirstBuyPosition, setListingFirstSellPosition, changeIsRead } from "../../reducers/chatListReducer"
 import { useEffect, useState, useRef } from "react"
 import chatService from "../../services/chatService"
 import ChatsList from "./ChatsList"
 import Conversation from "./Conversation"
 import { displayNotification } from "../../reducers/notificationReducer"
+import { useParams } from "react-router"
 
 const Chat = () => {
     const dispatch = useDispatch()
     // const [buyChatList, setBuyChatList] = useState({})
     // const [sellChatList, setSellChatList] = useState({})
+    const { id } = useParams()
     const buyChatList = useSelector(state => state.chatListReducer.buyList)
     const sellChatList = useSelector(state => state.chatListReducer.sellList)
     const chatSelector = useSelector(state => state.chatListReducer.chatSelector)
@@ -18,11 +20,16 @@ const Chat = () => {
 
     useEffect(() => {
         try {
-                chatService.getUserConversations(0, 5, true).then(result => {
-                    dispatch(setInitialBuyChatList(result))
-                })
+
+            if(id !== undefined){
+                
+            }
+
+            chatService.getUserConversations(0, 5, true).then(result => {
+                dispatch(setInitialBuyChatList(result))
+            })
         } catch (error) {
-            dispatch(displayNotification({type: "error", message: "Error fetching buy chat list"}))
+            dispatch(displayNotification({ type: "error", message: "Error fetching buy chat list" }))
         }
     }, [])
 
@@ -34,7 +41,7 @@ const Chat = () => {
             dispatch(addChatToSellList(result))
 
         } catch (error) {
-            dispatch(displayNotification({type: "error", message: "Error fetching sell chat list"}))
+            dispatch(displayNotification({ type: "error", message: "Error fetching sell chat list" }))
         }
     }
 
@@ -48,18 +55,18 @@ const Chat = () => {
             <div className="inner-chat-container">
                 <div className="chat-container">
                     <div className="type-chat-selector">
-                            <button onClick={() => dispatch(setChatSelector(true))} className={`${chatSelector ? 'selected-button' : ''} type-chat-selector-button`}>Buy</button>
-                            <button onClick={handleSellChatList} className={`${chatSelector ? '' : 'selected-button'} type-chat-selector-button`}>Sell</button>
+                        <button onClick={() => dispatch(setChatSelector(true))} className={`${chatSelector ? 'selected-button' : ''} type-chat-selector-button`}>Buy</button>
+                        <button onClick={handleSellChatList} className={`${chatSelector ? '' : 'selected-button'} type-chat-selector-button`}>Sell</button>
                     </div>
-                        <ChatsList chats={chatSelector ? buyChatList : sellChatList}
-                            setChats={chatSelector ? addChatToBuyList : addChatToSellList}
-                            chatSelector={chatSelector}
-                            setConversation={setConversation}/>
+                    <ChatsList chats={chatSelector ? buyChatList : sellChatList}
+                        setChats={chatSelector ? addChatToBuyList : addChatToSellList}
+                        chatSelector={chatSelector}
+                        setConversation={setConversation} />
                 </div>
                 <Conversation conversation={conversation}
-                conversationUpdater={chatSelector ? setListingFirstBuyPosition : setListingFirstSellPosition}
-                conversationGetter={chatSelector ? buyChatList : sellChatList}
-                changeIsRead={changeIsRead}/>
+                    conversationUpdater={chatSelector ? setListingFirstBuyPosition : setListingFirstSellPosition}
+                    conversationGetter={chatSelector ? buyChatList : sellChatList}
+                    changeIsRead={changeIsRead} />
             </div>
         </div>
     )

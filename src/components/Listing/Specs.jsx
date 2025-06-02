@@ -71,6 +71,18 @@ const Specs = ({ listing }) => {
                         <TH>Mileage (km)</TH>
                         <TD>{listing.listing.mileage} km</TD>
                     </TR>
+                    <TR>
+                        <TH>Color</TH>
+                        <TD>{listing.listing.color}</TD>
+                    </TR>
+                    <TR>
+                        <TH>Euro Standard</TH>
+                        <TD>{listing.listing.euroStandard}</TD>
+                    </TR>
+                    <TR>
+                        <TH>Manufacture Date</TH>
+                        <TD>{new Date(listing.listing.manufactureDate).getFullYear()}</TD>
+                    </TR>
                 </TBody>
             </Table>
         </Container>

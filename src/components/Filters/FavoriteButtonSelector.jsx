@@ -8,7 +8,6 @@ import { MdLastPage } from "react-icons/md";
 import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -70,30 +69,32 @@ const InputPage = styled.input`
     border-right: 1px solid black;
 `
 
-const FilterButtonSelector = ({ service }) => {
+const FavoriteButtonSelector = ({ service, reducer = "filterReducer", access = "filters", setResult}) => {
     const dispatch = useDispatch()
-    const filters = useSelector(o => o.filterReducer.filters)
+    const content = useSelector(o => o[reducer][access])
     const [goToPage, setGoToPage] = useState(0)
 
     const handleButton = async (event, pageNo) => {
         event.preventDefault()
-        
-        if(pageNo > filters.totalPages - 1 || pageNo < 0){
+        console.log("enter")
+        console.log("total pages", content.totalPages)
+        console.log("test", pageNo > content.totalPages - 1 || pageNo < 0)
+        if(pageNo > content.totalPages - 1 || pageNo < 0){
             return
         }
-
+        console.log("service", service)
         const response = await service(pageNo)
-        dispatch(setSearchResult(response))
+        dispatch(setResult(response))
     }
 
     return(
         <Container>
             <Div className="nav">
                 <Button onClick={(e) => handleButton(e, 0)}><MdFirstPage/></Button>
-                <Button onClick={(e) => handleButton(e, filters.pageNo - 1)}><MdNavigateBefore/></Button>
-                <Indicator>{filters.pageNo + 1}</Indicator>
-                <Button onClick={(e) => handleButton(e, filters.pageNo + 1)}><MdNavigateNext/></Button>
-                <Button onClick={(e) => handleButton(e, filters.totalPages - 1)}><MdLastPage/></Button>
+                <Button onClick={(e) => handleButton(e, content.pageNo - 1)}><MdNavigateBefore/></Button>
+                <Indicator>{content.pageNo + 1}</Indicator>
+                <Button onClick={(e) => handleButton(e, content.pageNo + 1)}><MdNavigateNext/></Button>
+                <Button onClick={(e) => handleButton(e, content.totalPages - 1)}><MdLastPage/></Button>
             </Div>
             <Div className="jump">
                 <Label>Jump to</Label>
@@ -107,4 +108,4 @@ const FilterButtonSelector = ({ service }) => {
     )
 }
 
-export default FilterButtonSelector
+export default FavoriteButtonSelector

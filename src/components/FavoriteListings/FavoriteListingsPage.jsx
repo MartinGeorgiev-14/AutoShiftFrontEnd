@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setInitialResultFavListings } from "../../reducers/favoriteListingsReducer"
 import { displayNotification } from "../../reducers/notificationReducer"
 import FavListingContainer from "./FavListingContainer"
+import FavoriteButtonSelector from "../Filters/FavoriteButtonSelector"
 
 const FavoriteListingsPage = () => {
     const dispatch = useDispatch()
@@ -11,16 +12,16 @@ const FavoriteListingsPage = () => {
 
     useEffect(() => {
         favoritesService.getFavoriteListings().then(result => {
-            dispatch(setInitialResultFavListings(result.data))
+            dispatch(setInitialResultFavListings(result))
         }).catch(error => {
             dispatch(displayNotification({type: "error", message: "Error getting favorite listings"}))
         })
     }, [])
-
-
+    
     return(
         <div>
             { listings && listings.listings.content.map(l => <FavListingContainer key={l.id} listing={l}/>)}
+            { listings && <FavoriteButtonSelector service={favoritesService.getFavoriteListings} reducer="favoriteListingsReducer" access="listings" setResult={setInitialResultFavListings}/>}
         </div>
     )
 }

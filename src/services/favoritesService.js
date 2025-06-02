@@ -38,7 +38,7 @@ const getFavoriteListings = async (pageNo = 0, pageSize = 10) => {
         }
     })
 
-    return response
+    return response.data
 }
 
 const addListingToFavorites = async (id) => {

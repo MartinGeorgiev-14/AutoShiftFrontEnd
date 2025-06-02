@@ -2,6 +2,12 @@ import styled from "styled-components";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { FaStar } from "react-icons/fa";
+import { CiStar } from "react-icons/ci";
+import { useSelector, useDispatch } from "react-redux";
+import { addToFavorite } from "../../reducers/searchResultReducer";
+import { displayNotification } from "../../reducers/notificationReducer";
+import favoritesService from "../../services/favoritesService"
 
 const iconColor = {
     color: "#E2323D"
@@ -63,9 +69,38 @@ const Email = styled.h2`
 const Description = styled.p`
 `
 
-const TitleUserInfo = ({ listing }) => {
+const TitleUserInfo = ({ listing, updateListing }) => {
+    const dispatch = useDispatch()
+    const user = useSelector(u => u.user)
 
-    console.log(listing)
+    const handleFavorite = async (event) => {
+        event.preventDefault()
+        try {
+            let response
+            let message
+
+            if(listing.listing.isFavorited){
+                response = await favoritesService.removeListingFromFavorites(listing.listing.id)
+                dispatch(addToFavorite(listing.listing.id))
+                message = "Listing removed from favorites"
+            }else if(!listing.listing.isFavorited){
+                response = await favoritesService.addListingToFavorites(listing.listing.id)
+                message = "Listing added from favorites"
+                dispatch(addToFavorite(listing.listing.id))
+            }
+            else return
+            if(response.status === 200){
+                updateListing()
+                dispatch(displayNotification({type: "success", message: message}))
+            }else{
+                dispatch(displayNotification({type: "error", message: "Error adding listing to favorites"}))
+            }
+        } catch (error) {
+            console.error(error)
+            dispatch(displayNotification({type: "error", message: "Error handling listing"}))
+        }
+
+    }
 
     return(
         <Container>
@@ -80,6 +115,8 @@ const TitleUserInfo = ({ listing }) => {
             <Div>
                 <Person>{listing.listing.user.firstName} {listing.listing.user.lastName}</Person>
                 <Email><MdEmail style={iconColor}/>{listing.listing.user.email}</Email>
+                {user.accessToken ? listing.listing.isFavorited ? <FaStar onClick={handleFavorite}/> : <CiStar onClick={handleFavorite}/>
+                        : null }
             </Div>
 
         </Container>

@@ -72,6 +72,7 @@ function App() {
             <Route path='/mylistings' element={<UserListings/>}/>
             <Route path='/createListing' element={<CreateListing/>}/>
             <Route path='/chatList' element={<Chat/>}/>
+            <Route path='/chatList/:id' element={<Chat/>}/>
             <Route path='/favorite/filters' element={<FiltersPage/>}/>
             <Route path='/favorite/listings' element={<FavoriteListingsPage/>}/>
           </Routes>

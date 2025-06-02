@@ -43,13 +43,11 @@ const FavListingContainer = ({ listing }) => {
     const dispatch = useDispatch()
     const mainImg = listing.images.find(i => i.main === true)
     const user = useSelector(u => u.user)
-
-    console.log("listing", listing)
-
+    console.log(listing)
     const handleRemoveFromFavorite = async (event) => {
         event.preventDefault()
         try {
-            const response = await favoritesService.removeListingFromFavorites(listing.id)
+            const response = await favoritesService.removeListingFromFavorites(listing.listingId)
 
             if (response.status === 200) {
                 dispatch(removeListing(listing.id))
@@ -80,7 +78,7 @@ const FavListingContainer = ({ listing }) => {
         <Container>
             <Img src={mainImg.url && mainImg.url}></Img>
             <InfoDiv>
-                <Title id={listing.id} make={listing.make} model={listing.model} price={listing.price} />
+                <Title id={listing.listingId} make={listing.make} model={listing.model} price={listing.price} />
 
                 <Div>
                     <Stats stats={[listing.mileage + ' km', listing.engine,

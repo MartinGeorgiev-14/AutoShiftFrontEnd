@@ -7,6 +7,7 @@ import Specs from "./Specs";
 import AdditionalInformation from "./AditionalInformation";
 import styled from "styled-components";
 
+
 const Container = styled.div`
     display:flex;
     flex-direction: column;
@@ -35,20 +36,31 @@ const Listing = () => {
                 if(a.main === b.main) return 0
                 return a.main ? -1 : 1
             })
-            console.log("sortImages", sortImages)
             setListing({...result, images: sortImages})
         })
     },[])
+
+    const updateListing = () => {
+        listingCrudService.getListingById(id).then(result => {
+            const sortImages = result.listing.images.sort((a,b) => {
+                if(a.main === b.main) return 0
+                return a.main ? -1 : 1
+            })
+            setListing({...result, images: sortImages})
+        })
+    }
 
     if(!listing){
         return null
     }
 
+    console.log("listing", listing)
+
     return (
         <Container>
             <Div>
                 <ImageSlider images={listing.images}/>
-                <TitleUserInfo listing={listing} />
+                <TitleUserInfo listing={listing} updateListing={updateListing}/>
             </Div>
             <Specs listing={listing}/>
             <AdditionalInformation listing={listing}/>
