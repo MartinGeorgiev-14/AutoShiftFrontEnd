@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const favoriteListingReducer = createSlice({
-    name: 'filterReducer',
+    name: 'favortieListingReducer',
     initialState: null,
     reducers: {
         setInitialResultFavListings(state, action) {

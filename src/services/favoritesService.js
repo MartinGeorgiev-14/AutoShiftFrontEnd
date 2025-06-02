@@ -31,8 +31,8 @@ const addFilterToFavorites = async (data) => {
     return response
 }
 
-const getFavoriteListings = async (id, pageNo = 0, pageSize = 10) => {
-    const response = await axios.get(`${url}/favorite/listings?pageNo=${pageNo}}&pageSize={${pageSize}}`, {
+const getFavoriteListings = async (pageNo = 0, pageSize = 10) => {
+    const response = await axios.get(`${url}/favorite/listings?pageNo=${pageNo}&pageSize=${pageSize}`, {
         headers:{
             Authorization: `Bearer ${getToken()}`
         }
@@ -71,6 +71,16 @@ const changeNotify = async (id) => {
     return response
 }
 
+const changeNotifyListing = async (id) => {
+    const response = await axios.patch(`${url}/favorite/listing/change/notify/${id}`, {}, {
+        headers:{
+            Authorization: `Bearer ${getToken()}`
+        }
+    })
+
+    return response
+}
+
 const removeFilterFromFavorites = async (id) => {
     const response = await axios.delete(`${url}/favorite/filters/remove/${id}`, {
         headers:{
@@ -82,4 +92,4 @@ const removeFilterFromFavorites = async (id) => {
 }
 
 export default { getFavoriteFilters, addFilterToFavorites, addListingToFavorites,
-    removeListingFromFavorites, changeNotify, removeFilterFromFavorites, getFavoriteListings} 
+    removeListingFromFavorites, changeNotify, removeFilterFromFavorites, getFavoriteListings, changeNotifyListing} 
