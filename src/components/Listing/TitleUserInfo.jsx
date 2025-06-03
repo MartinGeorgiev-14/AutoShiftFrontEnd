@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToFavorite } from "../../reducers/searchResultReducer";
 import { displayNotification } from "../../reducers/notificationReducer";
 import favoritesService from "../../services/favoritesService"
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const iconColor = {
     color: "#E2323D"
@@ -72,6 +74,7 @@ const Description = styled.p`
 const TitleUserInfo = ({ listing, updateListing }) => {
     const dispatch = useDispatch()
     const user = useSelector(u => u.user)
+    const navigate = useNavigate()
 
     const handleFavorite = async (event) => {
         event.preventDefault()
@@ -117,6 +120,7 @@ const TitleUserInfo = ({ listing, updateListing }) => {
                 <Email><MdEmail style={iconColor}/>{listing.listing.user.email}</Email>
                 {user.accessToken ? listing.listing.isFavorited ? <FaStar onClick={handleFavorite}/> : <CiStar onClick={handleFavorite}/>
                         : null }
+                { user.accessToken && <Link to={`/chatList/${listing.listing.id}`}>Chat</Link>}
             </Div>
 
         </Container>

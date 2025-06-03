@@ -35,11 +35,12 @@ const deleteListing = async (listingId) => {
 }
 
 const getListingById = async (id) => {
-    const response = await axios.get(`${url}/${id}`, {
-        headers:{
-            Authorization: `Bearer ${getToken()}`
-        }
-    })
+    const response = await axios.get(`${url}/${id}`, 
+        getToken() && {
+            headers:{
+                Authorization: `Bearer ${getToken()}`
+            }
+        })
 
     return response.data
 }

@@ -16,22 +16,44 @@ const Chat = () => {
     const sellChatList = useSelector(state => state.chatListReducer.sellList)
     const chatSelector = useSelector(state => state.chatListReducer.chatSelector)
     const [conversation, setConversation] = useState(null)
+ 
     const chatList = useSelector(state => state.chatListReducer)
-
+    console.log('conversation', conversation)
     useEffect(() => {
+    const fetchChats = async () => {
         try {
+            if (id !== undefined) {
 
-            if(id !== undefined){
+                let conCollector
+                let initialChatsHolder = await chatService.getUserConversations(0, 4, true);
+                const chatResult = await chatService.createConversation(id);
+                const exists = initialChatsHolder.response.conversations.some(c => c.id === chatResult.response.id)
+
+                if(!exists){
+                    conCollector = [...initialChatsHolder.response.conversations, chatResult.response]
+                }
+                else conCollector = [...initialChatsHolder.response.conversations]
+                setConversation(chatResult.response)
                 
+                initialChatsHolder = {
+                    ...initialChatsHolder,
+                    response: {
+                        ...initialChatsHolder.response,
+                        conversations: [...conCollector]
+                    }
+                };
+             
+                dispatch(setInitialBuyChatList(initialChatsHolder));
+            } else {
+                const result = await chatService.getUserConversations(0, 5, true);
+                dispatch(setInitialBuyChatList(result));
             }
-
-            chatService.getUserConversations(0, 5, true).then(result => {
-                dispatch(setInitialBuyChatList(result))
-            })
         } catch (error) {
-            dispatch(displayNotification({ type: "error", message: "Error fetching buy chat list" }))
         }
-    }, [])
+    };
+
+    fetchChats();
+}, [id]);
 
     const handleSellChatList = async (event) => {
         try {
@@ -61,7 +83,8 @@ const Chat = () => {
                     <ChatsList chats={chatSelector ? buyChatList : sellChatList}
                         setChats={chatSelector ? addChatToBuyList : addChatToSellList}
                         chatSelector={chatSelector}
-                        setConversation={setConversation} />
+                        setConversation={setConversation}
+                        conversation={conversation} />
                 </div>
                 <Conversation conversation={conversation}
                     conversationUpdater={chatSelector ? setListingFirstBuyPosition : setListingFirstSellPosition}

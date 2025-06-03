@@ -4,7 +4,7 @@ import dateTimeFormat from "../../helpers/dateTimeFormater";
 import { useDispatch } from "react-redux";
 import chatService from "../../services/chatService"
 import { debounce } from "lodash"
-const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversationUpdater }) => {
+const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversationUpdater, conversation }) => {
     const dispatch = useDispatch()
     const scrollRef = useRef(null)
     const user = useSelector(state => state.user)
@@ -33,6 +33,13 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversatio
             el.removeEventListener('scroll', debounceHandleScroll)
         }
     }, [chats])
+
+    useEffect(() => {
+        if(conversation){
+            const target = document.querySelector(`[id="${conversation.id}"]`);
+            target.classList.add("selected-chat")
+        }
+    },[conversation])
 
     const handleSelect = (event, id) => {
         event.preventDefault()

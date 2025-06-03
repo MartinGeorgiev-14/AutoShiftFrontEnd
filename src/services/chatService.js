@@ -48,7 +48,13 @@ const getConversationById = async (conversationId) => {
 }
 
 const createConversation = async (id) => {
-    const response = await axios.post(`${url}/conversations/${id}`)
+    const response = await axios.post(`${url}/conversations/${id}`, {}, {
+        headers:{
+            Authorization: `Bearer ${getToken()}`
+        }
+    })
+    
+    return response.data
 }
 
-export default { getUserConversations, getUserChatMesages, getConversationById } 
+export default { getUserConversations, getUserChatMesages, getConversationById, createConversation } 
