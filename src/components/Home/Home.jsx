@@ -7,9 +7,6 @@ import { displayNotification } from "../../reducers/notificationReducer"
 import ListingCard from "./ListingCard"
 import SearchForm from "../Search/SearchForm"
 
-const Title = styled.h1`
-text-align: center
-`
 
 
 const Home = () => {
@@ -26,12 +23,20 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className="clip-container">
             <SearchForm/>
-            <Title>Home</Title>
-            {
-                listings && listings.listings.content.map(l => <ListingCard key={l.id} listing={l}/>)
-            }
+            
+            <div className="lg:mt-10">
+                <h2 className="text-center lg:mb-3 text-2xl">Leatest Listings</h2>
+                <hr className="lg:mb-10 lg:w-[75%] lg:m-auto text-custom-blue"/>
+                <div className="home-item-card">
+                {
+                    listings && listings.listings.content.map(l => <ListingCard key={l.id} listing={l}/>)
+                }
+                </div>
+            </div>
+
+           
         </div>
     )
 }

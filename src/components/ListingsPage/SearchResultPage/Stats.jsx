@@ -1,25 +1,16 @@
 import styled from "styled-components";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
-const Div = styled.div`
-    display: flex;
-    gap: 1rem;
-`
-const Stat = styled.p`
-    display: flex;
-    align-items: center;
-`
-
 const Stats = ({ stats }) => {
 
     return(
-        <Div>
+        <div className="stats-container">
             {
                 stats.map(s => 
-                    <Stat key={s}><IoMdCheckmarkCircleOutline style={{color: '#E2323D'}}/>{s}</Stat>
+                    <p className="flex items-center gap-0.5" key={s}><IoMdCheckmarkCircleOutline className="icon"/>{s}</p>
                 )
             }
-        </Div>
+        </div>
     )
 
 }

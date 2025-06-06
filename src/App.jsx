@@ -68,7 +68,6 @@ function App() {
             <Route path='/about' element/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/profile' element/>
             <Route path='/mylistings' element={<UserListings/>}/>
             <Route path='/createListing' element={<CreateListing/>}/>
             <Route path='/chatList' element={<Chat/>}/>

@@ -4,11 +4,16 @@ const ListingCard = ({ listing }) => {
     const mainImg = listing.images.find(i => i.main === true)
 
     return (
-         <Link to={`/listing/${listing.id}`}>
-            <img src={mainImg.url} width="100px"/>
-            <div>{listing.make} {listing.model}</div>
-            <div>{listing.price} ({listing.mileage} km)</div>
-        </Link>
+        <div className="card-container group">
+                <Link className="card" to={`/listing/${listing.id}`}>
+                    <img src={mainImg.url} className="w-full rounded-t-xl shadow-lg"/>
+                    <div className="card-text">
+                        <p className="truncate lg:w-[20.5vw]">{listing.make} {listing.model}</p>
+                        <p className="truncate lg:w-[20.5vw]">{listing.price} BGN ({listing.mileage} km)</p>
+                        <p className="truncate lg:w-[20.5vw]">{listing.region} {listing.location}</p>
+                    </div>
+                </Link>
+        </div>
     )
 }
 

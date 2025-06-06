@@ -7,16 +7,6 @@ import favoritesService from "../../../services/favoritesService"
 import { useDispatch } from "react-redux"
 import { displayNotification } from "../../../reducers/notificationReducer"
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-`
-
-const Title = styled.h1`
-    text-align: center;
-`
-
 const ListingPage = () => {
 const listings = useSelector(o => o.searchResult.listings)
 const selectedOptions = useSelector(o => o.formSelected)
@@ -35,10 +25,12 @@ const handleSave = (event) => {
 }
 
     return (
-        <Container>        
-            <Title>Listings</Title>
-            <button onClick={handleSave}>Save Filter</button>
-            {listings.content.length === 0 ? <p>No listings found</p> :
+        <div className="listings-page-container">      
+        <div className="text-center flex flex-col items-center gap-5 my-5">  
+            <h2 className="text-4xl">Listings</h2>
+            <button className="save-filter-button" onClick={handleSave}>Save Filter</button>
+        </div>
+            {listings.content.length === 0 ? <p className="text-center text-2xl">No listings found</p> :
                 listings.content.map(l => {
                     return (
                         <ListingContainer key={l.id} listing={l} />
@@ -46,8 +38,8 @@ const handleSave = (event) => {
                 })
             }
 
-            <ButtonSelector service={searchFormService.searchCarByCriteria}/>
-        </Container>
+            {listings.content.length === 0 ? null : <ButtonSelector service={searchFormService.searchCarByCriteria}/>}
+        </div>
     )
 }
 

@@ -1,33 +1,22 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FaStar } from "react-icons/fa";
+import { CiStar } from "react-icons/ci";
 
-const Div = styled.div`
-    display: flex;
-    justify-content: space-between;
-    text-decoration: none;  
-
-    a{
-        text-decoration: none;
-        color: black;
-    }
-
-    a:hover{
-        text-decoration: underline;
-    }
-`
-
-const T = styled.h2`
-`
-
-const Title = ({id, make, model, price }) => {
+const Title = ({make, model, price, handleFavorite, user, listing }) => {
 
     return(
-        <Div>
-            <Link to={`/listing/${id}`}>
-                <T>{make} {model}</T>
-            </Link>
-            <T>{price} BGN</T>
-        </Div>
+        <div className="title-container">
+            <div>
+                <h3 className="text-2xl">{make} {model}</h3>
+            </div>
+            <div className="flex lg:gap-2 items-center">
+                <h3>{price} BGN</h3>
+                 {user.accessToken ? listing.isFavorited ? <FaStar onClick={handleFavorite} className="icon"/> : <CiStar onClick={handleFavorite} className="icon"/>
+                        : null }  
+            </div>
+        </div>
     )
 }
 

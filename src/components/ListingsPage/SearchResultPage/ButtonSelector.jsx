@@ -9,67 +9,6 @@ import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-`
-
-const Button = styled.button`
-    display: flex;
-    align-items: center;
-    color: #E2323D;
-    background-color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0 4px 4px 0;
-
-    &:hover{
-        cursor: pointer;
-    }
-
-`
-
-const Div = styled.div`
-    display: flex;
-
-    &.nav{
-        align-items: center;
-
-        button:nth-of-type(odd){
-            border-radius: 4px 0px 0px 4px;
-        }
-
-         button:nth-of-type(even){
-            border-radius: 0px 4px 4px 0px;
-        }
-    }
-
-    &.jump{
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-        text-align: center;
-    }
-
-    
-
-`
-
-const Indicator = styled.p`
-    padding: 0 1rem;
-`
-
-const Label = styled.label`
-    
-`
-
-const InputPage = styled.input`
-    border-style: none;
-    border-right: 1px solid black;
-`
-
 const ButtonSelector = ({ service }) => {
     const dispatch = useDispatch()
     const listings = useSelector(o => o.searchResult.listings)
@@ -79,6 +18,10 @@ const ButtonSelector = ({ service }) => {
     const handleButton = async (event, pageNo) => {
         event.preventDefault()
         
+        if(goToPage > 0){
+            return
+        }
+
         if(pageNo > listings.totalPages - 1 || pageNo < 0){
             return
         }
@@ -88,23 +31,26 @@ const ButtonSelector = ({ service }) => {
     }
 
     return(
-        <Container>
-            <Div className="nav">
-                <Button onClick={(e) => handleButton(e, 0)}><MdFirstPage/></Button>
-                <Button onClick={(e) => handleButton(e, listings.pageNo - 1)}><MdNavigateBefore/></Button>
-                <Indicator>{listings.pageNo + 1}</Indicator>
-                <Button onClick={(e) => handleButton(e, listings.pageNo + 1)}><MdNavigateNext/></Button>
-                <Button onClick={(e) => handleButton(e, listings.totalPages - 1)}><MdLastPage/></Button>
-            </Div>
-            <Div className="jump">
-                <Label>Jump to</Label>
-                <Div>
-                    <InputPage type="number" onChange={(e) => setGoToPage(e.target.value - 1)}/>
-                    <Button onClick={(e) => handleButton(e, goToPage)}>Jump</Button>
-                </Div>
-            </Div>
+        <div className="button-selector-container">
+            <div className="flex items-center">
+                <button className="button-select rounded-l-lg shadow-2xl" onClick={(e) => handleButton(e, 0)}><MdFirstPage/></button>
+                <button className="button-select rounded-r-lg shadow-2xl" onClick={(e) => handleButton(e, listings.pageNo - 1)}><MdNavigateBefore/></button>
+                <p className="px-5">{listings.pageNo + 1}</p>
+                <button className="button-select rounded-l-lg shadow-2xl" onClick={(e) => handleButton(e, listings.pageNo + 1)}><MdNavigateNext/></button>
+                <button className="button-select rounded-r-lg shadow-2xl" onClick={(e) => handleButton(e, listings.totalPages - 1)}><MdLastPage/></button>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+                <label>Jump to</label>
+                <div className="flex gap-5">
+                    <input className="border-3 border-custom-gray rounded-lg focus:border-sky-500 focus:outline-none lg:px-2 no-spinner
+                    focus:ring-1 focus:ring-sky-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none
+                    [&::-webkit-inner-spin-button]:appearance-none shadow-2xl" type="number" onChange={(e) => setGoToPage(e.target.value - 1)}/>
+                    <button className="bg-custom-blue lg:p-1 rounded-lg text-custom-white hover-transition hover:bg-custom-hover-blue cursor-pointer
+                    shadow-2xl" onClick={(e) => handleButton(e, goToPage)}>Jump</button>
+                </div>
+            </div>
             
-        </Container>
+        </div>
     )
 }
 
