@@ -48,17 +48,17 @@ const UserListings = () => {
     }
 
     return(
-        <Container>
-            <H1>My Listings</H1>
+        <div className="listings-page-container">
+            <h2 className="page-heading">My Listings</h2>
             {
                searchResult.listings.content ? searchResult.listings.content.map(l => {
                  return (
                  <ListingContainerCRUD key={l.id} listing={l}/>
                 ) 
-                }) : <p>You don't have any listings</p>
+                }) : <p className="text-center text-2xl mt-10">You don't have any listings</p>
             }
             <ButtonSelector service={searchFormService.searchCarByUser}/>
-        </Container>
+        </div>
     )
 }
 

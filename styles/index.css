@@ -19,8 +19,8 @@
     @apply text-custom-blue
   }
 
-  .clip-container {
-
+  .page-heading{
+    @apply text-center text-4xl;
   }
 
   /* Start header styles */
@@ -98,7 +98,7 @@
   }
 
   .intro-info{
-    @apply w-full p-2;
+    @apply w-full h-full p-2;
   }
 
   .title-container{
@@ -106,7 +106,7 @@
   }
 
   .info-container{
-    @apply flex flex-col justify-between lg:h-[80%] w-full;
+    @apply flex flex-col justify-between lg:h-[8rem] w-full;
   }
 
   .stats-container{

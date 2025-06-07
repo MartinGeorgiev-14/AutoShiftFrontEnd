@@ -14,33 +14,6 @@ import { changeNotify } from "../../reducers/favoriteListingsReducer"
 import FavoriteTitle from "./FavoriteTitle"
 import { Link } from "react-router-dom"
 
-const Container = styled.div`
-    background-color: #f8f9fa;
-    display: flex;
-    gap: 1rem;
-    width: 70%;
-    margin: 1rem auto;
-    padding: 1rem;
-    border-radius: 3px;
-    
-`
-const Img = styled.img`
-    width: 10rem;
-    object-fit: contain;
-`
-const InfoDiv = styled.div`
-    width: 100%;
-`
-const Div = styled.div`
-    height: 85%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    font-size: 1.2rem
-`
-
-
 const FavListingContainer = ({ listing }) => {
     const dispatch = useDispatch()
     const mainImg = listing.images.find(i => i.main === true)

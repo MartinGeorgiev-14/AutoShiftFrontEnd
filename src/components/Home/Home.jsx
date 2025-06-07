@@ -29,8 +29,8 @@ const Home = () => {
             <SearchForm/>
             
             <div className="lg:mt-10">
-                <h2 className="text-center lg:mb-3 text-2xl">Leatest Listings</h2>
-                <hr className="lg:mb-10 lg:w-[75%] lg:m-auto text-custom-blue"/>
+                <h2 className="page-heading">Leatest Listings</h2>
+                <hr className="lg:mb-10 lg:mt-2 lg:w-[75%] lg:m-auto text-custom-blue"/>
                 <div className="home-item-card">
                 {
                     listings && listings.listings.content.map(l => <ListingCard key={l.id} listing={l}/>)

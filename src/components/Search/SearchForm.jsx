@@ -38,7 +38,7 @@ const SearchForm = () => {
 
     return (
         <div className="search-form">
-            <h2 className="text-2xl">Search car</h2>
+            <h2 className="page-heading">Search car</h2>
             <form className="form" onSubmit={search}>
                 <div>
                     <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.makeOptions} optionText={"name"} />

@@ -22,7 +22,7 @@ const FiltersPage = () => {
 
     return(
         <div className="favorite-filters-page">
-            <h2 className="text-center text-2xl">Favorite Filters</h2>
+            <h2 className="page-heading">Favorite Filters</h2>
             {filters && filters.filters.content.map(f => <FilterContainer key={f.id} filter={f}/>)}
             {filters && <FavoriteButtonSelector service={favoritesService.getFavoriteFilters} reducer="filterReducer" entry="filters" setResult={setSearchResult}/>}
         </div>

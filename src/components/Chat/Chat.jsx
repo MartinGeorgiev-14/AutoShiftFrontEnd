@@ -74,7 +74,7 @@ const Chat = () => {
 
     return (
         <div className="main-container flex-col">
-            <h2 className="text-center py-4 text-4xl">Chat</h2>
+            <h2 className="page-heading py-5">Chat</h2>
             <div className="inner-chat-container">
                 <div className="chat-container">
                     <div className="type-chat-selector">
