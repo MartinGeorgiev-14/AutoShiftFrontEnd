@@ -5,8 +5,8 @@ const SingleElement = ({ title, value }) => {
 if(value != null){
     return (
         <div>
-            <p>{title}</p>
-            <p>{value}</p>
+            <p className="double-el-title">{title}</p>
+            <p className="double-el-data">{value}</p>
         </div>
     )
 }

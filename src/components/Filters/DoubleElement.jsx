@@ -5,24 +5,24 @@ const DoubleElement = ({ firstTitle, secondTitle, firstVar, secondVar, additiona
     if(firstVar != null && secondVar != null){
         return(
             <div>
-                <p>{firstTitle} and {secondTitle}</p>
-                <p>{`${firstVar} ${additional} ${secondVar} ${additional}`}</p>
+                <p className="double-el-title">{firstTitle} and {secondTitle}</p>
+                <p className="double-el-data">{`${firstVar} ${additional} ${secondVar} ${additional}`}</p>
             </div>
         )
     }
     else if(firstVar != null){
         return(
         <div>
-            <p>{firstTitle}</p>
-            <p>{`${firstVar} ${additional}`}</p>
+            <p className="double-el-title">{firstTitle}</p>
+            <p className="double-el-data">{`${firstVar} ${additional}`}</p>
         </div>
         )
     }
     else if(secondVar != null){
         return(
             <div>
-                <p>{secondTitle}</p>
-                <p>{`${secondVar} ${additional}`}</p>
+                <p className="double-el-title">{secondTitle}</p>
+                <p className="double-el-data">{`${secondVar} ${additional}`}</p>
             </div>
         )
     }

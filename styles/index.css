@@ -121,6 +121,7 @@
     @apply flex items-center bg-custom-blue text-custom-white border-0 px-[0.5rem] py-[0.5rem]
     cursor-pointer hover-transition hover:bg-custom-hover-blue;
   }
+  
 
   /* End Listings Page Result */
 
@@ -155,6 +156,30 @@
   }
 
   /* End Individual Listing */
+
+  /* Start Favorite Filters */
+
+  .favorite-filters-page{
+    @apply lg:w-[70%] mx-auto flex flex-col lg:gap-5 lg:pt-5;
+  }
+
+  .favorite-filter-container{
+    @apply bg-custom-gray w-full flex flex-col lg:p-4 lg:gap-5 shadow-2xl;
+  }
+
+  .filter-info-container{
+    @apply w-full grid grid-cols-3 lg:gap-4;
+  }
+
+  .double-el-title{
+    @apply text-sm text-dimgray;
+  }
+
+  .double-el-data{
+    @apply font-bold text-lg
+  }
+
+  /* End Favorite Filters */
 
   /* Start footer */
     .footer{
