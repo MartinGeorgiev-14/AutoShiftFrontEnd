@@ -26,7 +26,7 @@ const handleSave = (event) => {
 
     return (
         <div className="listings-page-container">      
-        <div className="text-center flex flex-col items-center gap-5 my-5">  
+        <div className="text-center flex flex-col items-center gap-5">  
             <h2 className="text-4xl">Listings</h2>
             <button className="save-filter-button" onClick={handleSave}>Save Filter</button>
         </div>

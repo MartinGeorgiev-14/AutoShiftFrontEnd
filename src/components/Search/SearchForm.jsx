@@ -57,7 +57,7 @@ const SearchForm = () => {
                     <SingleSelectDiv label={"Color"} optionProp={"color"} options={formOptions.colorOptions} optionText={"color"} />
                 </div>
                 <div>
-                    <SingleSelectDiv label={"euroStandard"} optionProp={"euroStandard"} options={formOptions.euroStandardOptions} optionText={"standard"} />
+                    <SingleSelectDiv label={"Euro Standard"} optionProp={"euroStandard"} options={formOptions.euroStandardOptions} optionText={"standard"} />
                 </div>
                 <div>
                     <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.bodyOptions} optionText={"body"} />

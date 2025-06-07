@@ -19,7 +19,10 @@ const FavoriteListingsPage = () => {
     }, [])
     
     return(
-        <div>
+        <div className="listings-page-container">
+            <div className="text-center flex flex-col items-center">  
+                <h2 className="text-4xl">Listings</h2>
+            </div>
             { listings && listings.listings.content.map(l => <FavListingContainer key={l.id} listing={l}/>)}
             { listings && <FavoriteButtonSelector service={favoritesService.getFavoriteListings} reducer="favoriteListingsReducer" access="listings" setResult={setInitialResultFavListings}/>}
         </div>

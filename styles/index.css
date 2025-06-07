@@ -79,7 +79,7 @@
   /* Start Listings Page Result */
 
   .listings-page-container{
-    @apply flex flex-col lg:gap-5;
+    @apply flex flex-col lg:gap-5 my-5;
   }
 
   .save-filter-button{
@@ -91,6 +91,10 @@
   .listing-container{
     @apply bg-custom-gray hover-transition flex lg:w-[70%] h-fit
     mx-auto rounded-2xl hover:bg-custom-hover-gray shadow-lg;
+  }
+
+  .listing-img{
+    @apply lg:w-[15rem] lg:aspect-[4/3] object-cover rounded-l-2xl
   }
 
   .intro-info{
@@ -121,7 +125,7 @@
     @apply flex items-center bg-custom-blue text-custom-white border-0 px-[0.5rem] py-[0.5rem]
     cursor-pointer hover-transition hover:bg-custom-hover-blue;
   }
-  
+
 
   /* End Listings Page Result */
 

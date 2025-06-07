@@ -11,6 +11,8 @@ import { CiStar } from "react-icons/ci";
 import { displayNotification } from "../../reducers/notificationReducer"
 import { removeListing } from "../../reducers/favoriteListingsReducer"
 import { changeNotify } from "../../reducers/favoriteListingsReducer"
+import FavoriteTitle from "./FavoriteTitle"
+import { Link } from "react-router-dom"
 
 const Container = styled.div`
     background-color: #f8f9fa;
@@ -42,8 +44,8 @@ const Div = styled.div`
 const FavListingContainer = ({ listing }) => {
     const dispatch = useDispatch()
     const mainImg = listing.images.find(i => i.main === true)
-    const user = useSelector(u => u.user)
-    console.log(listing)
+    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   
     const handleRemoveFromFavorite = async (event) => {
         event.preventDefault()
         try {
@@ -75,26 +77,28 @@ const FavListingContainer = ({ listing }) => {
     }
 
     return (
-        <Container>
-            <Img src={mainImg.url && mainImg.url}></Img>
-            <InfoDiv>
-                <Title id={listing.listingId} make={listing.make} model={listing.model} price={listing.price} />
+        <Link className="listing-container" to={`/listing/${listing.listingId}`}>
+            <img className="listing-img" src={mainImg.url && mainImg.url}/>
+            <div className="intro-info">
+                <FavoriteTitle id={listing.listingId} make={listing.make} model={listing.model} price={listing.price} handleRemoveFromFavorite={handleRemoveFromFavorite}/>
 
-                <Div>
+                <div className="info-container">
                     <Stats stats={[listing.mileage + ' km', listing.engine,
-                    listing.horsepower + " hp", listing.gearbox, listing.body]} />
+                    listing.horsepower + " hp", listing.gearbox, listing.body, listing.color,
+                    listing.engineDisplacement + " cc", listing.euroStandard,
+                    month[new Date(listing.manufactureDate).getMonth()] + " " + new Date(listing.manufactureDate).getFullYear()]} />
 
                     <InitialDesription description={listing.description} />
 
                     <Location region={listing.region} location={listing.location} />
-                    <FaStar onClick={handleRemoveFromFavorite} />
-                </Div>
-                <div>
-                    <input type="checkbox" name={listing.id} checked={listing.isNotify} onChange={handleNotify} />
-                    <label htmlFor={listing.id}>Notify me for new listings by e-mail</label>
+
+                    <div>
+                        <input type="checkbox" name={listing.id} checked={listing.isNotify} onChange={handleNotify}/>
+                        <label htmlFor={listing.id}>Notify me for new listings by e-mail</label>
+                    </div>
                 </div>
-            </InfoDiv>
-        </Container>
+            </div>
+        </Link>
     )
 }
 

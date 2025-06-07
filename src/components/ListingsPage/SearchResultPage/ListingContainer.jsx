@@ -50,7 +50,7 @@ const ListingContainer = ({ listing }) => {
     console.log(listing)
     return (
         <Link className="listing-container" to={`/listing/${listing.id}`}>
-            <img className="w-[15rem] aspect-[4/3] object-cover rounded-l-2xl" src={mainImg.url && mainImg.url}></img>
+            <img className="listing-img" src={mainImg.url && mainImg.url}></img>
             <div className="intro-info">
                 <Title make={listing.make} model={listing.model} price={listing.price} handleFavorite={handleFavorite} user={user} listing={listing} />
 
