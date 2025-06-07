@@ -7,6 +7,7 @@ import Conversation from "./Conversation"
 import { displayNotification } from "../../reducers/notificationReducer"
 import { useParams } from "react-router"
 
+
 const Chat = () => {
     const dispatch = useDispatch()
     // const [buyChatList, setBuyChatList] = useState({})
@@ -73,7 +74,7 @@ const Chat = () => {
 
     return (
         <div className="main-container flex-col">
-            <h1>Chat</h1>
+            <h2 className="text-center py-4 text-4xl">Chat</h2>
             <div className="inner-chat-container">
                 <div className="chat-container">
                     <div className="type-chat-selector">

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { displayNotification } from "../../reducers/notificationReducer"
 import ListingCard from "./ListingCard"
 import SearchForm from "../Search/SearchForm"
+import { clearOptions } from "../../reducers/formSelectedOptionsReducer"
 
 
 
@@ -14,6 +15,7 @@ const Home = () => {
     const [listings, setListings] = useState()
 
     useEffect(() => {
+        dispatch(clearOptions())
         listingService.getListingsSortedByCreatedAt().then(result => {
             setListings(result)
         }).catch(error => {

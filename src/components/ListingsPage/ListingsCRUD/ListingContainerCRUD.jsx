@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { changeActive } from "../../../reducers/searchResultReducer";
-
+import MyListingsTitle from "../SearchResultPage/MyListingsTitle";
 
 
 const Container = styled.div`
@@ -92,7 +92,7 @@ const ListingContainerCRUD = ({ listing }) => {
         <Container>
             <Img src={mainImg.url}/>
             <InfoDiv>
-                    <Title id={listing.id} make={listing.make} model={listing.model} price={listing.price}/>
+                    <MyListingsTitle id={listing.id} make={listing.make} model={listing.model} price={listing.price} user={user}/>
                 <StatsDiv>
                     <Div>
                         <Stats stats={[listing.mileage + ' km', listing.engine,

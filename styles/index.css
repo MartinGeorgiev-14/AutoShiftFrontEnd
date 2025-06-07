@@ -122,7 +122,39 @@
     cursor-pointer hover-transition hover:bg-custom-hover-blue;
   }
 
-  /* End Listings Page Result/
+  /* End Listings Page Result */
+
+  /* Start Individual Listing */
+
+  .individual-listing-container{
+    @apply mt-10 flex flex-col gap-5
+  }
+
+  .individual-listing-top{
+    @apply flex justify-center gap-5 lg:w-[80%] mx-auto p-2;
+  }
+
+  .individual-listing-user-info{
+    @apply flex flex-col lg:gap-3 lg:px-5 lg:py-2 bg-custom-gray rounded-lg h-full shadow-2xl;
+  }
+
+  .specs-container{
+    @apply flex flex-col lg:gap-4 w-[70%] mx-auto bg-custom-gray rounded-lg shadow-2xl;
+  }
+
+  .spec-table-element{
+    @apply py-2;
+  }
+
+  .spec-table-row{
+    @apply even:bg-odd-row-light-blue last-of-type:rounded-lg;
+  }
+
+  .additional-info{
+    @apply bg-custom-gray lg:w-[70%] lg:h-[15rem] mx-auto rounded-lg shadow-2xl;
+  }
+
+  /* End Individual Listing */
 
   /* Start footer */
     .footer{
@@ -196,6 +228,7 @@
   --color-other-chatter-gray: #c2c5c8;
   --color-custom-hover-white: #EBEBEB;
   --color-dimgray: #696969;
+  --color-odd-row-light-blue: #c2daff;
 }
 
 @utility flex-start {

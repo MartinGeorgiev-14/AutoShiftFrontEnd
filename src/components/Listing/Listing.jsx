@@ -57,14 +57,14 @@ const Listing = () => {
     console.log("listing", listing)
 
     return (
-        <Container>
-            <Div>
+        <div className="individual-listing-container">
+            <div className="individual-listing-top">
                 <ImageSlider images={listing.images}/>
                 <TitleUserInfo listing={listing} updateListing={updateListing}/>
-            </Div>
+            </div>
             <Specs listing={listing}/>
             <AdditionalInformation listing={listing}/>
-        </Container>
+        </div>
     );
 }
 

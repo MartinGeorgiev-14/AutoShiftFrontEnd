@@ -1,91 +1,52 @@
-import styled from "styled-components";
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 70%;
-    margin: 0 auto;
-    border: 1px solid gray;
-    border-radius: 3px;
-    padding: 1rem;
-    
-`
-
-const Title = styled.h2`
-    text-align: center;
-`
-
-const Table = styled.table`
-    border-spacing: 0;
-    border-collapse: collapse;
-    flex-wrap: wrap; 
-    width: 100%;
-    `
-
-const TBody = styled.tbody`
-`
-
-const TR = styled.tr`
-    &:nth-child(odd){
-        background-color: #de6f76;
-    }
-`
-
-const TH = styled.th`
-    padding: 0.4rem 0.2rem
-`
-
-const TD = styled.td`
-    padding: 0.4rem 0.2rem
-`
 
 const Specs = ({ listing }) => {
+    const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     return(
-        <Container>
-            <Title>Technical data</Title>
-            <Table>
-                <TBody>
-                    <TR>
-                        <TH>Engine</TH>
-                        <TD>{listing.listing.engine}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Horsepower</TH>
-                        <TD>{listing.listing.horsepower}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Engine displacement</TH>
-                        <TD>{listing.listing.engineDisplacement}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Gearbox</TH>
-                        <TD>{listing.listing.gearbox}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Body Type</TH>
-                        <TD>{listing.listing.body}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Mileage (km)</TH>
-                        <TD>{listing.listing.mileage} km</TD>
-                    </TR>
-                    <TR>
-                        <TH>Color</TH>
-                        <TD>{listing.listing.color}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Euro Standard</TH>
-                        <TD>{listing.listing.euroStandard}</TD>
-                    </TR>
-                    <TR>
-                        <TH>Manufacture Date</TH>
-                        <TD>{new Date(listing.listing.manufactureDate).getFullYear()}</TD>
-                    </TR>
-                </TBody>
-            </Table>
-        </Container>
+        <div className="specs-container py-4">
+            <h2 className="text-center text-2xl">Technical data</h2>
+            <hr className="mx-7"/>
+            <table className="border-spacing-0 border-collapse ">
+                <tbody>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Engine</th>
+                        <td className="spec-table-element">{listing.listing.engine}</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Horsepower</th>
+                        <td className="spec-table-element">{listing.listing.horsepower}</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Engine displacement</th>
+                        <td className="spec-table-element">{listing.listing.engineDisplacement} cc</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Gearbox</th>
+                        <td className="spec-table-element">{listing.listing.gearbox}</td>
+                    </tr>
+                    <tr >
+                        <th className="spec-table-element">Body Type</th>
+                        <td className="spec-table-element">{listing.listing.body}</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Mileage (km)</th>
+                        <td className="spec-table-element">{listing.listing.mileage} km</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Color</th>
+                        <td className="spec-table-element">{listing.listing.color}</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Euro Standard</th>
+                        <td className="spec-table-element">{listing.listing.euroStandard}</td>
+                    </tr>
+                    <tr className="spec-table-row">
+                        <th className="spec-table-element">Manufacture Date</th>
+                        <td className="spec-table-element">{month[new Date(listing.listing.manufactureDate).getMonth()]} {new Date(listing.listing.manufactureDate).getFullYear()}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     )
 }
 

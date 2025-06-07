@@ -11,8 +11,6 @@ const FiltersPage = () => {
     const dispatch = useDispatch()
     const filters = useSelector(state => state.filterReducer)
    
-    console.log("filters", filters)
-
     useEffect(() => {
         favoritesService.getFavoriteFilters().then(result => {
             console.log("result", result)
@@ -23,7 +21,7 @@ const FiltersPage = () => {
     }, [])
 
     return(
-        <div>
+        <div className="bg-red-200">
             <div>
                 {filters && filters.filters.content.map(f => <FilterContainer key={f.id} filter={f}/>)}
             </div>

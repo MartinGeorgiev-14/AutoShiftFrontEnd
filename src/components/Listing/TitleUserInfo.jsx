@@ -15,15 +15,7 @@ const iconColor = {
     color: "#E2323D"
 }
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0.5rem 1rem 1rem 1rem;
-    border: 1px solid gray;
-    border-radius: 3px;
-    height: 100%;
-`
+
 const Div = styled.div`
     display: flex;
     flex-direction: column;
@@ -106,24 +98,27 @@ const TitleUserInfo = ({ listing, updateListing }) => {
     }
 
     return(
-        <Container>
-            <Div>
-                <ID>Listing: {listing.listing.id}</ID>
-                <Title>{listing.listing.make} {listing.listing.model}</Title>
-                <Location><FaLocationDot style={iconColor}/>{listing.listing.region} {listing.listing.location}</Location>
-                <Price>{listing.listing.price} BGN</Price>
-                <Phone><FaPhoneAlt/>{listing.listing.user.phone}</Phone>
-            </Div>
-            <hr></hr>
-            <Div>
-                <Person>{listing.listing.user.firstName} {listing.listing.user.lastName}</Person>
-                <Email><MdEmail style={iconColor}/>{listing.listing.user.email}</Email>
-                {user.accessToken ? listing.listing.isFavorited ? <FaStar onClick={handleFavorite}/> : <CiStar onClick={handleFavorite}/>
+        <div className="individual-listing-user-info">
+            <div className="flex flex-col lg:gap-2">
+                <p className="text-end text-dimgray lg:text-[0.8vw]">Listing: {listing.listing.id}</p>
+                <div className="flex items-center justify-between">
+                    <h2 className="text-custom-blue lg:text-4xl">{listing.listing.make} {listing.listing.model}</h2>
+                    {user.accessToken ? listing.listing.isFavorited ? <FaStar className="icon text-4xl cursor-pointer" onClick={handleFavorite}/> : <CiStar className="icon text-4xl cursor-pointer" onClick={handleFavorite}/>
                         : null }
-                { user.accessToken && <Link to={`/chatList/${listing.listing.id}`}>Chat</Link>}
-            </Div>
+                </div>
+                <p className="flex items-center lg:gap-2"><FaLocationDot className="icon"/>{listing.listing.region} {listing.listing.location}</p>
+                <h3 className="lg:text-3xl font-bold">{listing.listing.price} BGN</h3>
+                <h3 className="flex items-center lg:gap-2 lg:text-3xl text-custom-blue"><FaPhoneAlt/>{listing.listing.user.phone}</h3>
+            </div>
+            <hr></hr>
+            <div className="flex flex-col lg:gap-1">
+                <p>{listing.listing.user.firstName} {listing.listing.user.lastName}</p>
+                <h3 className="flex items-center lg:gap-1 text-custom-blue"><MdEmail className="icon"/>{listing.listing.user.email}</h3>
+                { user.accessToken && <Link className="bg-custom-blue text-center text-custom-white p-2 rounded-lg
+                hover-transition hover:bg-custom-hover-blue" to={`/chatList/${listing.listing.id}`}>Send Message</Link>}
+            </div>
 
-        </Container>
+        </div>
     )
 }
 
