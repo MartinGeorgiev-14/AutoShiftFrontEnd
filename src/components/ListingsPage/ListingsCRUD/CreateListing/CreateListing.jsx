@@ -94,8 +94,9 @@ const CreateListing = () => {
             formData.append(`uploadImages`, image);
         })
 
-        const data = await listingCrudService.createListing(formData)
-        console.log("data", data)
+        try {
+            const data = await listingCrudService.createListing(formData)
+     
         if(data.status === 201){
             dispatch(displayNotification({type: 'success', message: 'Listing successfuly created'}))
             setIsLoading(false)
@@ -104,6 +105,12 @@ const CreateListing = () => {
             dispatch(displayNotification({type: 'error', message: 'Failed to create listing'}))
             setIsLoading(false)
         }
+        } catch (error) {
+            dispatch(displayNotification({type: 'error', message: 'Failed to create listing'}))
+            setIsLoading(false)
+        }
+
+     
 
     }
 

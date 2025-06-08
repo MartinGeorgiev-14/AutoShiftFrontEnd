@@ -13,57 +13,19 @@ import ShowEditedListing from "./ShowInfoListing";
 import SelectMainImg from "./SelectMainImg"
 import DescriptionTextarea from "./DescriptionTextarea";
 import { displayNotification } from "../../../../reducers/notificationReducer";
+import ListingData from "./ListingData";
+import { AiOutlineLoading } from "react-icons/ai";
+import { useNavigate } from "react-router";
 
-const Container = styled.div`
-    background-color: #f9f9f9;
-    width: 40%;
-    margin: 2rem auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 4px;
-    padding: 2rem;
-`
-
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-`
-
-const Div = styled.div`
-    width: fit-content;
-`
-
-const Button = styled.button`
- background-color: #E2323D;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 50%;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    color: white;
-
-    &:hover{
-        background-color:rgb(220, 87, 96);
-    }
-`
-
-const Textarea = styled.textarea`
-`
 
 const EditListing = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const formOptions = useSelector(o => o.formOptions.options)
+    const navigate = useNavigate()
     const selected = useSelector(o => o.formSelected)
     const [info, setInfo] = useState()
+    const [isLoading, setIsLoading] = useState(false)
 
     console.log("id", id)
     console.log("info", info)
@@ -74,20 +36,20 @@ const EditListing = () => {
 
     },[])
 
-    console.log("formOption", formOptions)
-
     const handlePatch = async (event) => {
         event.preventDefault()
-
+        setIsLoading(true)
         try{
             const result = await listingCrudService.patchListing(id, selected)
-
-            if(result === 200){
+            
+            if(result.status === 200){
                 const updatedListing = await listingCrudService.getListingById(id)
             
                 setInfo(updatedListing)
                 dispatch(clearOptions())
                 dispatch(displayNotification({type: "success", message: "Successfully updated listing"}))
+                setIsLoading(false)
+                navigate("/listing/" + id)
             }
         }
         catch{
@@ -101,41 +63,43 @@ const EditListing = () => {
    }
    
     return(
-        <Container>
-            <h1>Editing listing</h1>
-            <ShowEditedListing listing={info}/>
-            <Form >
-                
-                <Div>
+        <div className="edit-listing-container">
+            <h2 className="page-heading pt-5">Editing listing</h2>
+            {/* <ShowEditedListing listing={info}/> */}
+            <ListingData/>
+            <form className="bg-custom-gray lg:w-[70%] mx-auto grid grid-cols-4 lg:p-5 lg:gap-5 lg:grid-rows-[auto_auto_auto_15rem]">
+                <h3 className="text-2xl col-span-full text-center">New Data</h3>
+                <div>
                     <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.makeOptions} optionText={"name"} />
                     <PairedSelectDiv label={"Model"} optionProp={"model"} child={null} parent={"make"} options={formOptions.modelOptions} optionText={"name"} />
-                </Div>
-                <Div>
+                </div>
+                <div>
                     <SingleSelectDiv label={"Engine"} optionProp={"engine"} options={formOptions.engineOptions} optionText={"type"} />
                     <SingleSelectDiv label={"Gearbox"} optionProp={"gearbox"} options={formOptions.gearboxOptions} optionText={"type"} />
-                </Div>
-                <Div>
+                </div>
+                <div>
                     <SingleSelectDiv label={"Body Type"} optionProp={"body"} options={formOptions.bodyOptions} optionText={"body"} />
-                </Div>
-                <Div>
                     <InputDiv label={"Mileage km"} optionProp={"mileage"}/>
+                </div>
+                <div>
                     <InputDiv label={"Price BGN"} optionProp={"price"}/>
-                </Div>
-                <Div>
+                </div>
+                <div className="col-span-2">
                     <InputDiv label={"Engine Displacement"} optionProp={"engineDisplacement"}/>
                     <InputDiv label={"Horsepower"} optionProp={"horsepower"}/>
-                </Div>
-                <Div>
+                </div>
+                <div className="col-span-2">
                     <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.regionOptions} optionText={"region"} />
                     <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
-                </Div>
-                <Div>
+                </div>
+                <div className="col-span-full">
                     <DescriptionTextarea></DescriptionTextarea>
-                </Div>
-      
-            </Form>
-            <Button type="submit" onClick={handlePatch}>Edit</Button>
-        </Container>
+                </div>
+                {isLoading ? <button className="col-span-full bg-custom-blue text-white hover:bg-custom-hover-blue hover-transition cursor-pointer lg:w-[50%] mx-auto lg:px-2 lg:py-1 rounded-lg flex items-center justify-center"><svg className="mr-3 size-5 animate-spin"><AiOutlineLoading/></svg><p>Loading</p></button> :
+                <button className="col-span-full bg-custom-blue text-white hover:bg-custom-hover-blue hover-transition cursor-pointer lg:w-[50%] mx-auto lg:px-2 lg:py-1 rounded-lg" type="submit" onClick={handlePatch}>Edit</button>}
+            </form>
+            
+        </div>
     )
 }
 

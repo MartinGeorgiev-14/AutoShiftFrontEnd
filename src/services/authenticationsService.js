@@ -24,12 +24,7 @@ const getUserInfo = async () => {
         }
     })
 
-    if(response.data.accessToken){
-       return response.data
-    }
-
-    return false
- 
+    return response
 }
 
 

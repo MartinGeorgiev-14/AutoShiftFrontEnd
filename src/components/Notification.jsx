@@ -3,43 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { displayNotification } from "../reducers/notificationReducer";
 import { clearNotification } from "../reducers/notificationReducer";
 import { useEffect } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { IoCloseCircle } from "react-icons/io5";
 
-const Container = styled.div`
-    position: absolute;
-    top: 10%;
-    width: 35%;
-    height: 20%;
-    left: 50%;
-    transform: translateX(-50%);
 
-`
-
-const Message = styled.h2`
-    
-
-    &.show{
-        height: 100%;
-        display: none;
-        margin: 0.2rem;
-        justify-content: center;
-        border: 1px solid black;
-        border-radius: 2px;
-    }
-
-    &.hidden{
-        display: none;
-    }
-
-    &.success{
-        background-color: green;
-        display: flex;
-    }
-        
-    &.error{
-        background-color: red;
-        display: flex;
-    }
-`
 
 const Notification = () => {
     const dispatch = useDispatch()
@@ -55,11 +22,12 @@ const Notification = () => {
     if(notification.type === 'hidden'){
         return null;
     }
-
+    console.log("notification", notification.type)
     return (
-        <Container>
-            <Message className={notification.type + ' show'}>{notification.message}</Message>
-        </Container>
+        <div className="notification-container">
+            {notification.type === "success" ? <FaCheckCircle className="text-green-500 text-5xl"/> : <IoCloseCircle className="text-red-500 text-5xl"/>}  
+            <p className="font-bold text-2xl">{notification.message}</p>
+        </div>
     )
 }
 

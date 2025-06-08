@@ -38,7 +38,7 @@ const SearchForm = () => {
 
     return (
         <div className="search-form">
-            <h2 className="page-heading">Search car</h2>
+            <h2 className="page-heading col-span-full">Search car</h2>
             <form className="form" onSubmit={search}>
                 <div>
                     <PairedSelectDiv label={"Make"} optionProp={"make"} child={"model"} parent={null} options={formOptions.makeOptions} optionText={"name"} />
@@ -52,11 +52,8 @@ const SearchForm = () => {
                     <PairedSelectDiv label={"Region"} optionProp={"region"} child={"location"} parent={null} options={formOptions.regionOptions} optionText={"region"} />
                     <PairedSelectDiv label={"Location"} optionProp={"location"} child={null} parent={"region"} options={formOptions.locationOptions} optionText={"location"} />
                 </div>
-
                 <div>
                     <SingleSelectDiv label={"Color"} optionProp={"color"} options={formOptions.colorOptions} optionText={"color"} />
-                </div>
-                <div>
                     <SingleSelectDiv label={"Euro Standard"} optionProp={"euroStandard"} options={formOptions.euroStandardOptions} optionText={"standard"} />
                 </div>
                 <div>
@@ -74,16 +71,16 @@ const SearchForm = () => {
                     <InputDiv label={"Horsepower Start"} optionProp={"horsepowerStart"} type={"number"}/>
                     <InputDiv label={"Horsepower End"} optionProp={"horsepowerEnd"} type={"number"}/>
                 </div>
-                <div>
+                <div className="lg:col-span-2">
                     <InputDiv label={"Mileage Start"} optionProp={"mileageStart"} type={"number"}/>
                     <InputDiv label={"Mileage End"} optionProp={"mileageEnd"} type={"number"}/>
                 </div>
-                <div>
+                <div className="lg:col-span-2">
                     <InputDiv label={"Engine Displacement Start"} optionProp={"engineDisplacementStart"} type={"number"}/>
                     <InputDiv label={"Engine Displacement End"} optionProp={"engineDisplacementEnd"} type={"number"}/>
                 </div>
             </form>
-            <button className="search-button" type="submit" onClick={search}>Search</button>
+            <button className="search-button col-span-full" type="submit" onClick={search}>Search</button>
         </div>
     )
 

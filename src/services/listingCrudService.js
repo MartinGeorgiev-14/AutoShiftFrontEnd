@@ -54,7 +54,7 @@ const patchListing = async (id, data) => {
         }
     })
 
-    return response.status
+    return response
 }
 
 const toggleActive = async (listing) => {

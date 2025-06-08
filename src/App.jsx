@@ -23,6 +23,7 @@ import Footer from './components/Footer/Footer';
 import styled from 'styled-components';
 import FiltersPage from './components/Filters/FiltersPage';
 import FavoriteListingsPage from './components/FavoriteListings/FavoriteListingsPage';
+import { displayNotification } from './reducers/notificationReducer';
 
 const DefaultStyle = styled.div`
 
@@ -39,14 +40,17 @@ function App() {
   const user = useSelector(o => o.user)
   const formOptions = useSelector(o => o.formOptions)
   
-  useEffect(() => {
+  useEffect(() => {  
     authService.getUserInfo().then(result => {  
-      dispatch(setUser(result))
+      if(result.status === 200){
+        dispatch(setUser(result.data))
+      }else{
+        dispatch(clearUser())
+      }
     }).catch(error => {
-    
       dispatch(clearUser())
+      dispatch(displayNotification({type:"error", message: "Error authentication person"}))
     })
-
     searchFormService.getFormOptions().then(result => {
         dispatch(setFormOptions(result))
     })
