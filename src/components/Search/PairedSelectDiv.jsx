@@ -22,7 +22,6 @@ const Select = styled.select`
 
 const Option = styled.option`
 `
-// could use child parent props
 const PairedSelectDiv = ({ label, optionProp, child, parent, options, optionText }) => {
 const dispatch = useDispatch()
 const selectedOptions = useSelector(c => c.formSelected)

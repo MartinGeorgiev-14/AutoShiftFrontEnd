@@ -1,15 +1,14 @@
 import styled from 'styled-components'
 import Navigation from './Navigation'
+import Logo from './Logo'
 
-const HeaderStyled = styled.header`
-`
 
 const Header = () => {
-// Use Tesla style header
     return (
-        <HeaderStyled>
+        <header className='header'>
+            <Logo/>
             <Navigation />
-        </HeaderStyled>
+        </header>
     )
 }
 

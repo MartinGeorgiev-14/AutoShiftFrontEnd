@@ -7,7 +7,8 @@ const Img = styled.h2`
 const Logo = () => {
 
     return (
-        <Img>AutoShift</Img>
+        <img src='https://res.cloudinary.com/dnzgln8ma/image/upload/v1749308523/wwclogarhj9nvcrvggoz.png'
+        className='w-[200px] mx-auto'/>
     )
 }
 

@@ -20,7 +20,7 @@ const createListing = async (data) => {
         }
     })
     
-    return response.status
+    return response
 }
 
 const deleteListing = async (listingId) => {

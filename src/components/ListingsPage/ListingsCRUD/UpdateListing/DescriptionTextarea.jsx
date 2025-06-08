@@ -23,10 +23,10 @@ const DescriptionTextarea = () => {
     const dispatch = useDispatch()
 
     return (
-        <Div>
-            <Label>Description</Label>
-            <Textarea type="text" name="description" onChange={(event) => dispatch(selectOption({prop: "description", value: event.target.value}))}/>
-        </Div>
+        <div className="flex flex-col items-center lg:w-full lg:h-full">
+            <label>Description</label>
+            <textarea className="lg:w-[70%] lg:h-full border rounded-lg lg:p-2 resize-none" type="text" name="description" onChange={(event) => dispatch(selectOption({prop: "description", value: event.target.value}))}/>
+        </div>
     );
  
 }

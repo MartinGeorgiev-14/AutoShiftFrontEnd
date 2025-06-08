@@ -65,7 +65,6 @@ function App() {
             <Route path='/listings' element={<ListingsPage/>}/>
             <Route path="/listing/:id" element={<Listing/>}/>
             <Route path='/editListing/:id' element={<EditListing/>}/>
-            <Route path='/about' element/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/mylistings' element={<UserListings/>}/>

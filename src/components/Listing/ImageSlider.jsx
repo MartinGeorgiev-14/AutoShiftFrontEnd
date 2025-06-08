@@ -18,8 +18,8 @@ const ImageSlider = ({ images }) => {
                 {
                     images.map((img, index) => {
                         return (
-                            <SwiperSlide className="" key={index}>
-                                <img className="rounded-xl object-contain w-full mx-auto shadow-2xl" src={img.url} />
+                            <SwiperSlide key={index}>
+                                <img className="rounded-xl object-contain w-full mx-auto" src={img.url} />
                             </SwiperSlide>
                         )
                     })

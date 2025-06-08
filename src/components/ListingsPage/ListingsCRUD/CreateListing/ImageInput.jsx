@@ -62,23 +62,24 @@ const ImageInput = ({images, setImages}) => {
     }
 
     return(
-        <Component>
-            <Label>Images</Label>
-            <Input type="file" name="image" accept="image/*" multiple onChange={handleFileChange}/>
-
-            <Div>
-                <h4>Preview</h4>
+        <div className="flex flex-col items-center w-full gap-5">
+            <label className="bg-custom-blue hover:bg-custom-hover-blue cursor-pointer text-white hover-transition lg:px-2 lg:py-1 rounded-lg">Upload Images
+                <input className="hidden" type="file" name="image" accept="image/*" multiple onChange={handleFileChange}/>
+            </label>
+            <div className="w-full grid lg:grid-cols-2 lg:gap-5">
+                <h3 className="col-span-2 text-center text-lg">Images preview</h3>
                 {
                     images.map((image, index) => {
-                        console.log("image", image.name)
                         return(
-                            <Img key={index} src={URL.createObjectURL(image)}
-                                alt={`Preview ${index}`} name={image.name} className="list-img" onClick={handleSelectMainImg}/>
+                            <div className="lg:aspect-[4/3] lg:max-w-[25rem] flex m-auto cursor-pointer hover-transform group">
+                                <img className="list-img object-cover group-hover:scale-110 rounded-lg" key={index} src={URL.createObjectURL(image)}
+                                    alt={`Preview ${index}`} name={image.name}  onClick={handleSelectMainImg}/>
+                            </div>
                         )
                     })
                 }
-            </Div>        
-        </Component>
+            </div>        
+        </div>
     )
 }
 
