@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Logo from "../Header/Logo";
 
 const Container = styled.div`
     background: #333;
@@ -12,7 +13,7 @@ const Footer = () => {
 
     return(
         <div className="footer">
-           <h3>Footer</h3>
+           <Logo/>
         </div>
     )
 }

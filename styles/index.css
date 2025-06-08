@@ -226,7 +226,7 @@
 
   /* Start footer */
     .footer{
-      @apply bg-custom-gray w-full lg:h-[10rem] lg:mt-[5rem] lg:border-t-[2px] border-t-custom-blue;
+      @apply bg-custom-gray flex items-center w-full lg:h-[10rem] lg:mt-[5rem] lg:border-t-[2px];
     }
   /* End footer */
 
