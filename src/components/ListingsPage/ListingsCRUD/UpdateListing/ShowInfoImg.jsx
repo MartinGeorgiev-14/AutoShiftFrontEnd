@@ -13,7 +13,7 @@ const Label = styled.div`
 const Img = styled.img`
     width: 15rem;
 `
-
+// not being used right now
 const ShowInfoImg = ({ label, data }) => {
 
     console.log("data", data)

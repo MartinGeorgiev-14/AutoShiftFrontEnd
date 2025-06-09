@@ -11,57 +11,6 @@ import favoritesService from "../../../../services/favoritesService";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-const iconColor = {
-    color: "#E2323D"
-}
-
-
-const Div = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-`
-
-const ID = styled.p`
-    font-size: 0.7rem;
-    color: gray;
-    text-align: end;
-`
-
-const Title = styled.h1`
-    color: #E2323D;
-`
-
-const Location = styled.p`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    flex-wrap: wrap;
-`
-
-const Price = styled.h1`
-`
-
-const Phone = styled.h1`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #E2323D;
-`
-const Person = styled.h2`
-
-`
-
-const Email = styled.h2`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #E2323D;
-`
-
-const Description = styled.p`
-`
 
 const TitleUserInfoData = ({ listing, updateListing }) => {
     const dispatch = useDispatch()

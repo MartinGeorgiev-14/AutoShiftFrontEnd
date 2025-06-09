@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Div = styled.div`
 ` 
-
+// not being used right now
 const ShowInfoListing = ({ listing }) => {
 
     const listingFormat = listing.listing

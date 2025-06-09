@@ -230,6 +230,27 @@
     }
   /* End footer */
 
+  /* Start Login Register */
+  .login-container{
+    @apply bg-custom-gray lg:w-[70%] mx-auto flex flex-col items-center lg:gap-5 lg:p-5
+    lg:mt-5 rounded-2xl shadow-2xl
+  }
+
+  .login-register-container{
+    @apply flex flex-col bg-custom-gray lg:p-5 lg:w-[70%] mx-auto rounded-2xl shadow-2xl lg:mt-5
+  }
+
+  .inner-login-register-container{
+    @apply flex flex-col items-center lg:gap-5 lg:mt-5
+  }
+
+  .login-register-button{
+    @apply bg-custom-blue text-white lg:px-2 lg:py-1 lg:w-[25%] rounded-lg mt-5 cursor-pointer
+  }
+  /* End Login Register */
+
+
+
   /* Start chat page styles */
   .inner-chat-container{
     @apply lg:flex lg:h-[90%] lg:w-full lg:gap-5;

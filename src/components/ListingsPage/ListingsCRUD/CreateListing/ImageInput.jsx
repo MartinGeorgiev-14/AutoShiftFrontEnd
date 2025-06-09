@@ -5,32 +5,6 @@ import { useState } from "react";
 import { RxValue } from "react-icons/rx";
 import { v4 as uuidv4 } from 'uuid';
 
-const Component = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-`
-
-const Div = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-const Label = styled.div`
-`
-
-const Input = styled.input`
-`   
-
-const Img = styled.img`
-    width: 15rem;
-
-    &.selected{
-        outline: 2px solid red;
-    }
-`
-
 const ImageInput = ({images, setImages}) => {
     const dispatch = useDispatch()
     const selected = useSelector(s => s.formSelected)

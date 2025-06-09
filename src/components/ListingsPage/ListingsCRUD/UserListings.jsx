@@ -41,9 +41,9 @@ const UserListings = () => {
 
     if(Object.keys(searchResult).length === 1){
         return(
-            <Container>
-                <H1>Loading...</H1>
-            </Container>
+            <div className="w-full flex flex-col item-center">
+                <p>Loading...</p>
+            </div>
         )
     }
 

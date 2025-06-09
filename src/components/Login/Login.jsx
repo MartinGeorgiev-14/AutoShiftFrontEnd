@@ -6,45 +6,17 @@ import { setUser } from "../../reducers/userReducer"
 import { useNavigate } from "react-router"
 import SingleInput from "../Register/SingleInput"
 import { displayNotification } from "../../reducers/notificationReducer"
-
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-`
-const Div = styled.div`
-    background-color: #F8F9FA;
-    display: flex;
-    align-items:center;
-    flex-direction: column;
-    width: 40%;
-    margin: 2rem auto;
-    border-radius: 3px;
-    padding: 2rem;
-    gap: 1rem;
-`
-const Button = styled.button`
-    background-color: #E2323D;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 50%;
-    margin: 0 auto;
-    font-size: 1.2rem;
-    color: white;
-
-    &:hover{
-        background-color:rgb(220, 87, 96);
-    }
-`
+import { useSelector } from "react-redux"
 
 const Login = () => {
     useDocumentTitle("Login")
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const user = useSelector(u => u.user)
+
+    if(user.accessToken){
+        navigate('/')
+    }
 
     const logIn = async (event) => {
         event.preventDefault()
@@ -64,14 +36,14 @@ const Login = () => {
     }
 
 return(
-    <Div>
-        <h1>Login</h1>
-        <Form onSubmit={logIn}>
+    <div className="login-register-container">
+        <h2 className="page-heading">Login</h2>
+        <form className="inner-login-register-container" onSubmit={logIn}>
             <SingleInput label={'Username'} type={"text"} name={"username"} autoComplete={"username"}/>
             <SingleInput label={'Password'} type={"password"} name={"password"} autoComplete={"new-password"}/>
-            <Button type="submit">Login</Button>
-        </Form>
-    </Div>
+            <button className="login-register-button" type="submit">Login</button>
+        </form>
+    </div>
  
 )
 

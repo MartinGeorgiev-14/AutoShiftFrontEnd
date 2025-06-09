@@ -31,7 +31,7 @@ const SelectMainImg = ({ images }) => {
         imgs.forEach(img => img.classList.remove('selected'))
         target.classList.add('selected')
     }
-
+// not being used right now
     return(
         <Container>
             <h2>Main image</h2>

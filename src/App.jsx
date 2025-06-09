@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom' 
+import { Routes, Route } from 'react-router-dom'
 import Home from './components/Home/Home';
 import Header from './components/Header/Header'
 import Login from './components/Login/Login';
@@ -24,6 +24,7 @@ import styled from 'styled-components';
 import FiltersPage from './components/Filters/FiltersPage';
 import FavoriteListingsPage from './components/FavoriteListings/FavoriteListingsPage';
 import { displayNotification } from './reducers/notificationReducer';
+import { persistor } from './configure/configureStore';
 
 const DefaultStyle = styled.div`
 
@@ -39,48 +40,50 @@ function App() {
   const dispatch = useDispatch()
   const user = useSelector(o => o.user)
   const formOptions = useSelector(o => o.formOptions)
-  
-  useEffect(() => {  
-    authService.getUserInfo().then(result => {  
-      if(result.status === 200){
-        dispatch(setUser(result.data))
-      }else{
-        dispatch(clearUser())
-      }
-    }).catch(error => {
-      dispatch(clearUser())
-      dispatch(displayNotification({type:"error", message: "Error authentication person"}))
-    })
-    searchFormService.getFormOptions().then(result => {
-        dispatch(setFormOptions(result))
-    })
 
-}, [])
+  useEffect(() => {
+    if (user.accessToken) {
+      authService.getUserInfo().then(result => {
+        if (result.status === 200) {
+          dispatch(setUser(result.data))
+        } else {
+          dispatch(clearUser())
+        }
+      }).catch(error => {
+        persistor.purge();
+        dispatch(clearUser())
+        dispatch(displayNotification({ type: "error", message: "Error authentication person" }))
+      })
+      searchFormService.getFormOptions().then(result => {
+        dispatch(setFormOptions(result))
+      })
+    }
+  }, [])
 
 
   return (
     <>
       <DefaultStyle>
         <ContentWrap>
-      <Header/>
-      <Notification/>
+          <Header />
+          <Notification />
           <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/listings' element={<ListingsPage/>}/>
-            <Route path="/listing/:id" element={<Listing/>}/>
-            <Route path='/editListing/:id' element={<EditListing/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
-            <Route path='/mylistings' element={<UserListings/>}/>
-            <Route path='/createListing' element={<CreateListing/>}/>
-            <Route path='/chatList' element={<Chat/>}/>
-            <Route path='/chatList/:id' element={<Chat/>}/>
-            <Route path='/favorite/filters' element={<FiltersPage/>}/>
-            <Route path='/favorite/listings' element={<FavoriteListingsPage/>}/>
+            <Route path='/' element={<Home />} />
+            <Route path='/listings' element={<ListingsPage />} />
+            <Route path="/listing/:id" element={<Listing />} />
+            <Route path='/editListing/:id' element={<EditListing />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/mylistings' element={<UserListings />} />
+            <Route path='/createListing' element={<CreateListing />} />
+            <Route path='/chatList' element={<Chat />} />
+            <Route path='/chatList/:id' element={<Chat />} />
+            <Route path='/favorite/filters' element={<FiltersPage />} />
+            <Route path='/favorite/listings' element={<FavoriteListingsPage />} />
           </Routes>
         </ContentWrap>
-        <Footer/>
-        </DefaultStyle>
+        <Footer />
+      </DefaultStyle>
     </>
   )
 }

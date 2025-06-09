@@ -5,11 +5,6 @@ import UserNav from './UserNav'
 import Logo from './Logo'
 import { useSelector } from 'react-redux'
 
-
-
-
-
-
 const Navigation = () => {
 
     const user = useSelector(u => u.user)

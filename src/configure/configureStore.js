@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit' 
+import { combineReducers, configureStore } from '@reduxjs/toolkit' 
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import formOptions from '../reducers/formOptionsReducer.js'
@@ -18,6 +18,27 @@ const persistConfig = {
 const persistedSearchResultReducer = persistReducer({ ...persistConfig, key: 'searchResult' }, searchResult)
 const persistedUserReducer = persistReducer({ ...persistConfig, key: 'user' }, user)
 
+const rootReducer = (state, action) => {
+  if (action.type === 'RESET_APP') {
+    state = undefined; // This resets all reducers
+  }
+
+  
+  return appReducer(state, action);
+};
+
+const appReducer = combineReducers({
+    formOptions,
+    formSelected,
+    listingsPage,
+    notification,
+    chatListReducer,
+    filterReducer,
+    favoriteListingsReducer,
+    searchResult: persistedSearchResultReducer,
+    user: persistedUserReducer,
+  })
+
 const store = configureStore({
   reducer: {
     formOptions,
@@ -29,6 +50,7 @@ const store = configureStore({
     favoriteListingsReducer,
     searchResult: persistedSearchResultReducer,
     user: persistedUserReducer,
+    reducer: rootReducer
   }, 
   middleware: (getDefaultMidleware) => 
     getDefaultMidleware({

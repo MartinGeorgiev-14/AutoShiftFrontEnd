@@ -8,8 +8,6 @@ import ListingCard from "./ListingCard"
 import SearchForm from "../Search/SearchForm"
 import { clearOptions } from "../../reducers/formSelectedOptionsReducer"
 
-
-
 const Home = () => {
     const dispatch = useDispatch()
     const [listings, setListings] = useState()

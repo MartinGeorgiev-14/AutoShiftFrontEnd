@@ -12,8 +12,6 @@ const listings = useSelector(o => o.searchResult.listings)
 const selectedOptions = useSelector(o => o.formSelected)
 const dispatch = useDispatch()
 
-console.log("listings", listings)
-
 const handleSave = (event) => {
     event.preventDefault()
 

@@ -16,7 +16,7 @@ const Label = styled.div`
 
 const P = styled.p`
 `
-
+// not being used right now
 const ShowInfoRow = ({ label, data, className }) => {
 
     return (

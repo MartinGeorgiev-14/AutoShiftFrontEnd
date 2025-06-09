@@ -66,8 +66,9 @@ const dispatch = useDispatch()
     }
 
     return(
-        <Div>
-            <Form onSubmit={handleRegister}>
+        <div className="login-register-container">
+            <h2 className="page-heading">Register</h2>
+            <form className="inner-login-register-container" onSubmit={handleRegister}>
                 <SingleInput label={'Username'} type={"text"} name={"username"} autoComplete={"username"}/>
                 <SingleInput label={'Password'} type={"password"} name={"password"} autoComplete={"new-password"}/>
                 <SingleInput label={'Retype Password'} type={"password"} name={"repassword"} autoComplete={"off"}/>
@@ -75,9 +76,9 @@ const dispatch = useDispatch()
                 <SingleInput label={'First name'} type={"text"} name={"firstName"} autoComplete={"given-name"}/>
                 <SingleInput label={'Last name'} type={"text"} name={"lastName"} autoComplete={"family-name"}/>
                 <SingleInput label={'Phone number'} type={"tel"} name={"number"} autoComplete={"tel"}/>
-                <Button type="submit">Register</Button>
-            </Form>
-        </Div>
+                <button className="login-register-button" type="submit">Register</button>
+            </form>
+        </div>
        
     )
 } 

@@ -7,25 +7,6 @@ import Specs from "./Specs";
 import AdditionalInformation from "./AditionalInformation";
 import styled from "styled-components";
 
-
-const Container = styled.div`
-    display:flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: #f8f9fa;
-    width: 70%;
-    margin: 2rem auto;
-    padding: 1rem;
-`
-const Div = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;    
-`
-
-
-
 const Listing = () => {
     const { id } = useParams();
     const [listing, setListing] = useState()

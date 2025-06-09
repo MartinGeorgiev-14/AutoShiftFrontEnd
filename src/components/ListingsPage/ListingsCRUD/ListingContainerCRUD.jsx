@@ -16,45 +16,6 @@ import { changeActive } from "../../../reducers/searchResultReducer";
 import MyListingsTitle from "../SearchResultPage/MyListingsTitle";
 
 
-const Container = styled.div`
-    background-color: #f8f9fa;
-    display: flex;
-    gap: 1rem;
-    width: 70%;
-    margin: 1rem auto;
-    padding: 1rem;
-    border-radius: 3px;
-`
-const Img = styled.img`
-    width: 10rem;
-    object-fit: contain;  
-`
-
-const InfoDiv = styled.div`
-    width: 100%;
-`
-
-const StatsDiv = styled.div`
-    width: 100%;
-`
-
-const Div = styled.div`
-    height: 85%;
-    display: flex;
-    flex-direction: column
-    justify-content: space-around;
-    flex-wrap: wrap;
-    font-size: 1.2rem;
-    gap: 1rem;
-
-    &.icons{
-        font-size: 1.5rem;
-        text-decoration: none;
-    }
-    
-` 
-
-
 const ListingContainerCRUD = ({ listing }) => {
     const mainImg = listing.images.find(i => i.main === true)
     const user = useSelector(state => state.user)
