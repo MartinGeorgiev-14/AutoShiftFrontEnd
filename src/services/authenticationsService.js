@@ -11,7 +11,7 @@ const login = async (data) => {
 
 const register = async (data) => {
     const response = await axios.post(`${url}/register`, data)
-    return response.data
+    return response
 }
 
 const getUserInfo = async () => {
