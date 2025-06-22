@@ -67,9 +67,8 @@ const TitleUserInfo = ({ listing, updateListing }) => {
             <div className="flex flex-col lg:gap-1">
                 <p>{listing.listing.user.firstName} {listing.listing.user.lastName}</p>
                 <h3 className="flex items-center lg:gap-1 text-custom-blue"><MdEmail className="icon" />{listing.listing.user.email}</h3>
-                {user?.accessToken && user.userId !== listing.listing.user.id && (
-                    listing.listing.isFavorited ? <Link className="bg-custom-blue text-center text-custom-white p-2 rounded-lg
-                hover-transition hover:bg-custom-hover-blue" to={`/chatList/${listing.listing.id}`}>Send Message</Link> : null)}
+                {user?.accessToken && user.userId !== listing.listing.user.id &&  <Link className="bg-custom-blue text-center text-custom-white p-2 rounded-lg
+                hover-transition hover:bg-custom-hover-blue" to={`/chatList/${listing.listing.id}`}>Send Message</Link>}
             </div>
         </div>
     )

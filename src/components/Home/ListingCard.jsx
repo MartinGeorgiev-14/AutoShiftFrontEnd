@@ -6,7 +6,7 @@ const ListingCard = ({ listing }) => {
     return (
         <div className="card-container group">
                 <Link className="card" to={`/listing/${listing.id}`}>
-                    <img src={mainImg.url} className="w-full rounded-t-xl shadow-lg"/>
+                    <img src={mainImg.url} className="w-full h-[15rem] object-cover rounded-t-xl shadow-lg"/>
                     <div className="card-text">
                         <p className="truncate lg:w-[20.5vw]">{listing.make} {listing.model}</p>
                         <p className="truncate lg:w-[20.5vw]">{listing.price} BGN ({listing.mileage} km)</p>

@@ -52,7 +52,6 @@ function App() {
       }).catch(error => {
         persistor.purge();
         dispatch(clearUser())
-        dispatch(displayNotification({ type: "error", message: "Error authentication person" }))
       })
       searchFormService.getFormOptions().then(result => {
         dispatch(setFormOptions(result))
@@ -70,6 +69,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/listings' element={<ListingsPage />} />
+            <Route path='/listings/:data' element={<ListingsPage />} /> 
             <Route path="/listing/:id" element={<Listing />} />
             <Route path='/editListing/:id' element={<EditListing />} />
             <Route path='/login' element={<Login />} />
