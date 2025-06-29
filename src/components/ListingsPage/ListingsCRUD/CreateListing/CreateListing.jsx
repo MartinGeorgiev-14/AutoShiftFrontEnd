@@ -14,6 +14,7 @@ import { displayNotification } from "../../../../reducers/notificationReducer";
 import DescriptionTextarea from "../UpdateListing/DescriptionTextarea";
 import { AiOutlineLoading } from "react-icons/ai";
 import { useNavigate } from "react-router";
+import useDocumentTitle from "../../../../hooks/useDocumentTitle";
 
 
 const CreateListing = () => {
@@ -23,8 +24,7 @@ const CreateListing = () => {
     const selectedOptions = useSelector(o => o.formSelected)
     const [images, setImages] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
-    console.log("formOptions", formOptions)
+    useDocumentTitle("Create Listing")
 
     useState(() => {
         searchFormService.getFormOptions().then(result => {

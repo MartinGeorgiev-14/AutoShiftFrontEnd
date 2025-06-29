@@ -16,6 +16,7 @@ import { displayNotification } from "../../../../reducers/notificationReducer";
 import ListingData from "./ListingData";
 import { AiOutlineLoading } from "react-icons/ai";
 import { useNavigate } from "react-router";
+import useDocumentTitle from "../../../../hooks/useDocumentTitle";
 
 
 const EditListing = () => {
@@ -26,6 +27,7 @@ const EditListing = () => {
     const selected = useSelector(o => o.formSelected)
     const [info, setInfo] = useState()
     const [isLoading, setIsLoading] = useState(false)
+    useDocumentTitle("Edit Listing")
 
     console.log("id", id)
     console.log("info", info)

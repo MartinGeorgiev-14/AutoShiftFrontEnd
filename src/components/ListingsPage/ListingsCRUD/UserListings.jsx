@@ -8,21 +8,14 @@ import ListingContainerCRUD from "./ListingContainerCRUD"
 import ButtonSelector from "../SearchResultPage/ButtonSelector";
 import searchFormService from "../../../services/searchFormService";
 import { useState } from "react";
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-
-`
-
-const H1 = styled.h1`
-    text-align: center;
-`
+import useDocumentTitle from "../../../hooks/useDocumentTitle";
 
 const UserListings = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const searchResult = useSelector(state => state.searchResult)
     const user = useSelector(state => state.user) 
+    useDocumentTitle("My Listings")
 
     useEffect(() => {
         if(user.userId){

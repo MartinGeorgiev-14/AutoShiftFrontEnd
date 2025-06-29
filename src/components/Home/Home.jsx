@@ -1,5 +1,3 @@
-import useDocumentTitle from "../../hooks/useDocumentTitle"
-import styled from "styled-components"
 import { useState, useEffect } from "react"
 import listingService from "../../services/listingCrudService"
 import { useDispatch, useSelector } from "react-redux"
@@ -7,10 +5,12 @@ import { displayNotification } from "../../reducers/notificationReducer"
 import ListingCard from "./ListingCard"
 import SearchForm from "../Search/SearchForm"
 import { clearOptions } from "../../reducers/formSelectedOptionsReducer"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 const Home = () => {
     const dispatch = useDispatch()
     const [listings, setListings] = useState()
+    useDocumentTitle("Home")
 
     useEffect(() => {
         dispatch(clearOptions())

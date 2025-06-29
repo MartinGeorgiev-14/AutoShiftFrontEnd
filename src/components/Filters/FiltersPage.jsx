@@ -5,15 +5,16 @@ import { displayNotification } from "../../reducers/notificationReducer"
 import FilterContainer from "./FilterContainer"
 import FavoriteButtonSelector from "./FavoriteButtonSelector"
 import favoritesService from "../../services/favoritesService"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 
 const FiltersPage = () => {
     const dispatch = useDispatch()
     const filters = useSelector(state => state.filterReducer)
-   
+    useDocumentTitle("Favorite Filters")
+
     useEffect(() => {
         favoritesService.getFavoriteFilters().then(result => {
-            console.log("result", result)
             dispatch(setSearchResult(result))
         }).catch(error => {
             dispatch(displayNotification({type: 'error', message: "Error getting favorite filters"}))

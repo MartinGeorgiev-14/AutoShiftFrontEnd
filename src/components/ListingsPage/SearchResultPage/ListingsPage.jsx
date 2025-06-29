@@ -9,12 +9,14 @@ import { displayNotification } from "../../../reducers/notificationReducer"
 import { useParams } from "react-router"
 import { setSearchResult } from "../../../reducers/searchResultReducer"
 import { useEffect } from "react"
+import useDocumentTitle from "../../../hooks/useDocumentTitle"
 
 const ListingPage = () => {
 const listings = useSelector(o => o.searchResult.listings)
 const selectedOptions = useSelector(o => o.formSelected)
 const dispatch = useDispatch()
 const { data } = useParams()
+useDocumentTitle("Search Result")
 
 const decodeBase64ToObject = (encoded) => {
 

@@ -6,20 +6,19 @@ import ChatsList from "./ChatsList"
 import Conversation from "./Conversation"
 import { displayNotification } from "../../reducers/notificationReducer"
 import { useParams } from "react-router"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 
 const Chat = () => {
     const dispatch = useDispatch()
-    // const [buyChatList, setBuyChatList] = useState({})
-    // const [sellChatList, setSellChatList] = useState({})
     const { id } = useParams()
     const buyChatList = useSelector(state => state.chatListReducer.buyList)
     const sellChatList = useSelector(state => state.chatListReducer.sellList)
     const chatSelector = useSelector(state => state.chatListReducer.chatSelector)
     const [conversation, setConversation] = useState(null)
- 
     const chatList = useSelector(state => state.chatListReducer)
-    console.log('conversation', conversation)
+    useDocumentTitle("Chat")
+
     useEffect(() => {
     const fetchChats = async () => {
         try {

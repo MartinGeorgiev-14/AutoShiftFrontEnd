@@ -9,14 +9,12 @@ import styled from "styled-components"
 import PairedSelectDiv from "./PairedSelectDiv"
 import SingleSelectDiv from "./SingleSelectDiv"
 import InputDiv from "./InputDiv"
-import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 const SearchForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const formOptions = useSelector(o => o.formOptions.options)
     const selectedOptions = useSelector(o => o.formSelected)
-    useDocumentTitle("Search")
 
     useEffect(() => {
         searchFormService.getFormOptions().then(result => {

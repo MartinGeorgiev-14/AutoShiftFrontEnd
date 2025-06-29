@@ -5,10 +5,12 @@ import { setInitialResultFavListings } from "../../reducers/favoriteListingsRedu
 import { displayNotification } from "../../reducers/notificationReducer"
 import FavListingContainer from "./FavListingContainer"
 import FavoriteButtonSelector from "../Filters/FavoriteButtonSelector"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 const FavoriteListingsPage = () => {
     const dispatch = useDispatch()
     const listings = useSelector(l => l.favoriteListingsReducer)
+    useDocumentTitle("Favorite Listings")
 
     useEffect(() => {
         favoritesService.getFavoriteListings().then(result => {

@@ -6,11 +6,13 @@ import TitleUserInfo from './TitleUserInfo'
 import Specs from "./Specs";
 import AdditionalInformation from "./AditionalInformation";
 import styled from "styled-components";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 const Listing = () => {
     const { id } = useParams();
     const [listing, setListing] = useState()
-    
+    useDocumentTitle("Listing Details")
+
     useEffect(() => {
         listingCrudService.getListingById(id).then(result => {
             const sortImages = result.listing.images.sort((a,b) => {

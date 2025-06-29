@@ -4,10 +4,12 @@ import authService from "../../services/authenticationsService"
 import { useDispatch } from "react-redux"
 import { displayNotification } from "../../reducers/notificationReducer"
 import { useNavigate } from "react-router"
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 const Register = () => {
-const dispatch = useDispatch()
-const navigate = useNavigate()
+    useDocumentTitle("Register")
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleRegister = async (event) => {
         event.preventDefault()
 
