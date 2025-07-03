@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"
-import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setChatSelector, setListingFirstBuyPosition, setListingFirstSellPosition, changeIsRead } from "../../reducers/chatListReducer"
-import { useEffect, useState, useRef } from "react"
+import { addChatToBuyList, addChatToSellList, setInitialBuyChatList, setInitialSellChatList, setChatSelector, setListingFirstBuyPosition, setListingFirstSellPosition, changeIsRead } from "../../reducers/chatListReducer"
+import { useEffect, useState } from "react"
 import chatService from "../../services/chatService"
 import ChatsList from "./ChatsList"
 import Conversation from "./Conversation"
@@ -60,7 +60,7 @@ const Chat = () => {
             event.preventDefault()
             const result = await chatService.getUserConversations(0, 10, false)
             dispatch(setChatSelector(false))
-            dispatch(addChatToSellList(result))
+            dispatch(setInitialSellChatList(result)) // Use setInitialSellChatList instead of addChatToSellList
 
         } catch (error) {
             dispatch(displayNotification({ type: "error", message: "Error fetching sell chat list" }))

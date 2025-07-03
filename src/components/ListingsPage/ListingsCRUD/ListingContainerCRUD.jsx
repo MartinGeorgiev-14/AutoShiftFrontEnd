@@ -17,7 +17,18 @@ import MyListingsTitle from "../SearchResultPage/MyListingsTitle";
 
 
 const ListingContainerCRUD = ({ listing }) => {
-    const mainImg = listing.images.find(i => i.main === true)
+    let isMain = false
+    let mainImg = listing.images.find(i => {
+        if(i.main === true){
+            isMain = true
+            return i
+        }
+    })
+
+    if(!isMain) {
+        console.log("listimg", listing)
+        mainImg = listing.images[0]
+    }
     const user = useSelector(state => state.user)
     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -50,6 +61,7 @@ const ListingContainerCRUD = ({ listing }) => {
         }
     }
 
+    // console.log("ListingContainerCRUD", listing)
     return(
         <Link className="listing-container" to={`/listing/${listing.id}`}>
             <img className="listing-img" src={mainImg.url}/>

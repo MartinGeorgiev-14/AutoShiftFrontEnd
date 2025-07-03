@@ -73,7 +73,7 @@ const toggleActive = async (listing) => {
 }
 
 const getListingsSortedByCreatedAt = async (pageNo = 0, pageSize = 6) => {
-    const response = await axios.get(`${url}/page/createdAt?pageNo=0&pageSize=6`)
+    const response = await axios.get(`${url}/page/home?pageNo=0&pageSize=6&sortBy=createdAt&sortDirection=DESC&isActive=false`)
 
     return response.data
 }

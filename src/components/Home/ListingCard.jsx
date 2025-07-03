@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const ListingCard = ({ listing }) => {
     const mainImg = listing.images.find(i => i.main === true)
-
+    console.log("mainimg", mainImg)
     return (
         <div className="card-container group">
                 <Link className="card" to={`/listing/${listing.id}`}>

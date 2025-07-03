@@ -10,7 +10,7 @@ import { useState } from "react";
 const ImageSlider = ({ images }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     return (
-        <div className="lg:h-fit">
+        <div className="lg:h-fit z-0">
             <Swiper loop={true} spaceBetween={10} navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[FreeMode, Navigation, Thumbs]}

@@ -10,6 +10,8 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversatio
     const user = useSelector(state => state.user)
     const conversations = chats.response.conversations
 
+    // console.log("ChatsList", conversations)
+
     useEffect(() => {
         const handleScroll = (event) => {
             if (scrollRef.current) {
@@ -17,6 +19,7 @@ const ChatsList = ({ chatSelector, chats, setChats, setConversation, conversatio
                 if (el.scrollHeight - el.scrollTop <= el.clientHeight + 20) {
                     if (!chats.response.last) {
                         chatService.getUserConversations(chats.response.pageNo + 1, 5, chatSelector).then(result => {
+                            console.log("enter setchats")
                             dispatch(setChats(result))
                         })
 

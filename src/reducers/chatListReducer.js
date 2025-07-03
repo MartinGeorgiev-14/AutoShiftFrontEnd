@@ -51,12 +51,13 @@ const chatListReducer = createSlice({
             }
             else {
                 const conversations = [...state.sellList.response.conversations, ...action.payload.response.conversations]
+
                 return ({
                     ...state,
                     sellList: {
                         ...state.sellList,
                         response: {
-                            ...state.sellList.response,
+                            ...action.payload.response,
                             conversations: [
                                 ...conversations
                             ]
@@ -156,6 +157,12 @@ const chatListReducer = createSlice({
                 buyList: action.payload
             }
         },
+        setInitialSellChatList: (state, action) => {
+            return {
+                ...state,
+                sellList: action.payload
+            }
+        },
         setChatSelector: (state, action) => {
             return {
                 ...state,
@@ -167,5 +174,5 @@ const chatListReducer = createSlice({
 
 export const { addChatToBuyList, addChatToSellList, setInitialBuyChatList,
     setChatSelector, setListingFirstBuyPosition, setListingFirstSellPosition,
-    changeIsRead } = chatListReducer.actions
+    changeIsRead, setInitialSellChatList } = chatListReducer.actions
 export default chatListReducer.reducer
